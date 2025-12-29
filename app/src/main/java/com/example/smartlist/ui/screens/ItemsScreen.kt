@@ -9,7 +9,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.weight
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -24,9 +24,8 @@ import androidx.compose.material3.SnackbarHost
 import androidx.compose.material3.SnackbarHostState
 import androidx.compose.material3.SnackbarResult
 import androidx.compose.material3.SnackbarDuration
-import androidx.compose.material3.ExperimentalMaterial3Api
-import androidx.compose.material3.Snackbar
-import androidx.compose.material3.Text as M3Text
+import androidx.compose.material3.Text
+import androidx.compose.material3.Checkbox
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.unit.Dp
@@ -74,6 +73,47 @@ fun ItemsScreen(listId: String, title: String, onBack: () -> Unit) {
             Text(text = title, modifier = Modifier.padding(top = 8.dp))
         }
 
+        // Selection mode controls
+        var selectionMode by remember { mutableStateOf(false) }
+        var selectedIds by remember { mutableStateOf(setOf<String>()) }
+        Row(modifier = Modifier.fillMaxWidth().padding(top = 8.dp), horizontalArrangement = Arrangement.Start) {
+            Button(onClick = { selectionMode = !selectionMode }, modifier = Modifier.testTag("select_mode_button")) {
+                Text(if (selectionMode) "Cancel" else "Select")
+            }
+            if (selectionMode) {
+                Spacer(modifier = Modifier.width(12.dp))
+                Button(onClick = {
+                    // Perform batch delete
+                    val idsToDelete = selectedIds.toList()
+                    if (idsToDelete.isNotEmpty()) {
+                        val itemsToRestore = itemsState.filter { it.id in selectedIds }
+                        coroutineScope.launch(Dispatchers.IO) {
+                            repo.deleteItemsSoft(idsToDelete)
+                        }
+                        // clear selection and exit selection mode
+                        selectedIds = setOf()
+                        selectionMode = false
+
+                        // Show undo snackbar
+                        coroutineScope.launch {
+                            val result = snackbarHostState.showSnackbar(
+                                message = "Items deleted",
+                                actionLabel = "Undo",
+                                duration = SnackbarDuration.Short
+                            )
+                            if (result == SnackbarResult.ActionPerformed) {
+                                coroutineScope.launch(Dispatchers.IO) {
+                                    repo.restoreItems(itemsToRestore)
+                                }
+                            }
+                        }
+                    }
+                }, modifier = Modifier.testTag("delete_selected_button")) {
+                    Text("Delete selected")
+                }
+            }
+        }
+
         // Add item
         TextField(value = input, onValueChange = { input = it }, modifier = Modifier.fillMaxWidth().padding(top = 12.dp).testTag("item_input"))
         Button(onClick = {
@@ -100,14 +140,11 @@ fun ItemsScreen(listId: String, title: String, onBack: () -> Unit) {
                 ItemRow(item,
                     modifier = Modifier.testTag("item_${'$'}{item.id}"),
                     onDelete = {
-                        // Capture item locally
+                        // single-item delete (same as before)
                         val deletedItem = item
-                        // Soft-delete on IO
                         coroutineScope.launch(Dispatchers.IO) {
                             repo.deleteItemSoft(deletedItem.id)
                         }
-
-                        // Show undo snackbar on main
                         coroutineScope.launch {
                             val result = snackbarHostState.showSnackbar(
                                 message = "Item deleted",
@@ -115,12 +152,16 @@ fun ItemsScreen(listId: String, title: String, onBack: () -> Unit) {
                                 duration = SnackbarDuration.Short
                             )
                             if (result == SnackbarResult.ActionPerformed) {
-                                // Restore on IO
                                 coroutineScope.launch(Dispatchers.IO) {
                                     repo.restoreItem(deletedItem)
                                 }
                             }
                         }
+                    },
+                    selectable = selectionMode,
+                    selected = item.id in selectedIds,
+                    onSelect = {
+                        selectedIds = if (item.id in selectedIds) selectedIds - item.id else selectedIds + item.id
                     }
                 )
             }
@@ -130,15 +171,23 @@ fun ItemsScreen(listId: String, title: String, onBack: () -> Unit) {
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun ItemRow(item: ItemEntity, modifier: Modifier = Modifier, onDelete: (() -> Unit)? = null) {
+fun ItemRow(
+    item: ItemEntity,
+    modifier: Modifier = Modifier,
+    onDelete: (() -> Unit)? = null,
+    selectable: Boolean = false,
+    selected: Boolean = false,
+    onSelect: (() -> Unit)? = null
+) {
     Card(modifier = modifier.padding(vertical = 6.dp)) {
-        Row(modifier = Modifier
-            .fillMaxWidth()
-            .padding(8.dp), horizontalArrangement = Arrangement.Start) {
-            // Text takes remaining space so the icon sits at the end
-            Text(text = item.text, modifier = Modifier
-                .weight(1f)
-                .padding(start = 8.dp))
+        Row(modifier = Modifier.fillMaxWidth().padding(8.dp), horizontalArrangement = Arrangement.SpaceBetween) {
+            Row {
+                if (selectable) {
+                    Checkbox(checked = selected, onCheckedChange = { onSelect?.invoke() }, modifier = Modifier.testTag("checkbox_item_${'$'}{item.id}"))
+                    Spacer(modifier = Modifier.width(8.dp))
+                }
+                Text(text = item.text, modifier = Modifier.padding(start = 8.dp))
+            }
             Spacer(modifier = Modifier.width(8.dp))
             IconButton(onClick = { onDelete?.invoke() }, modifier = Modifier.testTag("delete_item_${'$'}{item.id}")) {
                 Icon(

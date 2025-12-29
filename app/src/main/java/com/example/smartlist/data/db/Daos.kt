@@ -33,6 +33,9 @@ interface ItemDao {
     @Query("UPDATE items SET deleted = 1, updatedAt = :updatedAt WHERE id = :itemId")
     suspend fun softDelete(itemId: String, updatedAt: Long)
 
+    @Query("UPDATE items SET deleted = 1, updatedAt = :updatedAt WHERE id IN (:itemIds)")
+    suspend fun softDeleteMany(itemIds: List<String>, updatedAt: Long)
+
     // Helper for data migration / testing - fetch items for a list once
     @Query("SELECT * FROM items WHERE listId = :listId AND deleted = 0 ORDER BY updatedAt DESC")
     suspend fun getItemsForList(listId: String): List<ItemEntity>

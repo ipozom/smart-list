@@ -56,10 +56,24 @@ class Repository(
         itemDao.softDelete(itemId, System.currentTimeMillis())
     }
 
+    suspend fun deleteItemsSoft(itemIds: List<String>) {
+        if (itemIds.isEmpty()) return
+        itemDao.softDeleteMany(itemIds, System.currentTimeMillis())
+    }
+
     suspend fun restoreItem(item: ItemEntity) {
         // Restore previously soft-deleted item by writing it back with deleted=false
         val restored = item.copy(deleted = false, updatedAt = System.currentTimeMillis())
         Log.d("Repository", "restoreItem: id=${restored.id} listId=${restored.listId} text=${restored.text}")
         itemDao.insert(restored)
+    }
+
+    suspend fun restoreItems(items: List<ItemEntity>) {
+        if (items.isEmpty()) return
+        val now = System.currentTimeMillis()
+        items.forEach { item ->
+            val restored = item.copy(deleted = false, updatedAt = now)
+            itemDao.insert(restored)
+        }
     }
 }
