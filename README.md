@@ -2,6 +2,8 @@
 
 This repository contains a minimal starter Android project for a local-first list management app.
 
+See recent changes and development notes in `docs/UPDATES.md` (linked changelog and test notes).
+
 Key features implemented in this scaffold:
 - Kotlin + Jetpack Compose UI skeleton
 - Room local persistence (List and Item entities, DAOs)
