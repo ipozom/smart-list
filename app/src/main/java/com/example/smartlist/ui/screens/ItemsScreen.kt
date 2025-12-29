@@ -1,6 +1,10 @@
 package com.example.smartlist.ui.screens
 
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -11,6 +15,15 @@ import androidx.compose.material3.Card
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
+import androidx.compose.material3.SnackbarHost
+import androidx.compose.material3.SnackbarHostState
+import androidx.compose.material3.SnackbarResult
+import androidx.compose.material3.SnackbarDuration
+import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.Snackbar
+import androidx.compose.material3.Text as M3Text
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Delete
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
 import androidx.compose.runtime.Composable
@@ -40,6 +53,7 @@ fun ItemsScreen(listId: String, title: String, onBack: () -> Unit) {
 
     var input by remember { mutableStateOf("") }
     val coroutineScope = rememberCoroutineScope()
+    val snackbarHostState = remember { SnackbarHostState() }
 
     Column(modifier = Modifier.fillMaxSize().padding(16.dp)) {
         // Header with back
@@ -68,9 +82,37 @@ fun ItemsScreen(listId: String, title: String, onBack: () -> Unit) {
             Text("Add item")
         }
 
+        // Snackbar host
+        SnackbarHost(hostState = snackbarHostState)
+
         LazyColumn(modifier = Modifier.padding(top = 12.dp)) {
             items(itemsState) { item: ItemEntity ->
-                ItemRow(item, modifier = Modifier.testTag("item_${'$'}{item.id}"))
+                ItemRow(item,
+                    modifier = Modifier.testTag("item_${'$'}{item.id}"),
+                    onDelete = {
+                        // Capture item locally
+                        val deletedItem = item
+                        // Soft-delete on IO
+                        coroutineScope.launch(Dispatchers.IO) {
+                            repo.deleteItemSoft(deletedItem.id)
+                        }
+
+                        // Show undo snackbar on main
+                        coroutineScope.launch {
+                            val result = snackbarHostState.showSnackbar(
+                                message = "Item deleted",
+                                actionLabel = "Undo",
+                                duration = SnackbarDuration.Short
+                            )
+                            if (result == SnackbarResult.ActionPerformed) {
+                                // Restore on IO
+                                coroutineScope.launch(Dispatchers.IO) {
+                                    repo.restoreItem(deletedItem)
+                                }
+                            }
+                        }
+                    }
+                )
             }
         }
     }
@@ -78,8 +120,14 @@ fun ItemsScreen(listId: String, title: String, onBack: () -> Unit) {
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun ItemRow(item: ItemEntity, modifier: Modifier = Modifier) {
+fun ItemRow(item: ItemEntity, modifier: Modifier = Modifier, onDelete: (() -> Unit)? = null) {
     Card(modifier = modifier.padding(vertical = 6.dp)) {
-        Text(text = item.text, modifier = Modifier.padding(16.dp))
+        Row(modifier = Modifier.fillMaxWidth().padding(8.dp), horizontalArrangement = Arrangement.SpaceBetween) {
+            Text(text = item.text, modifier = Modifier.padding(start = 8.dp))
+            Spacer(modifier = Modifier.width(8.dp))
+            IconButton(onClick = { onDelete?.invoke() }, modifier = Modifier.testTag("delete_item_${'$'}{item.id}")) {
+                Icon(imageVector = Icons.Default.Delete, contentDescription = "Delete item")
+            }
+        }
     }
 }
