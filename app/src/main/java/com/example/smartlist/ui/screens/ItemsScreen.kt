@@ -25,6 +25,11 @@ import androidx.compose.material3.SnackbarHostState
 import androidx.compose.material3.SnackbarResult
 import androidx.compose.material3.SnackbarDuration
 import androidx.compose.material3.Text
+import androidx.compose.material3.TopAppBar
+import androidx.compose.material3.IconButton
+import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material.icons.filled.Close
+import androidx.compose.material.icons.filled.Edit
 import androidx.compose.material3.Checkbox
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.ui.unit.sp
@@ -64,54 +69,69 @@ fun ItemsScreen(listId: String, title: String, onBack: () -> Unit) {
     val coroutineScope = rememberCoroutineScope()
     val snackbarHostState = remember { SnackbarHostState() }
 
+    // Selection state (moved up so app bar can use it)
+    var selectionMode by remember { mutableStateOf(false) }
+    var selectedIds by remember { mutableStateOf(setOf<String>()) }
+
     Column(modifier = Modifier.fillMaxSize().padding(16.dp)) {
-        // Header with back
-        Column(modifier = Modifier.fillMaxWidth()) {
-            Button(onClick = onBack) {
-                Text("<- Back")
-            }
-            Text(text = title, modifier = Modifier.padding(top = 8.dp))
-        }
-
-        // Selection mode controls
-        var selectionMode by remember { mutableStateOf(false) }
-        var selectedIds by remember { mutableStateOf(setOf<String>()) }
-        Row(modifier = Modifier.fillMaxWidth().padding(top = 8.dp), horizontalArrangement = Arrangement.Start) {
-            Button(onClick = { selectionMode = !selectionMode }, modifier = Modifier.testTag("select_mode_button")) {
-                Text(if (selectionMode) "Cancel" else "Select")
-            }
-            if (selectionMode) {
-                Spacer(modifier = Modifier.width(12.dp))
-                Button(onClick = {
-                    // Perform batch delete
-                    val idsToDelete = selectedIds.toList()
-                    if (idsToDelete.isNotEmpty()) {
-                        val itemsToRestore = itemsState.filter { it.id in selectedIds }
-                        coroutineScope.launch(Dispatchers.IO) {
-                            repo.deleteItemsSoft(idsToDelete)
-                        }
-                        // clear selection and exit selection mode
-                        selectedIds = setOf()
+        // Top app bar or contextual action bar when selectionMode is active
+        if (selectionMode) {
+            TopAppBar(
+                title = { Text(text = "${selectedIds.size} selected") },
+                navigationIcon = {
+                    IconButton(onClick = {
+                        // Cancel selection mode
                         selectionMode = false
+                        selectedIds = setOf()
+                    }) {
+                        Icon(Icons.Default.Close, contentDescription = "Cancel selection")
+                    }
+                },
+                actions = {
+                    IconButton(onClick = {
+                        val idsToDelete = selectedIds.toList()
+                        if (idsToDelete.isNotEmpty()) {
+                            val itemsToRestore = itemsState.filter { it.id in selectedIds }
+                            coroutineScope.launch(Dispatchers.IO) {
+                                repo.deleteItemsSoft(idsToDelete)
+                            }
+                            // clear selection and exit selection mode
+                            selectedIds = setOf()
+                            selectionMode = false
 
-                        // Show undo snackbar
-                        coroutineScope.launch {
-                            val result = snackbarHostState.showSnackbar(
-                                message = "Items deleted",
-                                actionLabel = "Undo",
-                                duration = SnackbarDuration.Short
-                            )
-                            if (result == SnackbarResult.ActionPerformed) {
-                                coroutineScope.launch(Dispatchers.IO) {
-                                    repo.restoreItems(itemsToRestore)
+                            // Show undo snackbar
+                            coroutineScope.launch {
+                                val result = snackbarHostState.showSnackbar(
+                                    message = "Items deleted",
+                                    actionLabel = "Undo",
+                                    duration = SnackbarDuration.Short
+                                )
+                                if (result == SnackbarResult.ActionPerformed) {
+                                    coroutineScope.launch(Dispatchers.IO) {
+                                        repo.restoreItems(itemsToRestore)
+                                    }
                                 }
                             }
                         }
+                    }, modifier = Modifier.testTag("delete_selected_button")) {
+                        Icon(Icons.Default.Delete, contentDescription = "Delete selected")
                     }
-                }, modifier = Modifier.testTag("delete_selected_button")) {
-                    Text("Delete selected")
                 }
-            }
+            )
+        } else {
+            TopAppBar(
+                title = { Text(text = title) },
+                navigationIcon = {
+                    IconButton(onClick = onBack) {
+                        Text("<- Back")
+                    }
+                },
+                actions = {
+                    IconButton(onClick = { selectionMode = true }, modifier = Modifier.testTag("select_mode_button")) {
+                        Icon(Icons.Default.Edit, contentDescription = "Enter selection mode")
+                    }
+                }
+            )
         }
 
         // Add item
