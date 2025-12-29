@@ -5,6 +5,11 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.fillMaxHeight
+import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.weight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -22,6 +27,11 @@ import androidx.compose.material3.SnackbarDuration
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Snackbar
 import androidx.compose.material3.Text as M3Text
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.ui.unit.sp
+import androidx.compose.ui.unit.Dp
+import androidx.compose.ui.unit.dp
+import androidx.compose.ui.graphics.Color
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Delete
 import androidx.compose.material3.Text
@@ -122,11 +132,21 @@ fun ItemsScreen(listId: String, title: String, onBack: () -> Unit) {
 @Composable
 fun ItemRow(item: ItemEntity, modifier: Modifier = Modifier, onDelete: (() -> Unit)? = null) {
     Card(modifier = modifier.padding(vertical = 6.dp)) {
-        Row(modifier = Modifier.fillMaxWidth().padding(8.dp), horizontalArrangement = Arrangement.SpaceBetween) {
-            Text(text = item.text, modifier = Modifier.padding(start = 8.dp))
+        Row(modifier = Modifier
+            .fillMaxWidth()
+            .padding(8.dp), horizontalArrangement = Arrangement.Start) {
+            // Text takes remaining space so the icon sits at the end
+            Text(text = item.text, modifier = Modifier
+                .weight(1f)
+                .padding(start = 8.dp))
             Spacer(modifier = Modifier.width(8.dp))
             IconButton(onClick = { onDelete?.invoke() }, modifier = Modifier.testTag("delete_item_${'$'}{item.id}")) {
-                Icon(imageVector = Icons.Default.Delete, contentDescription = "Delete item")
+                Icon(
+                    imageVector = Icons.Default.Delete,
+                    contentDescription = "Delete item",
+                    tint = MaterialTheme.colorScheme.error,
+                    modifier = Modifier.size(20.dp)
+                )
             }
         }
     }
