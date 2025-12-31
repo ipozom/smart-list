@@ -37,6 +37,7 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.lifecycle.ViewModelProvider
+import com.example.smartlist.data.ListNameEntity
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import androidx.lifecycle.viewmodel.compose.viewModel
@@ -65,6 +66,11 @@ fun ItemsScreen(listId: Long, listName: String, navController: NavController) {
     val items by itemsVm.items.collectAsState()
     val query by itemsVm.query.collectAsState()
 
+    // Observe the current list name from DB so UI updates after rename
+    val listDao = AppDatabase.getInstance(context).listNameDao()
+    val currentList by listDao.getById(listId).collectAsState(initial = ListNameEntity(id = listId, name = listName))
+    val displayedName = currentList?.name ?: listName
+
     val showDialog = remember { mutableStateOf(false) }
     var menuExpanded by remember { mutableStateOf(false) }
     var showRenameDialog by remember { mutableStateOf(false) }
@@ -72,7 +78,7 @@ fun ItemsScreen(listId: Long, listName: String, navController: NavController) {
     val coroutineScope = rememberCoroutineScope()
 
     Scaffold(topBar = {
-        TopAppBar(title = { Text(listName) }, actions = {
+        TopAppBar(title = { Text(displayedName) }, actions = {
             IconButton(onClick = { menuExpanded = true }) {
                 Icon(imageVector = Icons.Default.MoreVert, contentDescription = "More")
             }

@@ -19,4 +19,7 @@ interface ListNameDao {
 
     @Query("UPDATE list_names SET name = :newName WHERE id = :id")
     suspend fun updateName(id: Long, newName: String)
+
+    @Query("SELECT * FROM list_names WHERE id = :id LIMIT 1")
+    fun getById(id: Long): kotlinx.coroutines.flow.Flow<ListNameEntity?>
 }
