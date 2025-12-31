@@ -16,6 +16,38 @@ Summary of changes
   - Test tags: `item_<id>`, `delete_item_<id>`, `item_input`, `add_item_button`.
 - Minor UI tweak: made delete icon visible (explicit size and theme error tint).
 
+- Fixed ambiguous import and experimental API compile errors in `ItemsScreen.kt`:
+  - Removed duplicate/conflicting imports and added `@OptIn(ExperimentalMaterial3Api::class)` to `ItemsScreen` so `TopAppBar` usage compiles.
+- Replaced textual back button with a Material `ArrowBack` icon in `ItemsScreen` and added `testTag("back_button")` for UI tests.
+- Implemented selection-mode batch delete (Delete Selected) with Undo snackbar. The selection flow uses per-row checkboxes and reuses the soft-delete + restore repo helpers.
+
+- Top app-bar select action changed from a pencil icon to a check icon to avoid visual confusion with the per-item edit (pencil) IconButton. This reduces accidental entry into selection mode during tests and when users glance at the toolbar.
+
+
+- Edit / Update item + ViewModel refactor
+- --------------------------------------
+- A ViewModel-based edit flow was added to separate UI state and repository operations from composables:
+  - `app/src/main/java/com/example/smartlist/ui/viewmodel/ItemsViewModel.kt` was added. It manages the editing dialog state (`editingItem`, `editingText`) and exposes methods: `startEdit`, `updateEditingText`, `saveEdit`, `cancelEdit`, `deleteItem`, `restoreItem`, `deleteItems`, `restoreItems`, and `addItem`.
+  - `ItemsScreen.kt` was refactored to use `ItemsViewModel` (via `viewModel()`), move the edit `AlertDialog` to the screen level and bind it to ViewModel state, and call ViewModel methods for add/delete/restore operations.
+  - `ItemRow` no longer contains its own edit dialog; it exposes `onEditStart` to trigger the ViewModel-managed dialog.
+  - Repository: `updateItem(item: ItemEntity)` was added to persist edits; the ViewModel calls this in `saveEdit()` after validating non-empty trimmed text.
+
+Testing and automation notes for edit flow
+----------------------------------------
+- Test tags for the edit UI are present: `edit_item_<id>` for the edit IconButton, and the dialog's `TextField` can be located by semantics within the AlertDialog.
+- Recommended automation test: tap `edit_item_<id>`, change text, save, and assert the row shows the updated text. The ViewModel scoping improves determinism for such tests.
+
+
+Rename list (update list name)
+--------------------------------
+- Added support to rename lists from the UI.
+  - `ListDao` now exposes `@Update suspend fun update(list: ListEntity)` so Room can persist title changes.
+  - `Repository` exposes `suspend fun updateList(list: ListEntity)` which `ListsViewModel` calls from `viewModelScope`.
+  - `ListsViewModel` holds the editing dialog state (`_editingList`, `_editingTitle`) and methods: `startEdit`, `updateEditingTitle`, `cancelEdit`, and `saveEdit`.
+  - `ListsScreen` / `ListRow` have an edit `IconButton` which opens a ViewModel-driven `AlertDialog` to rename the list. The dialog's `TextField` uses `Modifier.fillMaxWidth()` and is configured as `singleLine = true` with `maxLines = 1`.
+  - Note: current test tags for edit were added as `edit_list_<title>`; for robust tests it's recommended to use `edit_list_<id>` to avoid flakiness when titles change.
+
+
 Files added/changed (high-level)
 --------------------------------
 - app/src/main/java/com/example/smartlist/ui/screens/ItemsScreen.kt — add per-row delete UI, Snackbar undo

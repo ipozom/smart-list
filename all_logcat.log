@@ -1,0 +1,1133 @@
+--------- beginning of main
+12-31 11:38:41.408   734   889 D WifiNetworkMonitor: EVENT_WIFI_RSSI_CHANGED
+12-31 11:38:41.408   734   889 E WifiNetworkMonitor: Not any Obervers!!!
+12-31 11:38:41.409   734   890 D WifiRssiLinkSpeedAndFrequencyMonitor: EVENT_WIFI_RSSI_LINKSPEED_FREQUENCY_CHANGED
+12-31 11:38:41.409   734   890 D WifiRssiLinkSpeedAndFrequencyMonitor: Not any Obervers!!!
+12-31 11:38:41.416   972   972 E PANCHENG: mWifiVisible true
+12-31 11:38:41.416   972   972 D StatusBarSignalPolicy: updateWifiIconWithState state : WifiIconState(resId=17302850, visible=true)
+--------- beginning of system
+12-31 11:38:41.417   734   892 D ConnectivityService:  sending notification for NetworkRequest [ LISTEN id=15115, [ Capabilities: INTERNET&NOT_RESTRICTED&TRUSTED&FOREGROUND Uid: 10131] ]
+12-31 11:38:41.417   734   892 D ConnectivityService: sending notification CALLBACK_CAP_CHANGED for NetworkRequest [ LISTEN id=15115, [ Capabilities: INTERNET&NOT_RESTRICTED&TRUSTED&FOREGROUND Uid: 10131] ]
+12-31 11:38:41.418   734   892 D ConnectivityService:  sending notification for NetworkRequest [ LISTEN id=15864, [ Capabilities: INTERNET&TRUSTED Uid: 10089] ]
+12-31 11:38:41.418   734   892 D ConnectivityService: sending notification CALLBACK_CAP_CHANGED for NetworkRequest [ LISTEN id=15864, [ Capabilities: INTERNET&TRUSTED Uid: 10089] ]
+12-31 11:38:41.418   734   892 D ConnectivityService:  sending notification for NetworkRequest [ TRACK_DEFAULT id=15865, [ Capabilities: INTERNET&NOT_RESTRICTED&TRUSTED Uid: 10089] ]
+12-31 11:38:41.419   734   892 D ConnectivityService: sending notification CALLBACK_CAP_CHANGED for NetworkRequest [ TRACK_DEFAULT id=15865, [ Capabilities: INTERNET&NOT_RESTRICTED&TRUSTED Uid: 10089] ]
+12-31 11:38:41.419   734   892 D ConnectivityService:  sending notification for NetworkRequest [ TRACK_DEFAULT id=15866, [ Capabilities: INTERNET&NOT_RESTRICTED&TRUSTED Uid: 10089] ]
+12-31 11:38:41.419   734   892 D ConnectivityService: sending notification CALLBACK_CAP_CHANGED for NetworkRequest [ TRACK_DEFAULT id=15866, [ Capabilities: INTERNET&NOT_RESTRICTED&TRUSTED Uid: 10089] ]
+12-31 11:38:41.420   734   892 D ConnectivityService:  sending notification for NetworkRequest [ TRACK_DEFAULT id=15878, [ Capabilities: INTERNET&NOT_RESTRICTED&TRUSTED Uid: 10089] ]
+12-31 11:38:41.420   734   892 D ConnectivityService: sending notification CALLBACK_CAP_CHANGED for NetworkRequest [ TRACK_DEFAULT id=15878, [ Capabilities: INTERNET&NOT_RESTRICTED&TRUSTED Uid: 10089] ]
+12-31 11:38:41.420   734   892 D ConnectivityService:  sending notification for NetworkRequest [ LISTEN id=15879, [ Capabilities: INTERNET&NOT_RESTRICTED&TRUSTED Uid: 10089] ]
+12-31 11:38:41.420   734   892 D ConnectivityService: sending notification CALLBACK_CAP_CHANGED for NetworkRequest [ LISTEN id=15879, [ Capabilities: INTERNET&NOT_RESTRICTED&TRUSTED Uid: 10089] ]
+12-31 11:38:41.421   734   892 D ConnectivityService:  sending notification for NetworkRequest [ LISTEN id=15949, [ Transports: WIFI Capabilities: NOT_RESTRICTED&TRUSTED&NOT_VPN Uid: 10089] ]
+12-31 11:38:41.421   734   892 D ConnectivityService: sending notification CALLBACK_CAP_CHANGED for NetworkRequest [ LISTEN id=15949, [ Transports: WIFI Capabilities: NOT_RESTRICTED&TRUSTED&NOT_VPN Uid: 10089] ]
+12-31 11:38:41.421   734   892 D ConnectivityService:  sending notification for NetworkRequest [ TRACK_DEFAULT id=16355, [ Capabilities: INTERNET&NOT_RESTRICTED&TRUSTED Uid: 10107] ]
+12-31 11:38:41.421   734   892 D ConnectivityService: sending notification CALLBACK_CAP_CHANGED for NetworkRequest [ TRACK_DEFAULT id=16355, [ Capabilities: INTERNET&NOT_RESTRICTED&TRUSTED Uid: 10107] ]
+12-31 11:38:41.422   734   892 D ConnectivityService:  sending notification for NetworkRequest [ TRACK_DEFAULT id=16356, [ Capabilities: INTERNET&NOT_RESTRICTED&TRUSTED Uid: 10107] ]
+12-31 11:38:41.422   734   892 D ConnectivityService: sending notification CALLBACK_CAP_CHANGED for NetworkRequest [ TRACK_DEFAULT id=16356, [ Capabilities: INTERNET&NOT_RESTRICTED&TRUSTED Uid: 10107] ]
+12-31 11:38:41.422   734   892 D ConnectivityService:  sending notification for NetworkRequest [ LISTEN id=16357, [ Capabilities: INTERNET&NOT_RESTRICTED&TRUSTED Uid: 10107] ]
+12-31 11:38:41.422   734   892 D ConnectivityService: sending notification CALLBACK_CAP_CHANGED for NetworkRequest [ LISTEN id=16357, [ Capabilities: INTERNET&NOT_RESTRICTED&TRUSTED Uid: 10107] ]
+12-31 11:38:41.423   734   892 D ConnectivityService:  sending notification for NetworkRequest [ TRACK_DEFAULT id=16633, [ Capabilities: INTERNET&NOT_RESTRICTED&TRUSTED Uid: 10097] ]
+12-31 11:38:41.423   734   892 D ConnectivityService: sending notification CALLBACK_CAP_CHANGED for NetworkRequest [ TRACK_DEFAULT id=16633, [ Capabilities: INTERNET&NOT_RESTRICTED&TRUSTED Uid: 10097] ]
+12-31 11:38:41.423   734   892 D ConnectivityService:  sending notification for NetworkRequest [ TRACK_DEFAULT id=16634, [ Capabilities: INTERNET&NOT_RESTRICTED&TRUSTED Uid: 10108] ]
+12-31 11:38:41.424   734   892 D ConnectivityService: sending notification CALLBACK_CAP_CHANGED for NetworkRequest [ TRACK_DEFAULT id=16634, [ Capabilities: INTERNET&NOT_RESTRICTED&TRUSTED Uid: 10108] ]
+12-31 11:38:41.424   734   892 D ConnectivityService:  sending notification for NetworkRequest [ LISTEN id=16635, [ Capabilities: INTERNET&NOT_RESTRICTED&TRUSTED Uid: 10108] ]
+12-31 11:38:41.425   734   892 D ConnectivityService: sending notification CALLBACK_CAP_CHANGED for NetworkRequest [ LISTEN id=16635, [ Capabilities: INTERNET&NOT_RESTRICTED&TRUSTED Uid: 10108] ]
+12-31 11:38:41.425   734   892 D ConnectivityService:  sending notification for NetworkRequest [ TRACK_DEFAULT id=16647, [ Capabilities: INTERNET&NOT_RESTRICTED&TRUSTED Uid: 10133] ]
+12-31 11:38:41.425   734   892 D ConnectivityService: sending notification CALLBACK_CAP_CHANGED for NetworkRequest [ TRACK_DEFAULT id=16647, [ Capabilities: INTERNET&NOT_RESTRICTED&TRUSTED Uid: 10133] ]
+12-31 11:38:41.426   734   892 D ConnectivityService:  sending notification for NetworkRequest [ TRACK_DEFAULT id=16648, [ Capabilities: INTERNET&NOT_RESTRICTED&TRUSTED Uid: 10133] ]
+12-31 11:38:41.426   734   892 D ConnectivityService: sending notification CALLBACK_CAP_CHANGED for NetworkRequest [ TRACK_DEFAULT id=16648, [ Capabilities: INTERNET&NOT_RESTRICTED&TRUSTED Uid: 10133] ]
+12-31 11:38:41.426   734   892 D ConnectivityService:  sending notification for NetworkRequest [ LISTEN id=16649, [ Capabilities: INTERNET&NOT_RESTRICTED&TRUSTED&FOREGROUND Uid: 10133] ]
+12-31 11:38:41.426   734   892 D ConnectivityService: sending notification CALLBACK_CAP_CHANGED for NetworkRequest [ LISTEN id=16649, [ Capabilities: INTERNET&NOT_RESTRICTED&TRUSTED&FOREGROUND Uid: 10133] ]
+12-31 11:38:41.426   734   892 D ConnectivityService:  sending notification for NetworkRequest [ TRACK_DEFAULT id=16650, [ Capabilities: INTERNET&NOT_RESTRICTED&TRUSTED Uid: 10133] ]
+12-31 11:38:41.427   734   892 D ConnectivityService: sending notification CALLBACK_CAP_CHANGED for NetworkRequest [ TRACK_DEFAULT id=16650, [ Capabilities: INTERNET&NOT_RESTRICTED&TRUSTED Uid: 10133] ]
+12-31 11:38:41.427   734   892 D ConnectivityService:  sending notification for NetworkRequest [ TRACK_DEFAULT id=16653, [ Capabilities: INTERNET&NOT_RESTRICTED&TRUSTED Uid: 10108] ]
+12-31 11:38:41.427   734   892 D ConnectivityService: sending notification CALLBACK_CAP_CHANGED for NetworkRequest [ TRACK_DEFAULT id=16653, [ Capabilities: INTERNET&NOT_RESTRICTED&TRUSTED Uid: 10108] ]
+12-31 11:38:41.427   734   892 D ConnectivityService:  sending notification for NetworkRequest [ TRACK_DEFAULT id=16654, [ Capabilities: INTERNET&NOT_RESTRICTED&TRUSTED Uid: 10108] ]
+12-31 11:38:41.427   734   892 D ConnectivityService: sending notification CALLBACK_CAP_CHANGED for NetworkRequest [ TRACK_DEFAULT id=16654, [ Capabilities: INTERNET&NOT_RESTRICTED&TRUSTED Uid: 10108] ]
+12-31 11:38:41.428   734   892 D ConnectivityService:  sending notification for NetworkRequest [ LISTEN id=16655, [ Capabilities: INTERNET&NOT_RESTRICTED&TRUSTED Uid: 10108] ]
+12-31 11:38:41.428   734   892 D ConnectivityService: sending notification CALLBACK_CAP_CHANGED for NetworkRequest [ LISTEN id=16655, [ Capabilities: INTERNET&NOT_RESTRICTED&TRUSTED Uid: 10108] ]
+12-31 11:38:42.931   482  1083 D GNSSMGT : watchdog: PowerState[CP SLEEP], gps_flag[3], readcount[1684], idle time = 0, HeartCount = 0
+12-31 11:38:44.426   734   892 D ConnectivityService: notifyType CALLBACK_CAP_CHANGED for NetworkAgentInfo [WIFI () - 470]
+12-31 11:38:44.426   734   889 D WifiNetworkMonitor: EVENT_WIFI_RSSI_CHANGED
+12-31 11:38:44.426   734   889 E WifiNetworkMonitor: Not any Obervers!!!
+12-31 11:38:44.426   734   892 D ConnectivityService:  sending notification for NetworkRequest [ REQUEST id=1, [ Capabilities: INTERNET&NOT_RESTRICTED&TRUSTED&NOT_VPN] ]
+12-31 11:38:44.426   734   890 D WifiRssiLinkSpeedAndFrequencyMonitor: EVENT_WIFI_RSSI_LINKSPEED_FREQUENCY_CHANGED
+12-31 11:38:44.426   734   890 D WifiRssiLinkSpeedAndFrequencyMonitor: Not any Obervers!!!
+12-31 11:38:44.426   734   892 D ConnectivityService:  sending notification for NetworkRequest [ LISTEN id=4, [ Capabilities: FOREGROUND] ]
+12-31 11:38:44.426   734   892 D ConnectivityService: sending notification CALLBACK_CAP_CHANGED for NetworkRequest [ LISTEN id=4, [ Capabilities: FOREGROUND] ]
+12-31 11:38:44.426   734   892 D ConnectivityService:  sending notification for NetworkRequest [ LISTEN id=5, [ Capabilities: NOT_RESTRICTED&TRUSTED&NOT_VPN&FOREGROUND Uid: 1000] ]
+12-31 11:38:44.427   734   892 D ConnectivityService: sending notification CALLBACK_CAP_CHANGED for NetworkRequest [ LISTEN id=5, [ Capabilities: NOT_RESTRICTED&TRUSTED&NOT_VPN&FOREGROUND Uid: 1000] ]
+12-31 11:38:44.427   734   892 D ConnectivityService:  sending notification for NetworkRequest [ LISTEN id=6, [ Capabilities: NOT_RESTRICTED&TRUSTED&NOT_VPN&FOREGROUND Uid: 1000] ]
+12-31 11:38:44.427   734   892 D ConnectivityService: sending notification CALLBACK_CAP_CHANGED for NetworkRequest [ LISTEN id=6, [ Capabilities: NOT_RESTRICTED&TRUSTED&NOT_VPN&FOREGROUND Uid: 1000] ]
+12-31 11:38:44.427   734   892 D ConnectivityService:  sending notification for NetworkRequest [ REQUEST id=7, [ Capabilities: INTERNET&NOT_RESTRICTED&TRUSTED&NOT_VPN] ]
+12-31 11:38:44.427   734   892 D ConnectivityService: sending notification CALLBACK_CAP_CHANGED for NetworkRequest [ REQUEST id=7, [ Capabilities: INTERNET&NOT_RESTRICTED&TRUSTED&NOT_VPN] ]
+12-31 11:38:44.427   734   892 D ConnectivityService:  sending notification for NetworkRequest [ LISTEN id=9, [ Transports: WIFI Capabilities: INTERNET&TRUSTED&NOT_VPN Uid: 1001] ]
+12-31 11:38:44.427   734   892 D ConnectivityService: sending notification CALLBACK_CAP_CHANGED for NetworkRequest [ LISTEN id=9, [ Transports: WIFI Capabilities: INTERNET&TRUSTED&NOT_VPN Uid: 1001] ]
+12-31 11:38:44.428   734   892 D ConnectivityService:  sending notification for NetworkRequest [ LISTEN id=10, [ Transports: WIFI Capabilities: INTERNET&TRUSTED&NOT_VPN Uid: 1001] ]
+12-31 11:38:44.428   734   892 D ConnectivityService: sending notification CALLBACK_CAP_CHANGED for NetworkRequest [ LISTEN id=10, [ Transports: WIFI Capabilities: INTERNET&TRUSTED&NOT_VPN Uid: 1001] ]
+12-31 11:38:44.429   734   892 D ConnectivityService:  sending notification for NetworkRequest [ TRACK_DEFAULT id=11, [ Capabilities: INTERNET&NOT_RESTRICTED&TRUSTED Uid: 1000] ]
+12-31 11:38:44.429   734   892 D ConnectivityService: sending notification CALLBACK_CAP_CHANGED for NetworkRequest [ TRACK_DEFAULT id=11, [ Capabilities: INTERNET&NOT_RESTRICTED&TRUSTED Uid: 1000] ]
+12-31 11:38:44.429   972   972 E PANCHENG: mWifiVisible true
+12-31 11:38:44.429   972   972 D StatusBarSignalPolicy: updateWifiIconWithState state : WifiIconState(resId=17302851, visible=true)
+12-31 11:38:44.429   734   892 D ConnectivityService:  sending notification for NetworkRequest [ LISTEN id=12, [ Capabilities: INTERNET&NOT_RESTRICTED&TRUSTED&VALIDATED Uid: 1000] ]
+12-31 11:38:44.429   734   892 D ConnectivityService: sending notification CALLBACK_CAP_CHANGED for NetworkRequest [ LISTEN id=12, [ Capabilities: INTERNET&NOT_RESTRICTED&TRUSTED&VALIDATED Uid: 1000] ]
+12-31 11:38:44.430   734   892 D ConnectivityService:  sending notification for NetworkRequest [ LISTEN id=13, [ Transports: WIFI Capabilities: NOT_VPN] ]
+12-31 11:38:44.430   734   892 D ConnectivityService: sending notification CALLBACK_CAP_CHANGED for NetworkRequest [ LISTEN id=13, [ Transports: WIFI Capabilities: NOT_VPN] ]
+12-31 11:38:44.430   734   892 D ConnectivityService:  sending notification for NetworkRequest [ TRACK_DEFAULT id=14, [ Capabilities: INTERNET&NOT_RESTRICTED&TRUSTED Uid: 10111] ]
+12-31 11:38:44.430   734   892 D ConnectivityService: sending notification CALLBACK_CAP_CHANGED for NetworkRequest [ TRACK_DEFAULT id=14, [ Capabilities: INTERNET&NOT_RESTRICTED&TRUSTED Uid: 10111] ]
+12-31 11:38:44.431   734   892 D ConnectivityService:  sending notification for NetworkRequest [ LISTEN id=16, [] ]
+12-31 11:38:44.431   734   892 D ConnectivityService: sending notification CALLBACK_CAP_CHANGED for NetworkRequest [ LISTEN id=16, [] ]
+12-31 11:38:44.432   734   892 D ConnectivityService:  sending notification for NetworkRequest [ TRACK_DEFAULT id=15114, [ Capabilities: INTERNET&NOT_RESTRICTED&TRUSTED Uid: 10131] ]
+12-31 11:38:44.435   734   892 D ConnectivityService: sending notification CALLBACK_CAP_CHANGED for NetworkRequest [ TRACK_DEFAULT id=15114, [ Capabilities: INTERNET&NOT_RESTRICTED&TRUSTED Uid: 10131] ]
+12-31 11:38:44.437   734   892 D ConnectivityService:  sending notification for NetworkRequest [ LISTEN id=15115, [ Capabilities: INTERNET&NOT_RESTRICTED&TRUSTED&FOREGROUND Uid: 10131] ]
+12-31 11:38:44.437   734   892 D ConnectivityService: sending notification CALLBACK_CAP_CHANGED for NetworkRequest [ LISTEN id=15115, [ Capabilities: INTERNET&NOT_RESTRICTED&TRUSTED&FOREGROUND Uid: 10131] ]
+12-31 11:38:44.438   734   892 D ConnectivityService:  sending notification for NetworkRequest [ LISTEN id=15864, [ Capabilities: INTERNET&TRUSTED Uid: 10089] ]
+12-31 11:38:44.438   734   892 D ConnectivityService: sending notification CALLBACK_CAP_CHANGED for NetworkRequest [ LISTEN id=15864, [ Capabilities: INTERNET&TRUSTED Uid: 10089] ]
+12-31 11:38:44.439   734   892 D ConnectivityService:  sending notification for NetworkRequest [ TRACK_DEFAULT id=15865, [ Capabilities: INTERNET&NOT_RESTRICTED&TRUSTED Uid: 10089] ]
+12-31 11:38:44.439   734   892 D ConnectivityService: sending notification CALLBACK_CAP_CHANGED for NetworkRequest [ TRACK_DEFAULT id=15865, [ Capabilities: INTERNET&NOT_RESTRICTED&TRUSTED Uid: 10089] ]
+12-31 11:38:44.440   734   892 D ConnectivityService:  sending notification for NetworkRequest [ TRACK_DEFAULT id=15866, [ Capabilities: INTERNET&NOT_RESTRICTED&TRUSTED Uid: 10089] ]
+12-31 11:38:44.440   734   892 D ConnectivityService: sending notification CALLBACK_CAP_CHANGED for NetworkRequest [ TRACK_DEFAULT id=15866, [ Capabilities: INTERNET&NOT_RESTRICTED&TRUSTED Uid: 10089] ]
+12-31 11:38:44.441   734   892 D ConnectivityService:  sending notification for NetworkRequest [ TRACK_DEFAULT id=15878, [ Capabilities: INTERNET&NOT_RESTRICTED&TRUSTED Uid: 10089] ]
+12-31 11:38:44.441   734   892 D ConnectivityService: sending notification CALLBACK_CAP_CHANGED for NetworkRequest [ TRACK_DEFAULT id=15878, [ Capabilities: INTERNET&NOT_RESTRICTED&TRUSTED Uid: 10089] ]
+12-31 11:38:44.441   734   892 D ConnectivityService:  sending notification for NetworkRequest [ LISTEN id=15879, [ Capabilities: INTERNET&NOT_RESTRICTED&TRUSTED Uid: 10089] ]
+12-31 11:38:44.442   734   892 D ConnectivityService: sending notification CALLBACK_CAP_CHANGED for NetworkRequest [ LISTEN id=15879, [ Capabilities: INTERNET&NOT_RESTRICTED&TRUSTED Uid: 10089] ]
+12-31 11:38:44.442   734   892 D ConnectivityService:  sending notification for NetworkRequest [ LISTEN id=15949, [ Transports: WIFI Capabilities: NOT_RESTRICTED&TRUSTED&NOT_VPN Uid: 10089] ]
+12-31 11:38:44.442   734   892 D ConnectivityService: sending notification CALLBACK_CAP_CHANGED for NetworkRequest [ LISTEN id=15949, [ Transports: WIFI Capabilities: NOT_RESTRICTED&TRUSTED&NOT_VPN Uid: 10089] ]
+12-31 11:38:44.443   734   892 D ConnectivityService:  sending notification for NetworkRequest [ TRACK_DEFAULT id=16355, [ Capabilities: INTERNET&NOT_RESTRICTED&TRUSTED Uid: 10107] ]
+12-31 11:38:44.443   734   892 D ConnectivityService: sending notification CALLBACK_CAP_CHANGED for NetworkRequest [ TRACK_DEFAULT id=16355, [ Capabilities: INTERNET&NOT_RESTRICTED&TRUSTED Uid: 10107] ]
+12-31 11:38:44.443   734   892 D ConnectivityService:  sending notification for NetworkRequest [ TRACK_DEFAULT id=16356, [ Capabilities: INTERNET&NOT_RESTRICTED&TRUSTED Uid: 10107] ]
+12-31 11:38:44.444   734   892 D ConnectivityService: sending notification CALLBACK_CAP_CHANGED for NetworkRequest [ TRACK_DEFAULT id=16356, [ Capabilities: INTERNET&NOT_RESTRICTED&TRUSTED Uid: 10107] ]
+12-31 11:38:44.444   734   892 D ConnectivityService:  sending notification for NetworkRequest [ LISTEN id=16357, [ Capabilities: INTERNET&NOT_RESTRICTED&TRUSTED Uid: 10107] ]
+12-31 11:38:44.444   734   892 D ConnectivityService: sending notification CALLBACK_CAP_CHANGED for NetworkRequest [ LISTEN id=16357, [ Capabilities: INTERNET&NOT_RESTRICTED&TRUSTED Uid: 10107] ]
+12-31 11:38:44.445   734   892 D ConnectivityService:  sending notification for NetworkRequest [ TRACK_DEFAULT id=16633, [ Capabilities: INTERNET&NOT_RESTRICTED&TRUSTED Uid: 10097] ]
+12-31 11:38:44.445   734   892 D ConnectivityService: sending notification CALLBACK_CAP_CHANGED for NetworkRequest [ TRACK_DEFAULT id=16633, [ Capabilities: INTERNET&NOT_RESTRICTED&TRUSTED Uid: 10097] ]
+12-31 11:38:44.445   734   892 D ConnectivityService:  sending notification for NetworkRequest [ TRACK_DEFAULT id=16634, [ Capabilities: INTERNET&NOT_RESTRICTED&TRUSTED Uid: 10108] ]
+12-31 11:38:44.446   734   892 D ConnectivityService: sending notification CALLBACK_CAP_CHANGED for NetworkRequest [ TRACK_DEFAULT id=16634, [ Capabilities: INTERNET&NOT_RESTRICTED&TRUSTED Uid: 10108] ]
+12-31 11:38:44.446   734   892 D ConnectivityService:  sending notification for NetworkRequest [ LISTEN id=16635, [ Capabilities: INTERNET&NOT_RESTRICTED&TRUSTED Uid: 10108] ]
+12-31 11:38:44.446   734   892 D ConnectivityService: sending notification CALLBACK_CAP_CHANGED for NetworkRequest [ LISTEN id=16635, [ Capabilities: INTERNET&NOT_RESTRICTED&TRUSTED Uid: 10108] ]
+12-31 11:38:44.447   734   892 D ConnectivityService:  sending notification for NetworkRequest [ TRACK_DEFAULT id=16647, [ Capabilities: INTERNET&NOT_RESTRICTED&TRUSTED Uid: 10133] ]
+12-31 11:38:44.447   734   892 D ConnectivityService: sending notification CALLBACK_CAP_CHANGED for NetworkRequest [ TRACK_DEFAULT id=16647, [ Capabilities: INTERNET&NOT_RESTRICTED&TRUSTED Uid: 10133] ]
+12-31 11:38:44.448   734   892 D ConnectivityService:  sending notification for NetworkRequest [ TRACK_DEFAULT id=16648, [ Capabilities: INTERNET&NOT_RESTRICTED&TRUSTED Uid: 10133] ]
+12-31 11:38:44.448   734   892 D ConnectivityService: sending notification CALLBACK_CAP_CHANGED for NetworkRequest [ TRACK_DEFAULT id=16648, [ Capabilities: INTERNET&NOT_RESTRICTED&TRUSTED Uid: 10133] ]
+12-31 11:38:44.449   734   892 D ConnectivityService:  sending notification for NetworkRequest [ LISTEN id=16649, [ Capabilities: INTERNET&NOT_RESTRICTED&TRUSTED&FOREGROUND Uid: 10133] ]
+12-31 11:38:44.449   734   892 D ConnectivityService: sending notification CALLBACK_CAP_CHANGED for NetworkRequest [ LISTEN id=16649, [ Capabilities: INTERNET&NOT_RESTRICTED&TRUSTED&FOREGROUND Uid: 10133] ]
+12-31 11:38:44.450   734   892 D ConnectivityService:  sending notification for NetworkRequest [ TRACK_DEFAULT id=16650, [ Capabilities: INTERNET&NOT_RESTRICTED&TRUSTED Uid: 10133] ]
+12-31 11:38:44.451   734   892 D ConnectivityService: sending notification CALLBACK_CAP_CHANGED for NetworkRequest [ TRACK_DEFAULT id=16650, [ Capabilities: INTERNET&NOT_RESTRICTED&TRUSTED Uid: 10133] ]
+12-31 11:38:44.451   734   892 D ConnectivityService:  sending notification for NetworkRequest [ TRACK_DEFAULT id=16653, [ Capabilities: INTERNET&NOT_RESTRICTED&TRUSTED Uid: 10108] ]
+12-31 11:38:44.451   734   892 D ConnectivityService: sending notification CALLBACK_CAP_CHANGED for NetworkRequest [ TRACK_DEFAULT id=16653, [ Capabilities: INTERNET&NOT_RESTRICTED&TRUSTED Uid: 10108] ]
+12-31 11:38:44.452   734   892 D ConnectivityService:  sending notification for NetworkRequest [ TRACK_DEFAULT id=16654, [ Capabilities: INTERNET&NOT_RESTRICTED&TRUSTED Uid: 10108] ]
+12-31 11:38:44.452   734   892 D ConnectivityService: sending notification CALLBACK_CAP_CHANGED for NetworkRequest [ TRACK_DEFAULT id=16654, [ Capabilities: INTERNET&NOT_RESTRICTED&TRUSTED Uid: 10108] ]
+12-31 11:38:44.452   734   892 D ConnectivityService:  sending notification for NetworkRequest [ LISTEN id=16655, [ Capabilities: INTERNET&NOT_RESTRICTED&TRUSTED Uid: 10108] ]
+12-31 11:38:44.452   734   892 D ConnectivityService: sending notification CALLBACK_CAP_CHANGED for NetworkRequest [ LISTEN id=16655, [ Capabilities: INTERNET&NOT_RESTRICTED&TRUSTED Uid: 10108] ]
+12-31 11:38:44.501   734   899 D DeviceStorageMonitorService: updateStateEx oldLevel = 0, newLevel = 0
+12-31 11:38:44.931   482  1083 D GNSSMGT : watchdog: PowerState[CP SLEEP], gps_flag[3], readcount[1684], idle time = 0, HeartCount = 0
+12-31 11:38:45.692   376   376 D Power-HealthInfoCallback: Update charge status to: 1
+12-31 11:38:45.706   972   972 D BatteryMeterDrawable: onBatteryLevelChanged level=100,pluggedIn=true,charging=true
+12-31 11:38:45.707   972   972 I chatty  : uid=10111(com.android.systemui) identical 1 line
+12-31 11:38:45.708   972   972 D BatteryMeterDrawable: onBatteryLevelChanged level=100,pluggedIn=true,charging=true
+12-31 11:38:45.723   972   972 I PowerUI : [battery]Temperature = 263, health = 2, highTempShutDown = 600, lowTempShutDown = -100, highTempTips = 550, highTempTips = 550, lowTempTips = 0, openTempWarning = true, mPlugType = 2
+12-31 11:38:45.724   972   972 D PowerUI : buckets   .....20 .. 15 .. 5
+12-31 11:38:45.724   972   972 D PowerUI : level          100 --> 100
+12-31 11:38:45.724   972   972 D PowerUI : status         5 --> 5
+12-31 11:38:45.724   972   972 D PowerUI : plugType       2 --> 2
+12-31 11:38:45.724   972   972 D PowerUI : invalidCharger 0 --> 0
+12-31 11:38:45.724   972   972 D PowerUI : bucket         1 --> 1
+12-31 11:38:45.724   972   972 D PowerUI : plugged        true --> true
+12-31 11:38:45.724   972   972 D PowerUI : health         2 --> 2
+12-31 11:38:45.725   972   972 D BatteryMeterDrawable: onReceive action=android.intent.action.BATTERY_CHANGED
+12-31 11:38:45.725   972   972 D BatteryMeterDrawable: onReceive level=100,plugType=2,status=5
+12-31 11:38:45.725   972   972 D BatteryMeterDrawable: BatteryMeterViewAnimationShow level should be =100
+12-31 11:38:45.725   972   972 D BatteryMeterDrawable: onReceive action=android.intent.action.BATTERY_CHANGED
+12-31 11:38:45.725   972   972 D BatteryMeterDrawable: onReceive level=100,plugType=2,status=5
+12-31 11:38:45.725   972   972 D BatteryMeterDrawable: BatteryMeterViewAnimationShow level should be =100
+12-31 11:38:45.726   972   972 D BatteryMeterDrawable: onReceive action=android.intent.action.BATTERY_CHANGED
+12-31 11:38:45.726   972   972 D BatteryMeterDrawable: onReceive level=100,plugType=2,status=5
+12-31 11:38:45.726   972   972 D BatteryMeterDrawable: BatteryMeterViewAnimationShow level should be =100
+12-31 11:38:45.757   504   546 D WCND    : is_cp2_alive_ok: open polling interface: /proc/mdbg/loopcheck, fd = 13
+12-31 11:38:45.857   504   546 D WCND    : is_cp2_alive_ok: loop: /proc/mdbg/loopcheck is OK
+12-31 11:38:46.932   482  1083 D GNSSMGT : watchdog: PowerState[CP SLEEP], gps_flag[3], readcount[1684], idle time = 0, HeartCount = 0
+12-31 11:38:48.932   482  1083 D GNSSMGT : watchdog: PowerState[CP SLEEP], gps_flag[3], readcount[1684], idle time = 0, HeartCount = 0
+12-31 11:38:50.440 20033 20033 D BoundBrokerSvc: onUnbind: Intent { act=com.google.android.gms.common.BIND_SHARED_PREFS pkg=com.google.android.gms }
+12-31 11:38:50.445 14739 14739 I adbd    : Tianyuan Current sh name:export ANDROID_LOG_TAGS="''"; exec logcat
+12-31 11:38:50.860   504   546 D WCND    : is_cp2_alive_ok: open polling interface: /proc/mdbg/loopcheck, fd = 13
+12-31 11:38:50.933   482  1083 D GNSSMGT : watchdog: PowerState[CP SLEEP], gps_flag[3], readcount[1684], idle time = 0, HeartCount = 0
+12-31 11:38:50.960   504   546 D WCND    : is_cp2_alive_ok: loop: /proc/mdbg/loopcheck is OK
+12-31 11:38:51.425 32394 32418 I Finsky:background: [62805] Stats for Executor: bgExecutor utt@dc6f701[Running, pool size = 4, active threads = 0, queued tasks = 0, completed tasks = 18]
+12-31 11:38:51.550 32394 32418 I Finsky:background: [62805] Stats for Executor: LightweightExecutor utt@8bfa9a6[Running, pool size = 3, active threads = 0, queued tasks = 0, completed tasks = 10]
+12-31 11:38:51.923 32394 32418 I Finsky:background: [62805] Stats for Executor: BlockingExecutor utt@bafffe7[Running, pool size = 2, active threads = 0, queued tasks = 0, completed tasks = 5]
+12-31 11:38:52.933   482  1083 D GNSSMGT : watchdog: PowerState[CP SLEEP], gps_flag[3], readcount[1684], idle time = 0, HeartCount = 0
+12-31 11:38:53.496   734   889 D WifiNetworkMonitor: EVENT_WIFI_RSSI_CHANGED
+12-31 11:38:53.496   734   890 D WifiRssiLinkSpeedAndFrequencyMonitor: EVENT_WIFI_RSSI_LINKSPEED_FREQUENCY_CHANGED
+12-31 11:38:53.496   734   889 E WifiNetworkMonitor: Not any Obervers!!!
+12-31 11:38:53.496   734   890 D WifiRssiLinkSpeedAndFrequencyMonitor: Not any Obervers!!!
+12-31 11:38:54.933   482  1083 D GNSSMGT : watchdog: PowerState[CP SLEEP], gps_flag[3], readcount[1684], idle time = 0, HeartCount = 0
+12-31 11:38:55.965   504   546 D WCND    : is_cp2_alive_ok: open polling interface: /proc/mdbg/loopcheck, fd = 13
+12-31 11:38:56.066   504   546 D WCND    : is_cp2_alive_ok: loop: /proc/mdbg/loopcheck is OK
+12-31 11:38:56.517   734   889 D WifiNetworkMonitor: EVENT_WIFI_RSSI_CHANGED
+12-31 11:38:56.518   734   889 E WifiNetworkMonitor: Not any Obervers!!!
+12-31 11:38:56.518   734   890 D WifiRssiLinkSpeedAndFrequencyMonitor: EVENT_WIFI_RSSI_LINKSPEED_FREQUENCY_CHANGED
+12-31 11:38:56.518   734   890 D WifiRssiLinkSpeedAndFrequencyMonitor: Not any Obervers!!!
+12-31 11:38:56.933   482  1083 D GNSSMGT : watchdog: PowerState[CP SLEEP], gps_flag[3], readcount[1684], idle time = 0, HeartCount = 0
+12-31 11:38:58.078   365   440 D sensor  : PlsSensor: default value = 0
+12-31 11:38:58.079   365   440 D sensor  : PlsSensor: default value = 153
+12-31 11:38:58.079   365   440 D sensor  : PlsSensor: default value = 364
+12-31 11:38:58.079   365   440 D sensor  : PlsSensor: default value = 127
+12-31 11:38:58.079   365   440 D sensor  : PlsSensor: default value = 1
+12-31 11:38:58.079   365   440 E sensor  : Pls_CTPSensor: unknown event (type=1, code=330)
+12-31 11:38:58.081   734   867 D InputReader: processEventsLocked: type=3 Count=8 code=57 value=0 deviceId=1
+12-31 11:38:58.089   365   440 E sensor  : Pls_CTPSensor: unknown event (type=1, code=330)
+12-31 11:38:58.091   734   867 D InputReader: processEventsLocked: type=1 Count=3 code=330 value=0 deviceId=1
+12-31 11:38:58.123   376   376 D PowerHAL: ###Enter interaction_other scene bgn###
+12-31 11:38:58.125   376   376 D PowerHAL: Enter common_set: enable:1, duration: 500, /sys/devices/system/cpu/cpuhotplug/cluster0_core_min_limit: 4
+12-31 11:38:58.125   734   750 I ActivityTaskManager: START u0 {act=android.intent.action.MAIN cat=[android.intent.category.LAUNCHER] flg=0x10200000 cmp=com.example.smartlist/.MainActivity bnds=[126,341][240,494]} from uid 10095, pid 27813
+12-31 11:38:58.129   376   376 D PowerHAL: Enter common_set: enable:1, duration: 500, /sys/devices/system/cpu/cpuhotplug/cluster0_core_max_limit: 4
+12-31 11:38:58.129   376   376 D PowerHAL: Enter common_subsys_set: enable:1, duration: 500, subsys:cpufreq: conf_2:5
+12-31 11:38:58.129   376   376 D PowerHAL: Enter common_subsys_set_current_config: 
+12-31 11:38:58.131   376   376 D PowerHAL: ###Enter interaction_other scene end###
+12-31 11:38:58.131   376   376 D PowerHAL: ###Enter interaction_other scene bgn###
+12-31 11:38:58.132   376   376 D PowerHAL: Enter common_set: enable:1, duration: 500, /sys/devices/system/cpu/cpuhotplug/cluster0_core_min_limit: 4
+12-31 11:38:58.132   376   376 D PowerHAL: Enter common_set: enable:1, duration: 500, /sys/devices/system/cpu/cpuhotplug/cluster0_core_max_limit: 4
+12-31 11:38:58.132   376   376 D PowerHAL: Enter common_subsys_set: enable:1, duration: 500, subsys:cpufreq: conf_2:5
+12-31 11:38:58.132   376   376 D PowerHAL: ###Enter interaction_other scene end###
+12-31 11:38:58.165   376   376 D PowerHAL: ###Enter launch scene bgn###
+12-31 11:38:58.165   376   376 D PowerHAL: Enter common_subsys_set: enable:1, duration: 0, subsys:cpufreq: conf_2:5
+12-31 11:38:58.165   376   376 D PowerHAL: Enter devfreq_ddr_set: enable:1, duration: 0, /sys/class/devfreq/scene-frequency/sprd_governor/scene_boost_dfs: max
+12-31 11:38:58.166   376   376 D PowerHAL: ###Enter launch scene end###
+12-31 11:38:58.169   734   750 I ActivityTaskManager: ->startActivity for ActivityRecord{dc92c45 u0 com.example.smartlist/.MainActivity t10228} result:START_SUCCESS
+12-31 11:38:58.189   734   756 E system_server: Invalid ID 0x00000000.
+12-31 11:38:58.232   348   348 D Zygote  : Forked child process 32480
+12-31 11:38:58.236   734   763 I ActivityManager: Start proc 32480:com.example.smartlist/u0a223 for activity {com.example.smartlist/com.example.smartlist.MainActivity}
+12-31 11:38:58.296   734   756 D WindowManager: Input focus has changed to null
+12-31 11:38:58.313   358   358 I gralloc : mali_gralloc_select_format, AFBC is disabled now
+12-31 11:38:58.303   358   358 W allocator@2.0-s: type=1400 audit(0.0:49052): avc: denied { read } for name="u:object_r:default_prop:s0" dev="tmpfs" ino=7774 scontext=u:r:hal_graphics_allocator_default:s0 tcontext=u:object_r:default_prop:s0 tclass=file permissive=0
+12-31 11:38:58.313   358   358 I gralloc : mali_gralloc_select_format: req_format=0x00000001 req_fmt_mapped=0x0 internal_format=0x1 usage=0x966
+12-31 11:38:58.314 32480 32480 I ample.smartlis: Late-enabling -Xcheck:jni
+12-31 11:38:58.314   358   358 E libc    : Access denied finding property "enable_ion_heap_id_mask_cam"
+12-31 11:38:58.317   358   358 I gralloc : gralloc=>alloc, share_fd=8, share_attr_fd=-1, magic=51647890, format=1, internal_format=1, byte_stride=1920, flags=4, usage=0x2406, size=1536000, width=480, height=800, internalWidth=480, internalHeight=800, stride=480, ADP_VSTRIDE=0,base=0xac72b000, writeOwner=0, attr_base=0xffffffff, yuv_info=1, fd=-1, buf_idx=0, offset=0, min_pgsz=4096, phyaddr=0
+12-31 11:38:58.317   358   358 I gralloc : gralloc_unregister_buffer hnd=0xad53d000, share_fd=8, share_attr_fd=-1, magic=51647890, format=1, internal_format=1, byte_stride=1920, flags=4, usage=0x966, size=1536000, width=480, height=800, internalWidth=480, internalHeight=800, stride=480, base=0xac72b000, writeOwner=0, attr_base=0xffffffff, yuv_info=1, fd=-1, buf_idx=0, offset=0, min_pgsz=4096, phyaddr=0
+12-31 11:38:58.318   358   358 I gralloc : gralloc=>free hnd=0xad53d000, share_fd=8, share_attr_fd=-1, magic=51647890, format=1, internal_format=1, byte_stride=1920, flags=4, usage=2406, size=1536000, width=480, height=800, internalWidth=480, internalHeight=800, stride=480, base=0xac72b000, writeOwner=0, attr_base=0xffffffff, yuv_info=1, fd=-1, buf_idx=0, offset=0, min_pgsz=4096, phyaddr=0
+12-31 11:38:58.318   388  1189 I gralloc : gralloc_register_buffer hnd=0xad1716c0, share_fd=79, share_attr_fd=-1, magic=51647890, format=1, internal_format=1, byte_stride=1920, flags=4, usage=0x966, size=1536000, width=480, height=800, internalWidth=480, internalHeight=800, stride=480, base=0xadc4b000, writeOwner=0, attr_base=0xffffffff, yuv_info=1, fd=-1, buf_idx=0, offset=0, min_pgsz=4096, phyaddr=0
+12-31 11:38:58.320   734   756 I gralloc : gralloc_register_buffer hnd=0x80bf68c0, share_fd=390, share_attr_fd=-1, magic=51647890, format=1, internal_format=1, byte_stride=1920, flags=4, usage=0x966, size=1536000, width=480, height=800, internalWidth=480, internalHeight=800, stride=480, base=0x6b54a000, writeOwner=0, attr_base=0xffffffff, yuv_info=1, fd=-1, buf_idx=0, offset=0, min_pgsz=4096, phyaddr=0
+12-31 11:38:58.321   734   756 I gralloc : mali_gralloc_select_format, AFBC is disabled now
+12-31 11:38:58.321   734   756 I gralloc : mali_gralloc_select_format: req_format=0x00000001 req_fmt_mapped=0x0 internal_format=0x1 usage=0x966
+12-31 11:38:58.325   388   726 E         : Shared attribute region not available to be mapped
+12-31 11:38:58.394   365   440 D sensor  : PlsSensor: default value = 0
+12-31 11:38:58.394   365   440 D sensor  : PlsSensor: default value = 167
+12-31 11:38:58.394   365   440 D sensor  : PlsSensor: default value = 393
+12-31 11:38:58.394   365   440 D sensor  : PlsSensor: default value = 127
+12-31 11:38:58.394   365   440 D sensor  : PlsSensor: default value = 1
+12-31 11:38:58.394   365   440 E sensor  : Pls_CTPSensor: unknown event (type=1, code=330)
+12-31 11:38:58.395   734   867 D InputReader: processEventsLocked: type=3 Count=8 code=57 value=0 deviceId=1
+12-31 11:38:58.395   734   866 I InputDispatcher: Dropping event because there is no touchable window or gesture monitor at (166, 392) in display 0.
+12-31 11:38:58.396   376   376 D PowerHAL: ###Enter interaction_other scene bgn###
+12-31 11:38:58.396   376   376 D PowerHAL: Enter common_set: enable:1, duration: 500, /sys/devices/system/cpu/cpuhotplug/cluster0_core_min_limit: 4
+12-31 11:38:58.396   376   376 D PowerHAL: Enter common_set: enable:1, duration: 500, /sys/devices/system/cpu/cpuhotplug/cluster0_core_max_limit: 4
+12-31 11:38:58.396   376   376 D PowerHAL: Enter common_subsys_set: enable:1, duration: 500, subsys:cpufreq: conf_2:5
+12-31 11:38:58.396   376   376 D PowerHAL: ###Enter interaction_other scene end###
+12-31 11:38:58.396   376   376 D PowerHAL: ###Enter interaction_other scene bgn###
+12-31 11:38:58.396   376   376 D PowerHAL: Enter common_set: enable:1, duration: 500, /sys/devices/system/cpu/cpuhotplug/cluster0_core_min_limit: 4
+12-31 11:38:58.396   376   376 D PowerHAL: Enter common_set: enable:1, duration: 500, /sys/devices/system/cpu/cpuhotplug/cluster0_core_max_limit: 4
+12-31 11:38:58.396   376   376 D PowerHAL: Enter common_subsys_set: enable:1, duration: 500, subsys:cpufreq: conf_2:5
+12-31 11:38:58.396   376   376 D PowerHAL: ###Enter interaction_other scene end###
+12-31 11:38:58.397 32480 32480 E ample.smartlis: Unknown bits set in runtime_flags: 0x8000
+12-31 11:38:58.407   365   440 D sensor  : PlsSensor: default value = 0
+12-31 11:38:58.407   365   440 D sensor  : PlsSensor: default value = 167
+12-31 11:38:58.407   365   440 D sensor  : PlsSensor: default value = 393
+12-31 11:38:58.407   365   440 D sensor  : PlsSensor: default value = 127
+12-31 11:38:58.407   365   440 D sensor  : PlsSensor: default value = 1
+12-31 11:38:58.408   734   867 D InputReader: processEventsLocked: type=3 Count=7 code=57 value=0 deviceId=1
+12-31 11:38:58.408 32480 32480 W ample.smartlis: Using default instruction set features for ARM CPU variant (generic) using conservative defaults
+12-31 11:38:58.417 14739 14739 I adbd    : Tianyuan Current sh name:stat -c %u /proc/32480 | xargs -n 1 cmd package list packages --uid
+12-31 11:38:58.420   365   440 D sensor  : PlsSensor: default value = 0
+12-31 11:38:58.420   365   440 D sensor  : PlsSensor: default value = 167
+12-31 11:38:58.420   365   440 D sensor  : PlsSensor: default value = 393
+12-31 11:38:58.420   365   440 D sensor  : PlsSensor: default value = 127
+12-31 11:38:58.420   365   440 D sensor  : PlsSensor: default value = 1
+12-31 11:38:58.420   734   867 D InputReader: processEventsLocked: type=3 Count=7 code=57 value=0 deviceId=1
+12-31 11:38:58.433   365   440 D sensor  : PlsSensor: default value = 0
+12-31 11:38:58.433   365   440 D sensor  : PlsSensor: default value = 167
+12-31 11:38:58.433   365   440 D sensor  : PlsSensor: default value = 393
+12-31 11:38:58.433   365   440 D sensor  : PlsSensor: default value = 127
+12-31 11:38:58.433   365   440 D sensor  : PlsSensor: default value = 1
+12-31 11:38:58.433   734   867 D InputReader: processEventsLocked: type=3 Count=7 code=57 value=0 deviceId=1
+12-31 11:38:58.446   365   440 D sensor  : PlsSensor: default value = 0
+12-31 11:38:58.446   365   440 D sensor  : PlsSensor: default value = 167
+12-31 11:38:58.446   365   440 D sensor  : PlsSensor: default value = 393
+12-31 11:38:58.446   365   440 D sensor  : PlsSensor: default value = 127
+12-31 11:38:58.446   365   440 D sensor  : PlsSensor: default value = 1
+12-31 11:38:58.446   734   867 D InputReader: processEventsLocked: type=3 Count=7 code=57 value=0 deviceId=1
+12-31 11:38:58.459   365   440 D sensor  : PlsSensor: default value = 0
+12-31 11:38:58.459   365   440 D sensor  : PlsSensor: default value = 167
+12-31 11:38:58.459   365   440 D sensor  : PlsSensor: default value = 393
+12-31 11:38:58.459   365   440 D sensor  : PlsSensor: default value = 127
+12-31 11:38:58.459   365   440 D sensor  : PlsSensor: default value = 1
+12-31 11:38:58.459   734   867 D InputReader: processEventsLocked: type=3 Count=7 code=57 value=0 deviceId=1
+12-31 11:38:58.475   365   440 D sensor  : PlsSensor: default value = 0
+12-31 11:38:58.475   365   440 D sensor  : PlsSensor: default value = 167
+12-31 11:38:58.475   365   440 D sensor  : PlsSensor: default value = 393
+12-31 11:38:58.475   365   440 D sensor  : PlsSensor: default value = 127
+12-31 11:38:58.475   365   440 D sensor  : PlsSensor: default value = 1
+12-31 11:38:58.475   734   867 D InputReader: processEventsLocked: type=3 Count=7 code=57 value=0 deviceId=1
+12-31 11:38:58.485   365   440 D sensor  : PlsSensor: default value = 0
+12-31 11:38:58.486   365   440 D sensor  : PlsSensor: default value = 167
+12-31 11:38:58.486   365   440 D sensor  : PlsSensor: default value = 393
+12-31 11:38:58.486   365   440 D sensor  : PlsSensor: default value = 127
+12-31 11:38:58.486   365   440 D sensor  : PlsSensor: default value = 1
+12-31 11:38:58.486   734   867 D InputReader: processEventsLocked: type=3 Count=7 code=57 value=0 deviceId=1
+12-31 11:38:58.498   365   440 D sensor  : PlsSensor: default value = 0
+12-31 11:38:58.498   365   440 D sensor  : PlsSensor: default value = 167
+12-31 11:38:58.498   365   440 D sensor  : PlsSensor: default value = 393
+12-31 11:38:58.498   365   440 D sensor  : PlsSensor: default value = 127
+12-31 11:38:58.498   365   440 D sensor  : PlsSensor: default value = 1
+12-31 11:38:58.498   734   867 D InputReader: processEventsLocked: type=3 Count=7 code=57 value=0 deviceId=1
+12-31 11:38:58.499   376   376 D PowerHAL: ###Enter interaction_other scene bgn###
+12-31 11:38:58.500   376   376 D PowerHAL: Enter common_set: enable:1, duration: 500, /sys/devices/system/cpu/cpuhotplug/cluster0_core_min_limit: 4
+12-31 11:38:58.500   376   376 D PowerHAL: Enter common_set: enable:1, duration: 500, /sys/devices/system/cpu/cpuhotplug/cluster0_core_max_limit: 4
+12-31 11:38:58.500   376   376 D PowerHAL: Enter common_subsys_set: enable:1, duration: 500, subsys:cpufreq: conf_2:5
+12-31 11:38:58.500   376   376 D PowerHAL: ###Enter interaction_other scene end###
+12-31 11:38:58.500   376   376 D PowerHAL: ###Enter interaction_other scene bgn###
+12-31 11:38:58.500   376   376 D PowerHAL: Enter common_set: enable:1, duration: 500, /sys/devices/system/cpu/cpuhotplug/cluster0_core_min_limit: 4
+12-31 11:38:58.500   376   376 D PowerHAL: Enter common_set: enable:1, duration: 500, /sys/devices/system/cpu/cpuhotplug/cluster0_core_max_limit: 4
+12-31 11:38:58.500   376   376 D PowerHAL: Enter common_subsys_set: enable:1, duration: 500, subsys:cpufreq: conf_2:5
+12-31 11:38:58.500   376   376 D PowerHAL: ###Enter interaction_other scene end###
+12-31 11:38:58.513   365   440 E sensor  : Pls_CTPSensor: unknown event (type=1, code=330)
+12-31 11:38:58.513   734   867 D InputReader: processEventsLocked: type=1 Count=3 code=330 value=0 deviceId=1
+12-31 11:38:58.525   734  5639 V WindowManager: Set focused app to: AppWindowToken{daac0cb token=Token{c830f9a ActivityRecord{dc92c45 u0 com.example.smartlist/.MainActivity t10228}}} moveFocusNow=true displayId=0
+12-31 11:38:58.528   734   870 D SectionHabit: update pkgName:com.example.smartlist,type:2,data:package:com.example.smartlist ,count :14,launchCountIndex:0,fgtime:4047,fgtimeIndex:1
+12-31 11:38:58.534   376   376 D android.hardware.power@4.0-impl: Enter getSceneIdByName: sceneName:com.example.smartlist
+12-31 11:38:58.560   376   376 D PowerHAL: ###Enter interaction_other scene bgn###
+12-31 11:38:58.560   376   376 D PowerHAL: Enter common_set: enable:1, duration: 500, /sys/devices/system/cpu/cpuhotplug/cluster0_core_min_limit: 4
+12-31 11:38:58.560   376   376 D PowerHAL: Enter common_set: enable:1, duration: 500, /sys/devices/system/cpu/cpuhotplug/cluster0_core_max_limit: 4
+12-31 11:38:58.560   376   376 D PowerHAL: Enter common_subsys_set: enable:1, duration: 500, subsys:cpufreq: conf_2:5
+12-31 11:38:58.560   376   376 D PowerHAL: ###Enter interaction_other scene end###
+12-31 11:38:58.592   359   359 I gralloc : gralloc_register_buffer hnd=0xacc3cfc0, share_fd=43, share_attr_fd=-1, magic=51647890, format=1, internal_format=1, byte_stride=1920, flags=4, usage=0x966, size=1536000, width=480, height=800, internalWidth=480, internalHeight=800, stride=480, base=0xa9dcf000, writeOwner=0, attr_base=0xffffffff, yuv_info=1, fd=-1, buf_idx=0, offset=0, min_pgsz=4096, phyaddr=0
+12-31 11:38:58.708   359   359 I gralloc : gralloc_unregister_buffer hnd=0xacc3d440, share_fd=48, share_attr_fd=-1, magic=51647890, format=1, internal_format=1, byte_stride=1920, flags=4, usage=0xb00, size=1536000, width=480, height=800, internalWidth=480, internalHeight=800, stride=480, base=0xa9349000, writeOwner=0, attr_base=0xffffffff, yuv_info=1, fd=-1, buf_idx=0, offset=0, min_pgsz=4096, phyaddr=0
+12-31 11:38:58.708   359   359 I gralloc : gralloc_unregister_buffer hnd=0xacc3cc00, share_fd=40, share_attr_fd=-1, magic=51647890, format=1, internal_format=1, byte_stride=1920, flags=4, usage=0xb00, size=1536000, width=480, height=800, internalWidth=480, internalHeight=800, stride=480, base=0xa9f46000, writeOwner=0, attr_base=0xffffffff, yuv_info=1, fd=-1, buf_idx=0, offset=0, min_pgsz=4096, phyaddr=0
+12-31 11:38:58.708   359   359 I gralloc : gralloc_unregister_buffer hnd=0xacc3cb40, share_fd=35, share_attr_fd=-1, magic=51647890, format=1, internal_format=1, byte_stride=1920, flags=4, usage=0xb00, size=1536000, width=480, height=800, internalWidth=480, internalHeight=800, stride=480, base=0xaa1be000, writeOwner=0, attr_base=0xffffffff, yuv_info=1, fd=-1, buf_idx=0, offset=0, min_pgsz=4096, phyaddr=0
+12-31 11:38:58.709   359   359 I gralloc : gralloc_unregister_buffer hnd=0xacc3d380, share_fd=46, share_attr_fd=-1, magic=51647890, format=1, internal_format=1, byte_stride=1920, flags=4, usage=0xb00, size=1536000, width=480, height=800, internalWidth=480, internalHeight=800, stride=480, base=0xa94c0000, writeOwner=0, attr_base=0xffffffff, yuv_info=1, fd=-1, buf_idx=0, offset=0, min_pgsz=4096, phyaddr=0
+12-31 11:38:58.742   388  1189 I gralloc : gralloc_unregister_buffer hnd=0xad173c40, share_fd=54, share_attr_fd=-1, magic=51647890, format=1, internal_format=1, byte_stride=1920, flags=4, usage=0xb00, size=1536000, width=480, height=800, internalWidth=480, internalHeight=800, stride=480, base=0xacf0b000, writeOwner=0, attr_base=0xffffffff, yuv_info=1, fd=-1, buf_idx=0, offset=0, min_pgsz=4096, phyaddr=0
+12-31 11:38:58.743 27813 27861 I gralloc : gralloc_unregister_buffer hnd=0x8261cfc0, share_fd=130, share_attr_fd=-1, magic=51647890, format=1, internal_format=1, byte_stride=1920, flags=4, usage=0xb00, size=1536000, width=480, height=800, internalWidth=480, internalHeight=800, stride=480, base=0x817ae000, writeOwner=0, attr_base=0xffffffff, yuv_info=1, fd=-1, buf_idx=0, offset=0, min_pgsz=4096, phyaddr=0
+12-31 11:38:58.743 27813 27861 I gralloc : gralloc_unregister_buffer hnd=0x8401aa40, share_fd=132, share_attr_fd=-1, magic=51647890, format=1, internal_format=1, byte_stride=1920, flags=4, usage=0xb00, size=1536000, width=480, height=800, internalWidth=480, internalHeight=800, stride=480, base=0x81637000, writeOwner=0, attr_base=0xffffffff, yuv_info=1, fd=-1, buf_idx=0, offset=0, min_pgsz=4096, phyaddr=0
+12-31 11:38:58.744 27813 27861 I gralloc : gralloc_unregister_buffer hnd=0x8410b900, share_fd=110, share_attr_fd=-1, magic=51647890, format=1, internal_format=1, byte_stride=1920, flags=4, usage=0xb00, size=1536000, width=480, height=800, internalWidth=480, internalHeight=800, stride=480, base=0x81c45000, writeOwner=0, attr_base=0xffffffff, yuv_info=1, fd=-1, buf_idx=0, offset=0, min_pgsz=4096, phyaddr=0
+12-31 11:38:58.744   388  1189 E BufferQueueProducer: [com.android.launcher3/com.android.launcher3.Launcher#0] disconnect: not connected (req=1)
+12-31 11:38:58.744 27813 27861 W libEGL  : EGLNativeWindowType 0x9795b868 disconnect failed
+12-31 11:38:58.755   388   388 I gralloc : gralloc_unregister_buffer hnd=0xad173b80, share_fd=25, share_attr_fd=-1, magic=51647890, format=1, internal_format=1, byte_stride=1920, flags=4, usage=0xb00, size=1536000, width=480, height=800, internalWidth=480, internalHeight=800, stride=480, base=0xad282000, writeOwner=0, attr_base=0xffffffff, yuv_info=1, fd=-1, buf_idx=0, offset=0, min_pgsz=4096, phyaddr=0
+12-31 11:38:58.934   482  1083 D GNSSMGT : watchdog: PowerState[CP SLEEP], gps_flag[3], readcount[1684], idle time = 0, HeartCount = 0
+12-31 11:38:58.953 32394 32465 I PlayCommon: [62846] Preparing logs for uploading
+12-31 11:38:58.996 32394 32465 I PlayCommon: [62846] Connecting to server for timestamp: https://play.googleapis.com/play/log/timestamp
+12-31 11:38:59.033 32394 32465 D NetworkSecurityConfig: No Network Security Config specified, using platform default
+12-31 11:38:59.059   376   419 D PowerHAL: ##Timing deboost
+12-31 11:38:59.059   376   419 D PowerHAL: Enter common_set: enable:0, duration: 0, /sys/devices/system/cpu/cpuhotplug/cluster0_core_min_limit: 
+12-31 11:38:59.059   376   419 D PowerHAL: Enter common_clear: 
+12-31 11:38:59.059   376   419 D PowerHAL: ##Timing deboost
+12-31 11:38:59.059   376   419 D PowerHAL: Enter common_set: enable:0, duration: 0, /sys/devices/system/cpu/cpuhotplug/cluster0_core_max_limit: 
+12-31 11:38:59.059   376   419 D PowerHAL: Enter common_clear: 
+12-31 11:38:59.059   376   419 D PowerHAL: ##Timing deboost
+12-31 11:38:59.059   376   419 D PowerHAL: Enter common_subsys_set: enable:0, duration: 0, subsys:cpufreq: 
+12-31 11:38:59.269   347 32510 E ResolverController: No valid NAT64 prefix (470, <unspecified>/0)
+12-31 11:38:59.590   734   892 D ConnectivityService: notifyType CALLBACK_CAP_CHANGED for NetworkAgentInfo [WIFI () - 470]
+12-31 11:38:59.590   734   892 D ConnectivityService:  sending notification for NetworkRequest [ REQUEST id=1, [ Capabilities: INTERNET&NOT_RESTRICTED&TRUSTED&NOT_VPN] ]
+12-31 11:38:59.590   734   892 D ConnectivityService:  sending notification for NetworkRequest [ LISTEN id=4, [ Capabilities: FOREGROUND] ]
+12-31 11:38:59.590   734   892 D ConnectivityService: sending notification CALLBACK_CAP_CHANGED for NetworkRequest [ LISTEN id=4, [ Capabilities: FOREGROUND] ]
+12-31 11:38:59.590   734   892 D ConnectivityService:  sending notification for NetworkRequest [ LISTEN id=5, [ Capabilities: NOT_RESTRICTED&TRUSTED&NOT_VPN&FOREGROUND Uid: 1000] ]
+12-31 11:38:59.590   734   892 D ConnectivityService: sending notification CALLBACK_CAP_CHANGED for NetworkRequest [ LISTEN id=5, [ Capabilities: NOT_RESTRICTED&TRUSTED&NOT_VPN&FOREGROUND Uid: 1000] ]
+12-31 11:38:59.590   734   892 D ConnectivityService:  sending notification for NetworkRequest [ LISTEN id=6, [ Capabilities: NOT_RESTRICTED&TRUSTED&NOT_VPN&FOREGROUND Uid: 1000] ]
+12-31 11:38:59.590   734   892 D ConnectivityService: sending notification CALLBACK_CAP_CHANGED for NetworkRequest [ LISTEN id=6, [ Capabilities: NOT_RESTRICTED&TRUSTED&NOT_VPN&FOREGROUND Uid: 1000] ]
+12-31 11:38:59.590   734   892 D ConnectivityService:  sending notification for NetworkRequest [ REQUEST id=7, [ Capabilities: INTERNET&NOT_RESTRICTED&TRUSTED&NOT_VPN] ]
+12-31 11:38:59.591   734   892 D ConnectivityService: sending notification CALLBACK_CAP_CHANGED for NetworkRequest [ REQUEST id=7, [ Capabilities: INTERNET&NOT_RESTRICTED&TRUSTED&NOT_VPN] ]
+12-31 11:38:59.591   734   892 D ConnectivityService:  sending notification for NetworkRequest [ LISTEN id=9, [ Transports: WIFI Capabilities: INTERNET&TRUSTED&NOT_VPN Uid: 1001] ]
+12-31 11:38:59.591   734   892 D ConnectivityService: sending notification CALLBACK_CAP_CHANGED for NetworkRequest [ LISTEN id=9, [ Transports: WIFI Capabilities: INTERNET&TRUSTED&NOT_VPN Uid: 1001] ]
+12-31 11:38:59.592   734   892 D ConnectivityService:  sending notification for NetworkRequest [ LISTEN id=10, [ Transports: WIFI Capabilities: INTERNET&TRUSTED&NOT_VPN Uid: 1001] ]
+12-31 11:38:59.592   734   892 D ConnectivityService: sending notification CALLBACK_CAP_CHANGED for NetworkRequest [ LISTEN id=10, [ Transports: WIFI Capabilities: INTERNET&TRUSTED&NOT_VPN Uid: 1001] ]
+12-31 11:38:59.593   734   892 D ConnectivityService:  sending notification for NetworkRequest [ TRACK_DEFAULT id=11, [ Capabilities: INTERNET&NOT_RESTRICTED&TRUSTED Uid: 1000] ]
+12-31 11:38:59.593   734   892 D ConnectivityService: sending notification CALLBACK_CAP_CHANGED for NetworkRequest [ TRACK_DEFAULT id=11, [ Capabilities: INTERNET&NOT_RESTRICTED&TRUSTED Uid: 1000] ]
+12-31 11:38:59.593   734   892 D ConnectivityService:  sending notification for NetworkRequest [ LISTEN id=12, [ Capabilities: INTERNET&NOT_RESTRICTED&TRUSTED&VALIDATED Uid: 1000] ]
+12-31 11:38:59.593   734   892 D ConnectivityService: sending notification CALLBACK_CAP_CHANGED for NetworkRequest [ LISTEN id=12, [ Capabilities: INTERNET&NOT_RESTRICTED&TRUSTED&VALIDATED Uid: 1000] ]
+12-31 11:38:59.593   734   892 D ConnectivityService:  sending notification for NetworkRequest [ LISTEN id=13, [ Transports: WIFI Capabilities: NOT_VPN] ]
+12-31 11:38:59.593   734   892 D ConnectivityService: sending notification CALLBACK_CAP_CHANGED for NetworkRequest [ LISTEN id=13, [ Transports: WIFI Capabilities: NOT_VPN] ]
+12-31 11:38:59.594   734   892 D ConnectivityService:  sending notification for NetworkRequest [ TRACK_DEFAULT id=14, [ Capabilities: INTERNET&NOT_RESTRICTED&TRUSTED Uid: 10111] ]
+12-31 11:38:59.595   734   892 D ConnectivityService: sending notification CALLBACK_CAP_CHANGED for NetworkRequest [ TRACK_DEFAULT id=14, [ Capabilities: INTERNET&NOT_RESTRICTED&TRUSTED Uid: 10111] ]
+12-31 11:38:59.595   734   892 D ConnectivityService:  sending notification for NetworkRequest [ LISTEN id=16, [] ]
+12-31 11:38:59.595   734   892 D ConnectivityService: sending notification CALLBACK_CAP_CHANGED for NetworkRequest [ LISTEN id=16, [] ]
+12-31 11:38:59.596   734   892 D ConnectivityService:  sending notification for NetworkRequest [ TRACK_DEFAULT id=15114, [ Capabilities: INTERNET&NOT_RESTRICTED&TRUSTED Uid: 10131] ]
+12-31 11:38:59.596   734   892 D ConnectivityService: sending notification CALLBACK_CAP_CHANGED for NetworkRequest [ TRACK_DEFAULT id=15114, [ Capabilities: INTERNET&NOT_RESTRICTED&TRUSTED Uid: 10131] ]
+12-31 11:38:59.597   734   892 D ConnectivityService:  sending notification for NetworkRequest [ LISTEN id=15115, [ Capabilities: INTERNET&NOT_RESTRICTED&TRUSTED&FOREGROUND Uid: 10131] ]
+12-31 11:38:59.597   734   892 D ConnectivityService: sending notification CALLBACK_CAP_CHANGED for NetworkRequest [ LISTEN id=15115, [ Capabilities: INTERNET&NOT_RESTRICTED&TRUSTED&FOREGROUND Uid: 10131] ]
+12-31 11:38:59.598   734   892 D ConnectivityService:  sending notification for NetworkRequest [ LISTEN id=15864, [ Capabilities: INTERNET&TRUSTED Uid: 10089] ]
+12-31 11:38:59.598   734   892 D ConnectivityService: sending notification CALLBACK_CAP_CHANGED for NetworkRequest [ LISTEN id=15864, [ Capabilities: INTERNET&TRUSTED Uid: 10089] ]
+12-31 11:38:59.598   734   892 D ConnectivityService:  sending notification for NetworkRequest [ TRACK_DEFAULT id=15865, [ Capabilities: INTERNET&NOT_RESTRICTED&TRUSTED Uid: 10089] ]
+12-31 11:38:59.598   734   892 D ConnectivityService: sending notification CALLBACK_CAP_CHANGED for NetworkRequest [ TRACK_DEFAULT id=15865, [ Capabilities: INTERNET&NOT_RESTRICTED&TRUSTED Uid: 10089] ]
+12-31 11:38:59.599   734   892 D ConnectivityService:  sending notification for NetworkRequest [ TRACK_DEFAULT id=15866, [ Capabilities: INTERNET&NOT_RESTRICTED&TRUSTED Uid: 10089] ]
+12-31 11:38:59.599   734   892 D ConnectivityService: sending notification CALLBACK_CAP_CHANGED for NetworkRequest [ TRACK_DEFAULT id=15866, [ Capabilities: INTERNET&NOT_RESTRICTED&TRUSTED Uid: 10089] ]
+12-31 11:38:59.599   734   892 D ConnectivityService:  sending notification for NetworkRequest [ TRACK_DEFAULT id=15878, [ Capabilities: INTERNET&NOT_RESTRICTED&TRUSTED Uid: 10089] ]
+12-31 11:38:59.600   734   892 D ConnectivityService: sending notification CALLBACK_CAP_CHANGED for NetworkRequest [ TRACK_DEFAULT id=15878, [ Capabilities: INTERNET&NOT_RESTRICTED&TRUSTED Uid: 10089] ]
+12-31 11:38:59.600   734   892 D ConnectivityService:  sending notification for NetworkRequest [ LISTEN id=15879, [ Capabilities: INTERNET&NOT_RESTRICTED&TRUSTED Uid: 10089] ]
+12-31 11:38:59.600   734   892 D ConnectivityService: sending notification CALLBACK_CAP_CHANGED for NetworkRequest [ LISTEN id=15879, [ Capabilities: INTERNET&NOT_RESTRICTED&TRUSTED Uid: 10089] ]
+12-31 11:38:59.600   734   892 D ConnectivityService:  sending notification for NetworkRequest [ LISTEN id=15949, [ Transports: WIFI Capabilities: NOT_RESTRICTED&TRUSTED&NOT_VPN Uid: 10089] ]
+12-31 11:38:59.600   734   892 D ConnectivityService: sending notification CALLBACK_CAP_CHANGED for NetworkRequest [ LISTEN id=15949, [ Transports: WIFI Capabilities: NOT_RESTRICTED&TRUSTED&NOT_VPN Uid: 10089] ]
+12-31 11:38:59.601   734   892 D ConnectivityService:  sending notification for NetworkRequest [ TRACK_DEFAULT id=16355, [ Capabilities: INTERNET&NOT_RESTRICTED&TRUSTED Uid: 10107] ]
+12-31 11:38:59.601   734   892 D ConnectivityService: sending notification CALLBACK_CAP_CHANGED for NetworkRequest [ TRACK_DEFAULT id=16355, [ Capabilities: INTERNET&NOT_RESTRICTED&TRUSTED Uid: 10107] ]
+12-31 11:38:59.603   734   892 D ConnectivityService:  sending notification for NetworkRequest [ TRACK_DEFAULT id=16356, [ Capabilities: INTERNET&NOT_RESTRICTED&TRUSTED Uid: 10107] ]
+12-31 11:38:59.603   734   892 D ConnectivityService: sending notification CALLBACK_CAP_CHANGED for NetworkRequest [ TRACK_DEFAULT id=16356, [ Capabilities: INTERNET&NOT_RESTRICTED&TRUSTED Uid: 10107] ]
+12-31 11:38:59.604   734   892 D ConnectivityService:  sending notification for NetworkRequest [ LISTEN id=16357, [ Capabilities: INTERNET&NOT_RESTRICTED&TRUSTED Uid: 10107] ]
+12-31 11:38:59.604   734   892 D ConnectivityService: sending notification CALLBACK_CAP_CHANGED for NetworkRequest [ LISTEN id=16357, [ Capabilities: INTERNET&NOT_RESTRICTED&TRUSTED Uid: 10107] ]
+12-31 11:38:59.605   734   892 D ConnectivityService:  sending notification for NetworkRequest [ TRACK_DEFAULT id=16633, [ Capabilities: INTERNET&NOT_RESTRICTED&TRUSTED Uid: 10097] ]
+12-31 11:38:59.605   734   892 D ConnectivityService: sending notification CALLBACK_CAP_CHANGED for NetworkRequest [ TRACK_DEFAULT id=16633, [ Capabilities: INTERNET&NOT_RESTRICTED&TRUSTED Uid: 10097] ]
+12-31 11:38:59.607   734   892 D ConnectivityService:  sending notification for NetworkRequest [ TRACK_DEFAULT id=16634, [ Capabilities: INTERNET&NOT_RESTRICTED&TRUSTED Uid: 10108] ]
+12-31 11:38:59.607   734   892 D ConnectivityService: sending notification CALLBACK_CAP_CHANGED for NetworkRequest [ TRACK_DEFAULT id=16634, [ Capabilities: INTERNET&NOT_RESTRICTED&TRUSTED Uid: 10108] ]
+12-31 11:38:59.608   734   892 D ConnectivityService:  sending notification for NetworkRequest [ LISTEN id=16635, [ Capabilities: INTERNET&NOT_RESTRICTED&TRUSTED Uid: 10108] ]
+12-31 11:38:59.608   734   892 D ConnectivityService: sending notification CALLBACK_CAP_CHANGED for NetworkRequest [ LISTEN id=16635, [ Capabilities: INTERNET&NOT_RESTRICTED&TRUSTED Uid: 10108] ]
+12-31 11:38:59.608   734   892 D ConnectivityService:  sending notification for NetworkRequest [ TRACK_DEFAULT id=16647, [ Capabilities: INTERNET&NOT_RESTRICTED&TRUSTED Uid: 10133] ]
+12-31 11:38:59.608   734   892 D ConnectivityService: sending notification CALLBACK_CAP_CHANGED for NetworkRequest [ TRACK_DEFAULT id=16647, [ Capabilities: INTERNET&NOT_RESTRICTED&TRUSTED Uid: 10133] ]
+12-31 11:38:59.609   734   892 D ConnectivityService:  sending notification for NetworkRequest [ TRACK_DEFAULT id=16648, [ Capabilities: INTERNET&NOT_RESTRICTED&TRUSTED Uid: 10133] ]
+12-31 11:38:59.609   734   892 D ConnectivityService: sending notification CALLBACK_CAP_CHANGED for NetworkRequest [ TRACK_DEFAULT id=16648, [ Capabilities: INTERNET&NOT_RESTRICTED&TRUSTED Uid: 10133] ]
+12-31 11:38:59.611   734   892 D ConnectivityService:  sending notification for NetworkRequest [ LISTEN id=16649, [ Capabilities: INTERNET&NOT_RESTRICTED&TRUSTED&FOREGROUND Uid: 10133] ]
+12-31 11:38:59.611   734   892 D ConnectivityService: sending notification CALLBACK_CAP_CHANGED for NetworkRequest [ LISTEN id=16649, [ Capabilities: INTERNET&NOT_RESTRICTED&TRUSTED&FOREGROUND Uid: 10133] ]
+12-31 11:38:59.611   734   892 D ConnectivityService:  sending notification for NetworkRequest [ TRACK_DEFAULT id=16650, [ Capabilities: INTERNET&NOT_RESTRICTED&TRUSTED Uid: 10133] ]
+12-31 11:38:59.612   734   892 D ConnectivityService: sending notification CALLBACK_CAP_CHANGED for NetworkRequest [ TRACK_DEFAULT id=16650, [ Capabilities: INTERNET&NOT_RESTRICTED&TRUSTED Uid: 10133] ]
+12-31 11:38:59.612   734   892 D ConnectivityService:  sending notification for NetworkRequest [ TRACK_DEFAULT id=16653, [ Capabilities: INTERNET&NOT_RESTRICTED&TRUSTED Uid: 10108] ]
+12-31 11:38:59.612   734   892 D ConnectivityService: sending notification CALLBACK_CAP_CHANGED for NetworkRequest [ TRACK_DEFAULT id=16653, [ Capabilities: INTERNET&NOT_RESTRICTED&TRUSTED Uid: 10108] ]
+12-31 11:38:59.612   734   892 D ConnectivityService:  sending notification for NetworkRequest [ TRACK_DEFAULT id=16654, [ Capabilities: INTERNET&NOT_RESTRICTED&TRUSTED Uid: 10108] ]
+12-31 11:38:59.613   734   892 D ConnectivityService: sending notification CALLBACK_CAP_CHANGED for NetworkRequest [ TRACK_DEFAULT id=16654, [ Capabilities: INTERNET&NOT_RESTRICTED&TRUSTED Uid: 10108] ]
+12-31 11:38:59.613   734   892 D ConnectivityService:  sending notification for NetworkRequest [ LISTEN id=16655, [ Capabilities: INTERNET&NOT_RESTRICTED&TRUSTED Uid: 10108] ]
+12-31 11:38:59.613   734   892 D ConnectivityService: sending notification CALLBACK_CAP_CHANGED for NetworkRequest [ LISTEN id=16655, [ Capabilities: INTERNET&NOT_RESTRICTED&TRUSTED Uid: 10108] ]
+12-31 11:38:59.625   734   889 D WifiNetworkMonitor: EVENT_WIFI_RSSI_CHANGED
+12-31 11:38:59.625   734   889 E WifiNetworkMonitor: Not any Obervers!!!
+12-31 11:38:59.625   734   890 D WifiRssiLinkSpeedAndFrequencyMonitor: EVENT_WIFI_RSSI_LINKSPEED_FREQUENCY_CHANGED
+12-31 11:38:59.625   734   890 D WifiRssiLinkSpeedAndFrequencyMonitor: Not any Obervers!!!
+12-31 11:38:59.634   972   972 E PANCHENG: mWifiVisible true
+12-31 11:38:59.634   972   972 D StatusBarSignalPolicy: updateWifiIconWithState state : WifiIconState(resId=17302851, visible=true)
+12-31 11:38:59.646   972   972 E PANCHENG: mWifiVisible true
+12-31 11:38:59.646   972   972 D StatusBarSignalPolicy: updateWifiIconWithState state : WifiIconState(resId=17302850, visible=true)
+12-31 11:38:59.684 32394 32465 I PlayCommon: [62846] Connecting to server: https://play.googleapis.com/play/log?format=raw&proto_v2=true
+12-31 11:38:59.865 32394 32465 I PlayCommon: [62846] Successfully uploaded logs.
+12-31 11:39:00.000   734   863 D AlarmManager: waitForAlarm result:8currentTime=1767195540000, elapsedRealtime=1417119423
+12-31 11:39:00.001   734   863 V AlarmManager: Received TIME_TICK alarm; rescheduling
+12-31 11:39:00.001   734   863 V AlarmManager: set(null) : type=3 listener=com.android.server.AlarmManagerService$2@5750b8b listenerTag=TIME_TICK triggerAtTime=1417179422 win=0 tElapsed=1417179422 maxElapsed=1417179422 interval=0 flags=0x1
+12-31 11:39:00.003   972   972 D KeyguardStatusView: refeshFormat mClockView.getText() = 11:38 AM
+12-31 11:39:00.004   734   863 D AlarmManagerService: set alarm to kernel: 1417179.422000000, type=3 
+12-31 11:39:00.006   972   972 D KeyguardStatusView: refreshTime mClockView.getText() = 11:39 AM
+12-31 11:39:00.006   734   863 D AlarmManager: sending alarm.type = 3, action = null, cn = null, operation = null
+12-31 11:39:00.007   734   863 D AlarmManagerService: set alarm to kernel: 1417179.422000000, type=3 
+12-31 11:39:00.934   482  1083 D GNSSMGT : watchdog: PowerState[CP SLEEP], gps_flag[3], readcount[1684], idle time = 0, HeartCount = 0
+12-31 11:39:01.071   504   546 D WCND    : is_cp2_alive_ok: open polling interface: /proc/mdbg/loopcheck, fd = 13
+12-31 11:39:01.172   504   546 D WCND    : is_cp2_alive_ok: loop: /proc/mdbg/loopcheck is OK
+12-31 11:39:01.378 32480 32480 W CheckTime: App running slow: Executing application classloader create took 2691ms
+12-31 11:39:01.484 32480 32480 D WM-WrkMgrInitializer: Initializing WorkManager with default configuration.
+12-31 11:39:01.611   734  5673 D PackageManager: setEnabledSetting: packageName = com.example.smartlist, className = androidx.work.impl.background.systemjob.SystemJobService, newState = 1 ,flags = 1 ,userId = 0 ,callingPackage = null , callingUid = 10223 , allowedByPermission = false
+12-31 11:39:01.631 32480 32480 W CheckTime: App running slow: Executing handleBindApplication : installContentProviders took 222ms
+12-31 11:39:02.250   734  5673 E WindowManager: App trying to use insecure INPUT_FEATURE_NO_INPUT_CHANNEL flag. Ignoring
+12-31 11:39:02.263 32480 32480 I Choreographer: Skipped 46 frames!  The application may be doing too much work on its main thread.
+12-31 11:39:02.643   734   892 D ConnectivityService: notifyType CALLBACK_CAP_CHANGED for NetworkAgentInfo [WIFI () - 470]
+12-31 11:39:02.643   734   892 D ConnectivityService:  sending notification for NetworkRequest [ REQUEST id=1, [ Capabilities: INTERNET&NOT_RESTRICTED&TRUSTED&NOT_VPN] ]
+12-31 11:39:02.643   734   892 D ConnectivityService:  sending notification for NetworkRequest [ LISTEN id=4, [ Capabilities: FOREGROUND] ]
+12-31 11:39:02.643   734   892 D ConnectivityService: sending notification CALLBACK_CAP_CHANGED for NetworkRequest [ LISTEN id=4, [ Capabilities: FOREGROUND] ]
+12-31 11:39:02.643   734   892 D ConnectivityService:  sending notification for NetworkRequest [ LISTEN id=5, [ Capabilities: NOT_RESTRICTED&TRUSTED&NOT_VPN&FOREGROUND Uid: 1000] ]
+12-31 11:39:02.643   734   892 D ConnectivityService: sending notification CALLBACK_CAP_CHANGED for NetworkRequest [ LISTEN id=5, [ Capabilities: NOT_RESTRICTED&TRUSTED&NOT_VPN&FOREGROUND Uid: 1000] ]
+12-31 11:39:02.644   734   892 D ConnectivityService:  sending notification for NetworkRequest [ LISTEN id=6, [ Capabilities: NOT_RESTRICTED&TRUSTED&NOT_VPN&FOREGROUND Uid: 1000] ]
+12-31 11:39:02.644   734   892 D ConnectivityService: sending notification CALLBACK_CAP_CHANGED for NetworkRequest [ LISTEN id=6, [ Capabilities: NOT_RESTRICTED&TRUSTED&NOT_VPN&FOREGROUND Uid: 1000] ]
+12-31 11:39:02.644   734   892 D ConnectivityService:  sending notification for NetworkRequest [ REQUEST id=7, [ Capabilities: INTERNET&NOT_RESTRICTED&TRUSTED&NOT_VPN] ]
+12-31 11:39:02.644   734   892 D ConnectivityService: sending notification CALLBACK_CAP_CHANGED for NetworkRequest [ REQUEST id=7, [ Capabilities: INTERNET&NOT_RESTRICTED&TRUSTED&NOT_VPN] ]
+12-31 11:39:02.644   734   892 D ConnectivityService:  sending notification for NetworkRequest [ LISTEN id=9, [ Transports: WIFI Capabilities: INTERNET&TRUSTED&NOT_VPN Uid: 1001] ]
+12-31 11:39:02.644   734   892 D ConnectivityService: sending notification CALLBACK_CAP_CHANGED for NetworkRequest [ LISTEN id=9, [ Transports: WIFI Capabilities: INTERNET&TRUSTED&NOT_VPN Uid: 1001] ]
+12-31 11:39:02.644   734   892 D ConnectivityService:  sending notification for NetworkRequest [ LISTEN id=10, [ Transports: WIFI Capabilities: INTERNET&TRUSTED&NOT_VPN Uid: 1001] ]
+12-31 11:39:02.645   734   892 D ConnectivityService: sending notification CALLBACK_CAP_CHANGED for NetworkRequest [ LISTEN id=10, [ Transports: WIFI Capabilities: INTERNET&TRUSTED&NOT_VPN Uid: 1001] ]
+12-31 11:39:02.645   734   892 D ConnectivityService:  sending notification for NetworkRequest [ TRACK_DEFAULT id=11, [ Capabilities: INTERNET&NOT_RESTRICTED&TRUSTED Uid: 1000] ]
+12-31 11:39:02.645   734   892 D ConnectivityService: sending notification CALLBACK_CAP_CHANGED for NetworkRequest [ TRACK_DEFAULT id=11, [ Capabilities: INTERNET&NOT_RESTRICTED&TRUSTED Uid: 1000] ]
+12-31 11:39:02.646   734   892 D ConnectivityService:  sending notification for NetworkRequest [ LISTEN id=12, [ Capabilities: INTERNET&NOT_RESTRICTED&TRUSTED&VALIDATED Uid: 1000] ]
+12-31 11:39:02.647   734   892 D ConnectivityService: sending notification CALLBACK_CAP_CHANGED for NetworkRequest [ LISTEN id=12, [ Capabilities: INTERNET&NOT_RESTRICTED&TRUSTED&VALIDATED Uid: 1000] ]
+12-31 11:39:02.647   734   892 D ConnectivityService:  sending notification for NetworkRequest [ LISTEN id=13, [ Transports: WIFI Capabilities: NOT_VPN] ]
+12-31 11:39:02.647   734   892 D ConnectivityService: sending notification CALLBACK_CAP_CHANGED for NetworkRequest [ LISTEN id=13, [ Transports: WIFI Capabilities: NOT_VPN] ]
+12-31 11:39:02.647   734   892 D ConnectivityService:  sending notification for NetworkRequest [ TRACK_DEFAULT id=14, [ Capabilities: INTERNET&NOT_RESTRICTED&TRUSTED Uid: 10111] ]
+12-31 11:39:02.647   734   892 D ConnectivityService: sending notification CALLBACK_CAP_CHANGED for NetworkRequest [ TRACK_DEFAULT id=14, [ Capabilities: INTERNET&NOT_RESTRICTED&TRUSTED Uid: 10111] ]
+12-31 11:39:02.648   734   892 D ConnectivityService:  sending notification for NetworkRequest [ LISTEN id=16, [] ]
+12-31 11:39:02.648   734   892 D ConnectivityService: sending notification CALLBACK_CAP_CHANGED for NetworkRequest [ LISTEN id=16, [] ]
+12-31 11:39:02.648   734   892 D ConnectivityService:  sending notification for NetworkRequest [ TRACK_DEFAULT id=15114, [ Capabilities: INTERNET&NOT_RESTRICTED&TRUSTED Uid: 10131] ]
+12-31 11:39:02.648   734   892 D ConnectivityService: sending notification CALLBACK_CAP_CHANGED for NetworkRequest [ TRACK_DEFAULT id=15114, [ Capabilities: INTERNET&NOT_RESTRICTED&TRUSTED Uid: 10131] ]
+12-31 11:39:02.649   734   892 D ConnectivityService:  sending notification for NetworkRequest [ LISTEN id=15115, [ Capabilities: INTERNET&NOT_RESTRICTED&TRUSTED&FOREGROUND Uid: 10131] ]
+12-31 11:39:02.649   734   892 D ConnectivityService: sending notification CALLBACK_CAP_CHANGED for NetworkRequest [ LISTEN id=15115, [ Capabilities: INTERNET&NOT_RESTRICTED&TRUSTED&FOREGROUND Uid: 10131] ]
+12-31 11:39:02.649   734   892 D ConnectivityService:  sending notification for NetworkRequest [ LISTEN id=15864, [ Capabilities: INTERNET&TRUSTED Uid: 10089] ]
+12-31 11:39:02.649   734   892 D ConnectivityService: sending notification CALLBACK_CAP_CHANGED for NetworkRequest [ LISTEN id=15864, [ Capabilities: INTERNET&TRUSTED Uid: 10089] ]
+12-31 11:39:02.650   734   892 D ConnectivityService:  sending notification for NetworkRequest [ TRACK_DEFAULT id=15865, [ Capabilities: INTERNET&NOT_RESTRICTED&TRUSTED Uid: 10089] ]
+12-31 11:39:02.650   734   892 D ConnectivityService: sending notification CALLBACK_CAP_CHANGED for NetworkRequest [ TRACK_DEFAULT id=15865, [ Capabilities: INTERNET&NOT_RESTRICTED&TRUSTED Uid: 10089] ]
+12-31 11:39:02.650   734   892 D ConnectivityService:  sending notification for NetworkRequest [ TRACK_DEFAULT id=15866, [ Capabilities: INTERNET&NOT_RESTRICTED&TRUSTED Uid: 10089] ]
+12-31 11:39:02.650   734   892 D ConnectivityService: sending notification CALLBACK_CAP_CHANGED for NetworkRequest [ TRACK_DEFAULT id=15866, [ Capabilities: INTERNET&NOT_RESTRICTED&TRUSTED Uid: 10089] ]
+12-31 11:39:02.651   734   892 D ConnectivityService:  sending notification for NetworkRequest [ TRACK_DEFAULT id=15878, [ Capabilities: INTERNET&NOT_RESTRICTED&TRUSTED Uid: 10089] ]
+12-31 11:39:02.651   734   892 D ConnectivityService: sending notification CALLBACK_CAP_CHANGED for NetworkRequest [ TRACK_DEFAULT id=15878, [ Capabilities: INTERNET&NOT_RESTRICTED&TRUSTED Uid: 10089] ]
+12-31 11:39:02.651   734   892 D ConnectivityService:  sending notification for NetworkRequest [ LISTEN id=15879, [ Capabilities: INTERNET&NOT_RESTRICTED&TRUSTED Uid: 10089] ]
+12-31 11:39:02.651   734   892 D ConnectivityService: sending notification CALLBACK_CAP_CHANGED for NetworkRequest [ LISTEN id=15879, [ Capabilities: INTERNET&NOT_RESTRICTED&TRUSTED Uid: 10089] ]
+12-31 11:39:02.652   734   892 D ConnectivityService:  sending notification for NetworkRequest [ LISTEN id=15949, [ Transports: WIFI Capabilities: NOT_RESTRICTED&TRUSTED&NOT_VPN Uid: 10089] ]
+12-31 11:39:02.652   734   892 D ConnectivityService: sending notification CALLBACK_CAP_CHANGED for NetworkRequest [ LISTEN id=15949, [ Transports: WIFI Capabilities: NOT_RESTRICTED&TRUSTED&NOT_VPN Uid: 10089] ]
+12-31 11:39:02.652   734   892 D ConnectivityService:  sending notification for NetworkRequest [ TRACK_DEFAULT id=16355, [ Capabilities: INTERNET&NOT_RESTRICTED&TRUSTED Uid: 10107] ]
+12-31 11:39:02.652   734   892 D ConnectivityService: sending notification CALLBACK_CAP_CHANGED for NetworkRequest [ TRACK_DEFAULT id=16355, [ Capabilities: INTERNET&NOT_RESTRICTED&TRUSTED Uid: 10107] ]
+12-31 11:39:02.653   734   892 D ConnectivityService:  sending notification for NetworkRequest [ TRACK_DEFAULT id=16356, [ Capabilities: INTERNET&NOT_RESTRICTED&TRUSTED Uid: 10107] ]
+12-31 11:39:02.654   734   892 D ConnectivityService: sending notification CALLBACK_CAP_CHANGED for NetworkRequest [ TRACK_DEFAULT id=16356, [ Capabilities: INTERNET&NOT_RESTRICTED&TRUSTED Uid: 10107] ]
+12-31 11:39:02.657   734   890 D WifiRssiLinkSpeedAndFrequencyMonitor: EVENT_WIFI_RSSI_LINKSPEED_FREQUENCY_CHANGED
+12-31 11:39:02.657   734   890 D WifiRssiLinkSpeedAndFrequencyMonitor: Not any Obervers!!!
+12-31 11:39:02.658   972   972 E PANCHENG: mWifiVisible true
+12-31 11:39:02.658   972   972 D StatusBarSignalPolicy: updateWifiIconWithState state : WifiIconState(resId=17302851, visible=true)
+12-31 11:39:02.659   734   892 D ConnectivityService:  sending notification for NetworkRequest [ LISTEN id=16357, [ Capabilities: INTERNET&NOT_RESTRICTED&TRUSTED Uid: 10107] ]
+12-31 11:39:02.659   734   892 D ConnectivityService: sending notification CALLBACK_CAP_CHANGED for NetworkRequest [ LISTEN id=16357, [ Capabilities: INTERNET&NOT_RESTRICTED&TRUSTED Uid: 10107] ]
+12-31 11:39:02.660   734   892 D ConnectivityService:  sending notification for NetworkRequest [ TRACK_DEFAULT id=16633, [ Capabilities: INTERNET&NOT_RESTRICTED&TRUSTED Uid: 10097] ]
+12-31 11:39:02.660   734   892 D ConnectivityService: sending notification CALLBACK_CAP_CHANGED for NetworkRequest [ TRACK_DEFAULT id=16633, [ Capabilities: INTERNET&NOT_RESTRICTED&TRUSTED Uid: 10097] ]
+12-31 11:39:02.660   734   892 D ConnectivityService:  sending notification for NetworkRequest [ TRACK_DEFAULT id=16634, [ Capabilities: INTERNET&NOT_RESTRICTED&TRUSTED Uid: 10108] ]
+12-31 11:39:02.660   734   892 D ConnectivityService: sending notification CALLBACK_CAP_CHANGED for NetworkRequest [ TRACK_DEFAULT id=16634, [ Capabilities: INTERNET&NOT_RESTRICTED&TRUSTED Uid: 10108] ]
+12-31 11:39:02.661   734   892 D ConnectivityService:  sending notification for NetworkRequest [ LISTEN id=16635, [ Capabilities: INTERNET&NOT_RESTRICTED&TRUSTED Uid: 10108] ]
+12-31 11:39:02.661   734   892 D ConnectivityService: sending notification CALLBACK_CAP_CHANGED for NetworkRequest [ LISTEN id=16635, [ Capabilities: INTERNET&NOT_RESTRICTED&TRUSTED Uid: 10108] ]
+12-31 11:39:02.661   734   892 D ConnectivityService:  sending notification for NetworkRequest [ TRACK_DEFAULT id=16647, [ Capabilities: INTERNET&NOT_RESTRICTED&TRUSTED Uid: 10133] ]
+12-31 11:39:02.661   734   892 D ConnectivityService: sending notification CALLBACK_CAP_CHANGED for NetworkRequest [ TRACK_DEFAULT id=16647, [ Capabilities: INTERNET&NOT_RESTRICTED&TRUSTED Uid: 10133] ]
+12-31 11:39:02.662   734   892 D ConnectivityService:  sending notification for NetworkRequest [ TRACK_DEFAULT id=16648, [ Capabilities: INTERNET&NOT_RESTRICTED&TRUSTED Uid: 10133] ]
+12-31 11:39:02.662   734   892 D ConnectivityService: sending notification CALLBACK_CAP_CHANGED for NetworkRequest [ TRACK_DEFAULT id=16648, [ Capabilities: INTERNET&NOT_RESTRICTED&TRUSTED Uid: 10133] ]
+12-31 11:39:02.662   734   892 D ConnectivityService:  sending notification for NetworkRequest [ LISTEN id=16649, [ Capabilities: INTERNET&NOT_RESTRICTED&TRUSTED&FOREGROUND Uid: 10133] ]
+12-31 11:39:02.662   734   892 D ConnectivityService: sending notification CALLBACK_CAP_CHANGED for NetworkRequest [ LISTEN id=16649, [ Capabilities: INTERNET&NOT_RESTRICTED&TRUSTED&FOREGROUND Uid: 10133] ]
+12-31 11:39:02.663   734   892 D ConnectivityService:  sending notification for NetworkRequest [ TRACK_DEFAULT id=16650, [ Capabilities: INTERNET&NOT_RESTRICTED&TRUSTED Uid: 10133] ]
+12-31 11:39:02.663   734   892 D ConnectivityService: sending notification CALLBACK_CAP_CHANGED for NetworkRequest [ TRACK_DEFAULT id=16650, [ Capabilities: INTERNET&NOT_RESTRICTED&TRUSTED Uid: 10133] ]
+12-31 11:39:02.663   734   892 D ConnectivityService:  sending notification for NetworkRequest [ TRACK_DEFAULT id=16653, [ Capabilities: INTERNET&NOT_RESTRICTED&TRUSTED Uid: 10108] ]
+12-31 11:39:02.663   734   892 D ConnectivityService: sending notification CALLBACK_CAP_CHANGED for NetworkRequest [ TRACK_DEFAULT id=16653, [ Capabilities: INTERNET&NOT_RESTRICTED&TRUSTED Uid: 10108] ]
+12-31 11:39:02.664   734   892 D ConnectivityService:  sending notification for NetworkRequest [ TRACK_DEFAULT id=16654, [ Capabilities: INTERNET&NOT_RESTRICTED&TRUSTED Uid: 10108] ]
+12-31 11:39:02.664   734   892 D ConnectivityService: sending notification CALLBACK_CAP_CHANGED for NetworkRequest [ TRACK_DEFAULT id=16654, [ Capabilities: INTERNET&NOT_RESTRICTED&TRUSTED Uid: 10108] ]
+12-31 11:39:02.666   734   892 D ConnectivityService:  sending notification for NetworkRequest [ LISTEN id=16655, [ Capabilities: INTERNET&NOT_RESTRICTED&TRUSTED Uid: 10108] ]
+12-31 11:39:02.666   734   892 D ConnectivityService: sending notification CALLBACK_CAP_CHANGED for NetworkRequest [ LISTEN id=16655, [ Capabilities: INTERNET&NOT_RESTRICTED&TRUSTED Uid: 10108] ]
+12-31 11:39:02.667   734   889 D WifiNetworkMonitor: EVENT_WIFI_RSSI_CHANGED
+12-31 11:39:02.667   734   889 E WifiNetworkMonitor: Not any Obervers!!!
+12-31 11:39:02.934   482  1083 D GNSSMGT : watchdog: PowerState[CP SLEEP], gps_flag[3], readcount[1684], idle time = 0, HeartCount = 0
+12-31 11:39:03.761 32480 32480 W ample.smartlis: Class androidx.compose.runtime.snapshots.SnapshotStateList failed lock verification and will run slower.
+12-31 11:39:03.761 32480 32480 W ample.smartlis: Common causes for lock verification issues are non-optimized dex code
+12-31 11:39:03.761 32480 32480 W ample.smartlis: and incorrect proguard optimizations.
+12-31 11:39:04.136 32526 32526 D ip_monitor-438: fd02:688e:2558::1 dev wlan0 lladdr c4:41:1e:37:37:30 router PROBE
+12-31 11:39:04.165 32480 32480 W ample.smartlis: Accessing hidden method Landroid/view/View;->getViewRootImpl()Landroid/view/ViewRootImpl; (greylist, reflection, allowed)
+12-31 11:39:04.165 32480 32480 W ample.smartlis: Accessing hidden field Landroid/view/View$AttachInfo;->mVisibleInsets:Landroid/graphics/Rect; (greylist, reflection, allowed)
+12-31 11:39:04.165 32480 32480 W ample.smartlis: Accessing hidden field Landroid/view/ViewRootImpl;->mAttachInfo:Landroid/view/View$AttachInfo; (greylist, reflection, allowed)
+12-31 11:39:04.376 32527 32527 D ip_monitor-438: 192.168.19.1 dev wlan0 lladdr c4:41:1e:37:37:30 REACHABLE
+12-31 11:39:04.399   734  5673 D WindowManager: Input focus has changed to Window{31ee65a u0 com.example.smartlist/com.example.smartlist.MainActivity}
+12-31 11:39:04.493 32480 32523 D mali_winsys: EGLint new_window_surface(egl_winsys_display *, void *, EGLSurface, EGLConfig, egl_winsys_surface **, EGLBoolean) returns 0x3000
+12-31 11:39:04.494   358   358 I gralloc : mali_gralloc_select_format, AFBC is disabled now
+12-31 11:39:04.494   358   358 I gralloc : mali_gralloc_select_format: req_format=0x00000001 req_fmt_mapped=0x0 internal_format=0x1 usage=0xb00
+12-31 11:39:04.483   358   358 W allocator@2.0-s: type=1400 audit(0.0:49053): avc: denied { read } for name="u:object_r:default_prop:s0" dev="tmpfs" ino=7774 scontext=u:r:hal_graphics_allocator_default:s0 tcontext=u:object_r:default_prop:s0 tclass=file permissive=0
+12-31 11:39:04.494   358   358 E libc    : Access denied finding property "enable_ion_heap_id_mask_cam"
+12-31 11:39:04.495   358   358 I gralloc : gralloc=>alloc, share_fd=8, share_attr_fd=-1, magic=51647890, format=1, internal_format=1, byte_stride=1920, flags=4, usage=0x2816, size=1536000, width=480, height=800, internalWidth=480, internalHeight=800, stride=480, ADP_VSTRIDE=0,base=0xac72b000, writeOwner=0, attr_base=0xffffffff, yuv_info=1, fd=-1, buf_idx=0, offset=0, min_pgsz=4096, phyaddr=0
+12-31 11:39:04.495   358   358 I gralloc : gralloc_unregister_buffer hnd=0xad53d000, share_fd=8, share_attr_fd=-1, magic=51647890, format=1, internal_format=1, byte_stride=1920, flags=4, usage=0xb00, size=1536000, width=480, height=800, internalWidth=480, internalHeight=800, stride=480, base=0xac72b000, writeOwner=0, attr_base=0xffffffff, yuv_info=1, fd=-1, buf_idx=0, offset=0, min_pgsz=4096, phyaddr=0
+12-31 11:39:04.496   358   358 I gralloc : gralloc=>free hnd=0xad53d000, share_fd=8, share_attr_fd=-1, magic=51647890, format=1, internal_format=1, byte_stride=1920, flags=4, usage=2816, size=1536000, width=480, height=800, internalWidth=480, internalHeight=800, stride=480, base=0xac72b000, writeOwner=0, attr_base=0xffffffff, yuv_info=1, fd=-1, buf_idx=0, offset=0, min_pgsz=4096, phyaddr=0
+12-31 11:39:04.496   388   525 I gralloc : gralloc_register_buffer hnd=0xad173ac0, share_fd=82, share_attr_fd=-1, magic=51647890, format=1, internal_format=1, byte_stride=1920, flags=4, usage=0xb00, size=1536000, width=480, height=800, internalWidth=480, internalHeight=800, stride=480, base=0xad570000, writeOwner=0, attr_base=0xffffffff, yuv_info=1, fd=-1, buf_idx=0, offset=0, min_pgsz=4096, phyaddr=0
+12-31 11:39:04.496   358   358 I gralloc : mali_gralloc_select_format, AFBC is disabled now
+12-31 11:39:04.483   358   358 W allocator@2.0-s: type=1400 audit(0.0:49054): avc: denied { read } for name="u:object_r:default_prop:s0" dev="tmpfs" ino=7774 scontext=u:r:hal_graphics_allocator_default:s0 tcontext=u:object_r:default_prop:s0 tclass=file permissive=0
+12-31 11:39:04.496   358   358 I gralloc : mali_gralloc_select_format: req_format=0x00000001 req_fmt_mapped=0x0 internal_format=0x1 usage=0xb00
+12-31 11:39:04.497   358   358 E libc    : Access denied finding property "enable_ion_heap_id_mask_cam"
+12-31 11:39:04.498   358   358 I gralloc : gralloc=>alloc, share_fd=8, share_attr_fd=-1, magic=51647890, format=1, internal_format=1, byte_stride=1920, flags=4, usage=0x2816, size=1536000, width=480, height=800, internalWidth=480, internalHeight=800, stride=480, ADP_VSTRIDE=0,base=0xac72b000, writeOwner=0, attr_base=0xffffffff, yuv_info=1, fd=-1, buf_idx=0, offset=0, min_pgsz=4096, phyaddr=0
+12-31 11:39:04.498   358   358 I gralloc : gralloc_unregister_buffer hnd=0xad53d000, share_fd=8, share_attr_fd=-1, magic=51647890, format=1, internal_format=1, byte_stride=1920, flags=4, usage=0xb00, size=1536000, width=480, height=800, internalWidth=480, internalHeight=800, stride=480, base=0xac72b000, writeOwner=0, attr_base=0xffffffff, yuv_info=1, fd=-1, buf_idx=0, offset=0, min_pgsz=4096, phyaddr=0
+12-31 11:39:04.498   358   358 I gralloc : gralloc=>free hnd=0xad53d000, share_fd=8, share_attr_fd=-1, magic=51647890, format=1, internal_format=1, byte_stride=1920, flags=4, usage=2816, size=1536000, width=480, height=800, internalWidth=480, internalHeight=800, stride=480, base=0xac72b000, writeOwner=0, attr_base=0xffffffff, yuv_info=1, fd=-1, buf_idx=0, offset=0, min_pgsz=4096, phyaddr=0
+12-31 11:39:04.498   388   525 I gralloc : gralloc_register_buffer hnd=0xad173b80, share_fd=85, share_attr_fd=-1, magic=51647890, format=1, internal_format=1, byte_stride=1920, flags=4, usage=0xb00, size=1536000, width=480, height=800, internalWidth=480, internalHeight=800, stride=480, base=0xad3f9000, writeOwner=0, attr_base=0xffffffff, yuv_info=1, fd=-1, buf_idx=0, offset=0, min_pgsz=4096, phyaddr=0
+12-31 11:39:04.499   358   358 I gralloc : mali_gralloc_select_format, AFBC is disabled now
+12-31 11:39:04.499   358   358 I gralloc : mali_gralloc_select_format: req_format=0x00000001 req_fmt_mapped=0x0 internal_format=0x1 usage=0xb00
+12-31 11:39:04.483   358   358 W allocator@2.0-s: type=1400 audit(0.0:49055): avc: denied { read } for name="u:object_r:default_prop:s0" dev="tmpfs" ino=7774 scontext=u:r:hal_graphics_allocator_default:s0 tcontext=u:object_r:default_prop:s0 tclass=file permissive=0
+12-31 11:39:04.499   358   358 E libc    : Access denied finding property "enable_ion_heap_id_mask_cam"
+12-31 11:39:04.501   358   358 I gralloc : gralloc=>alloc, share_fd=8, share_attr_fd=-1, magic=51647890, format=1, internal_format=1, byte_stride=1920, flags=4, usage=0x2816, size=1536000, width=480, height=800, internalWidth=480, internalHeight=800, stride=480, ADP_VSTRIDE=0,base=0xac72b000, writeOwner=0, attr_base=0xffffffff, yuv_info=1, fd=-1, buf_idx=0, offset=0, min_pgsz=4096, phyaddr=0
+12-31 11:39:04.501   358   358 I gralloc : gralloc_unregister_buffer hnd=0xad53d000, share_fd=8, share_attr_fd=-1, magic=51647890, format=1, internal_format=1, byte_stride=1920, flags=4, usage=0xb00, size=1536000, width=480, height=800, internalWidth=480, internalHeight=800, stride=480, base=0xac72b000, writeOwner=0, attr_base=0xffffffff, yuv_info=1, fd=-1, buf_idx=0, offset=0, min_pgsz=4096, phyaddr=0
+12-31 11:39:04.501   388   525 I gralloc : gralloc_register_buffer hnd=0xad173c40, share_fd=89, share_attr_fd=-1, magic=51647890, format=1, internal_format=1, byte_stride=1920, flags=4, usage=0xb00, size=1536000, width=480, height=800, internalWidth=480, internalHeight=800, stride=480, base=0xad282000, writeOwner=0, attr_base=0xffffffff, yuv_info=1, fd=-1, buf_idx=0, offset=0, min_pgsz=4096, phyaddr=0
+12-31 11:39:04.501   358   358 I gralloc : gralloc=>free hnd=0xad53d000, share_fd=8, share_attr_fd=-1, magic=51647890, format=1, internal_format=1, byte_stride=1920, flags=4, usage=2816, size=1536000, width=480, height=800, internalWidth=480, internalHeight=800, stride=480, base=0xac72b000, writeOwner=0, attr_base=0xffffffff, yuv_info=1, fd=-1, buf_idx=0, offset=0, min_pgsz=4096, phyaddr=0
+12-31 11:39:04.555   248   248 I hwservicemanager: getTransport: Cannot find entry android.hardware.graphics.mapper@3.0::IMapper/default in either framework or device manifest.
+12-31 11:39:04.555 32480 32523 W Gralloc3: mapper 3.x is not supported
+12-31 11:39:04.572 32480 32523 I gralloc : gralloc_register_buffer hnd=0x97868e00, share_fd=64, share_attr_fd=-1, magic=51647890, format=1, internal_format=1, byte_stride=1920, flags=4, usage=0xb00, size=1536000, width=480, height=800, internalWidth=480, internalHeight=800, stride=480, base=0x81c30000, writeOwner=0, attr_base=0xffffffff, yuv_info=1, fd=-1, buf_idx=0, offset=0, min_pgsz=4096, phyaddr=0
+12-31 11:39:04.572 32480 32523 E libc    : Access denied finding property "ro.vendor.sf.fbc"
+12-31 11:39:04.572 32480 32523 E libc    : Access denied finding property "ro.vendor.gpu.fbc"
+12-31 11:39:04.573 32480 32523 E libc    : Access denied finding property "ro.vendor.whale2.afbc"
+12-31 11:39:04.573 32480 32523 I gralloc : mali_gralloc_select_format, AFBC is disabled now
+12-31 11:39:04.573 32480 32523 I gralloc : mali_gralloc_select_format: req_format=0x00000001 req_fmt_mapped=0x0 internal_format=0x1 usage=0xb00
+12-31 11:39:04.574 32480 32523 E         : Shared attribute region not available to be mapped
+12-31 11:39:04.563 32480 32480 W RenderThread: type=1400 audit(0.0:49056): avc: denied { read } for name="u:object_r:vendor_default_prop:s0" dev="tmpfs" ino=7865 scontext=u:r:untrusted_app:s0:c223,c256,c512,c768 tcontext=u:object_r:vendor_default_prop:s0 tclass=file permissive=0
+12-31 11:39:04.563 32480 32480 I chatty  : uid=10223(com.example.smartlist) identical 1 line
+12-31 11:39:04.563 32480 32480 W RenderThread: type=1400 audit(0.0:49058): avc: denied { read } for name="u:object_r:vendor_default_prop:s0" dev="tmpfs" ino=7865 scontext=u:r:untrusted_app:s0:c223,c256,c512,c768 tcontext=u:object_r:vendor_default_prop:s0 tclass=file permissive=0
+12-31 11:39:04.624 32537 32537 D ip_monitor-438: fd02:688e:2558::1 dev wlan0 lladdr c4:41:1e:37:37:30 router REACHABLE
+12-31 11:39:04.697   388   525 E         : Shared attribute region not available to be mapped
+12-31 11:39:04.699 32480 32523 I OpenGLRenderer: Davey! duration=3206ms; Flags=1, IntendedVsync=345736980481420, Vsync=345737747148102, OldestInputEvent=9223372036854775807, NewestInputEvent=0, HandleInputStart=345737753703705, AnimationStart=345737753831974, PerformTraversalsStart=345737754346474, DrawStart=345739983637626, SyncQueued=345740041376164, SyncStart=345740042465549, IssueDrawCommandsStart=345740042627241, SwapBuffers=345740184868857, FrameCompleted=345740188402895, DequeueBufferDuration=464000, QueueBufferDuration=1047000, 
+12-31 11:39:04.711   734   761 I ActivityTaskManager: Displayed com.example.smartlist/.MainActivity: +6s580ms
+12-31 11:39:04.719   734   756 I gralloc : gralloc_unregister_buffer hnd=0x80bf68c0, share_fd=390, share_attr_fd=-1, magic=51647890, format=1, internal_format=1, byte_stride=1920, flags=4, usage=0x966, size=1536000, width=480, height=800, internalWidth=480, internalHeight=800, stride=480, base=0x6b54a000, writeOwner=48, attr_base=0xffffffff, yuv_info=1, fd=-1, buf_idx=0, offset=0, min_pgsz=4096, phyaddr=0
+12-31 11:39:04.727   376   376 D PowerHAL: ###Enter interaction_other scene bgn###
+12-31 11:39:04.727   376   376 D PowerHAL: Enter common_set: enable:1, duration: 500, /sys/devices/system/cpu/cpuhotplug/cluster0_core_min_limit: 4
+12-31 11:39:04.727   376   376 D PowerHAL: Enter common_set: enable:1, duration: 500, /sys/devices/system/cpu/cpuhotplug/cluster0_core_max_limit: 4
+12-31 11:39:04.728   376   376 D PowerHAL: Enter common_subsys_set: enable:1, duration: 500, subsys:cpufreq: conf_2:5
+12-31 11:39:04.728   376   376 D PowerHAL: ###Enter interaction_other scene end###
+12-31 11:39:04.753 32480 32480 D ItemsScreen: LaunchedEffect(showAddDialog) -> showAddDialog=false
+12-31 11:39:04.753 32480 32480 D ItemsScreen: Dialog closed: clearing focus and hiding keyboard
+12-31 11:39:04.761   359   359 I gralloc : gralloc_register_buffer hnd=0xacc3cc00, share_fd=35, share_attr_fd=-1, magic=51647890, format=1, internal_format=1, byte_stride=1920, flags=4, usage=0xb00, size=1536000, width=480, height=800, internalWidth=480, internalHeight=800, stride=480, base=0xaa1be000, writeOwner=0, attr_base=0xffffffff, yuv_info=1, fd=-1, buf_idx=0, offset=0, min_pgsz=4096, phyaddr=0
+12-31 11:39:04.772 32480 32480 I Choreographer: Skipped 139 frames!  The application may be doing too much work on its main thread.
+12-31 11:39:04.781 32480 32523 I gralloc : gralloc_register_buffer hnd=0x83958b40, share_fd=67, share_attr_fd=-1, magic=51647890, format=1, internal_format=1, byte_stride=1920, flags=4, usage=0xb00, size=1536000, width=480, height=800, internalWidth=480, internalHeight=800, stride=480, base=0x817ae000, writeOwner=0, attr_base=0xffffffff, yuv_info=1, fd=-1, buf_idx=0, offset=0, min_pgsz=4096, phyaddr=0
+12-31 11:39:04.781 32480 32523 I gralloc : mali_gralloc_select_format, AFBC is disabled now
+12-31 11:39:04.781 32480 32523 I gralloc : mali_gralloc_select_format: req_format=0x00000001 req_fmt_mapped=0x0 internal_format=0x1 usage=0xb00
+12-31 11:39:04.782 32480 32523 E         : Shared attribute region not available to be mapped
+12-31 11:39:04.785   388   525 E         : Shared attribute region not available to be mapped
+12-31 11:39:04.785 32480 32523 I OpenGLRenderer: Davey! duration=2344ms; Flags=0, IntendedVsync=345737931032510, Vsync=345740247699223, OldestInputEvent=9223372036854775807, NewestInputEvent=0, HandleInputStart=345740262983472, AnimationStart=345740263146818, PerformTraversalsStart=345740263929280, DrawStart=345740268661472, SyncQueued=345740270207049, SyncStart=345740270574895, IssueDrawCommandsStart=345740270712472, SwapBuffers=345740274152780, FrameCompleted=345740275582357, DequeueBufferDuration=171000, QueueBufferDuration=546000, 
+12-31 11:39:04.794   359   359 I gralloc : gralloc_register_buffer hnd=0xacc3d140, share_fd=29, share_attr_fd=-1, magic=51647890, format=1, internal_format=1, byte_stride=1920, flags=4, usage=0xb00, size=1536000, width=480, height=800, internalWidth=480, internalHeight=800, stride=480, base=0xa9f46000, writeOwner=0, attr_base=0xffffffff, yuv_info=1, fd=-1, buf_idx=0, offset=0, min_pgsz=4096, phyaddr=0
+12-31 11:39:04.828 29176 29176 I GoogleInputMethodService: GoogleInputMethodService.onFinishInput():2092 
+12-31 11:39:04.835  8471  8672 I FontLog : (REDACTED) Received query %s, URI %s
+12-31 11:39:04.838  8471  8672 I FontLog : (REDACTED) Query [%s] resolved to %s
+12-31 11:39:04.870 29176 29176 I Module  : DeviceLockedStatusModuleProvider$Module.updateDeviceLockedStatus():103 repeatCheckTimes = 0, locked = false
+12-31 11:39:04.874 29176 29176 W NotificationCenter: NotificationCenter$NotificationQueue.notifyPendingNotificationsOnExecutor():877 Heavy notify work detected on UI thread: [iud->ita, iud->egw, iud->guv, iud->guv, iud->guv, iud->guv, iud->guv, iud->gwp, iud->eqa, iud->guv, iud->hzy, iud->guv, iud->guv, iud->igr, iud->knd, iud->guv, iud->guv, iud->guv, iud->jer] takes 22ms
+12-31 11:39:04.881  8471  8672 I FontLog : (REDACTED) Fetch %s end status %s
+12-31 11:39:04.882 32480 32480 D ItemsScreen: rendering item row id=063f8fa7-c2e0-4c0f-8952-c5fe617b0b87 text='chia'
+12-31 11:39:04.887 29176 29176 I GoogleInputMethodService: GoogleInputMethodService.onStartInput():1349 onStartInput(EditorInfo{EditorInfo{packageName=com.example.smartlist, inputType=0, inputTypeString=NULL, enableLearning=false, autoCorrection=false, autoComplete=false, imeOptions=0, privateImeOptions=null, actionName=UNSPECIFIED, actionLabel=null, initialSelStart=-1, initialSelEnd=-1, initialCapsMode=0, label=null, fieldId=-1, fieldName=null, extras=null, hintText=null, hintLocales=[]}}, false)
+12-31 11:39:04.903 29176 29176 I Module  : DeviceLockedStatusModuleProvider$Module.updateDeviceLockedStatus():103 repeatCheckTimes = 1, locked = false
+12-31 11:39:04.910   359   359 I gralloc : gralloc_unregister_buffer hnd=0xacc3cfc0, share_fd=43, share_attr_fd=-1, magic=51647890, format=1, internal_format=1, byte_stride=1920, flags=4, usage=0x966, size=1536000, width=480, height=800, internalWidth=480, internalHeight=800, stride=480, base=0xa9dcf000, writeOwner=0, attr_base=0xffffffff, yuv_info=1, fd=-1, buf_idx=0, offset=0, min_pgsz=4096, phyaddr=0
+12-31 11:39:04.925   388   388 I gralloc : gralloc_unregister_buffer hnd=0xad1716c0, share_fd=79, share_attr_fd=-1, magic=51647890, format=1, internal_format=1, byte_stride=1920, flags=4, usage=0x966, size=1536000, width=480, height=800, internalWidth=480, internalHeight=800, stride=480, base=0xadc4b000, writeOwner=0, attr_base=0xffffffff, yuv_info=1, fd=-1, buf_idx=0, offset=0, min_pgsz=4096, phyaddr=0
+12-31 11:39:04.934   482  1083 D GNSSMGT : watchdog: PowerState[CP SLEEP], gps_flag[3], readcount[1684], idle time = 0, HeartCount = 0
+12-31 11:39:04.940  8471  8672 I FontLog : (REDACTED) Pulling font file for id = %d, cache size = %d
+12-31 11:39:04.988  8471  8672 I FontLog : (REDACTED) Pulling font file for id = %d, cache size = %d
+12-31 11:39:05.024 32480 32480 D ItemsScreen: text focus for 063f8fa7-c2e0-4c0f-8952-c5fe617b0b87 = false
+12-31 11:39:05.026 32480 32480 D ItemsScreen: row focus for 063f8fa7-c2e0-4c0f-8952-c5fe617b0b87 = false
+12-31 11:39:05.026 32480 32480 D ItemsScreen: card focus for 063f8fa7-c2e0-4c0f-8952-c5fe617b0b87 = false
+12-31 11:39:05.058 32480 32480 D ItemsScreen: rendering item row id=6ff0b91d-693f-47bf-936c-3f67955b3c9c text='cafe'
+12-31 11:39:05.116 32480 32480 D ItemsScreen: text focus for 6ff0b91d-693f-47bf-936c-3f67955b3c9c = false
+12-31 11:39:05.119 32480 32480 D ItemsScreen: row focus for 6ff0b91d-693f-47bf-936c-3f67955b3c9c = false
+12-31 11:39:05.120 32480 32480 D ItemsScreen: card focus for 6ff0b91d-693f-47bf-936c-3f67955b3c9c = false
+12-31 11:39:05.154 32480 32480 D ItemsScreen: rendering item row id=4bb1e209-f87b-44ec-9b3c-8e841c00b024 text='harina pan'
+12-31 11:39:05.210 32480 32480 D ItemsScreen: text focus for 4bb1e209-f87b-44ec-9b3c-8e841c00b024 = false
+12-31 11:39:05.212 32480 32480 D ItemsScreen: row focus for 4bb1e209-f87b-44ec-9b3c-8e841c00b024 = false
+12-31 11:39:05.212 32480 32480 D ItemsScreen: card focus for 4bb1e209-f87b-44ec-9b3c-8e841c00b024 = false
+12-31 11:39:05.229   376   419 D PowerHAL: ##Timing deboost
+12-31 11:39:05.230   376   419 D PowerHAL: Enter common_set: enable:0, duration: 0, /sys/devices/system/cpu/cpuhotplug/cluster0_core_min_limit: 
+12-31 11:39:05.230   376   419 D PowerHAL: Enter common_clear: 
+12-31 11:39:05.230   376   419 D PowerHAL: ##Timing deboost
+12-31 11:39:05.230   376   419 D PowerHAL: Enter common_set: enable:0, duration: 0, /sys/devices/system/cpu/cpuhotplug/cluster0_core_max_limit: 
+12-31 11:39:05.290   376   419 D PowerHAL: Enter common_clear: 
+12-31 11:39:05.290   376   419 D PowerHAL: ##Timing deboost
+12-31 11:39:05.290   376   419 D PowerHAL: Enter common_subsys_set: enable:0, duration: 0, subsys:cpufreq: 
+12-31 11:39:05.369 32480 32523 I gralloc : gralloc_register_buffer hnd=0x839598c0, share_fd=69, share_attr_fd=-1, magic=51647890, format=1, internal_format=1, byte_stride=1920, flags=4, usage=0xb00, size=1536000, width=480, height=800, internalWidth=480, internalHeight=800, stride=480, base=0x80086000, writeOwner=0, attr_base=0xffffffff, yuv_info=1, fd=-1, buf_idx=0, offset=0, min_pgsz=4096, phyaddr=0
+12-31 11:39:05.370 32480 32523 I gralloc : mali_gralloc_select_format, AFBC is disabled now
+12-31 11:39:05.370 32480 32523 I gralloc : mali_gralloc_select_format: req_format=0x00000001 req_fmt_mapped=0x0 internal_format=0x1 usage=0xb00
+12-31 11:39:05.370 32480 32523 E         : Shared attribute region not available to be mapped
+12-31 11:39:05.375   388   532 E         : Shared attribute region not available to be mapped
+12-31 11:39:05.376   359   359 I gralloc : gralloc_register_buffer hnd=0xacc3ccc0, share_fd=43, share_attr_fd=-1, magic=51647890, format=1, internal_format=1, byte_stride=1920, flags=4, usage=0xb00, size=1536000, width=480, height=800, internalWidth=480, internalHeight=800, stride=480, base=0xa9dcf000, writeOwner=0, attr_base=0xffffffff, yuv_info=1, fd=-1, buf_idx=0, offset=0, min_pgsz=4096, phyaddr=0
+12-31 11:39:05.382 32480 32480 D ItemsScreen: Startup LaunchedEffect: clearing focus and hiding keyboard
+12-31 11:39:05.385 32480 32480 I Choreographer: Skipped 31 frames!  The application may be doing too much work on its main thread.
+12-31 11:39:05.553 32480 32480 D ItemsScreen: rendering item row id=063f8fa7-c2e0-4c0f-8952-c5fe617b0b87 text='chia'
+12-31 11:39:05.599 32480 32480 D ItemsScreen: text focus for 063f8fa7-c2e0-4c0f-8952-c5fe617b0b87 = false
+12-31 11:39:05.600 32480 32480 D ItemsScreen: row focus for 063f8fa7-c2e0-4c0f-8952-c5fe617b0b87 = false
+12-31 11:39:05.600 32480 32480 D ItemsScreen: card focus for 063f8fa7-c2e0-4c0f-8952-c5fe617b0b87 = false
+12-31 11:39:05.627 32480 32480 D ItemsScreen: rendering item row id=6ff0b91d-693f-47bf-936c-3f67955b3c9c text='cafe'
+12-31 11:39:05.663   734   889 D WifiNetworkMonitor: EVENT_WIFI_RSSI_CHANGED
+12-31 11:39:05.663   734   890 D WifiRssiLinkSpeedAndFrequencyMonitor: EVENT_WIFI_RSSI_LINKSPEED_FREQUENCY_CHANGED
+12-31 11:39:05.663   734   890 D WifiRssiLinkSpeedAndFrequencyMonitor: Not any Obervers!!!
+12-31 11:39:05.663   734   889 E WifiNetworkMonitor: Not any Obervers!!!
+12-31 11:39:05.675 32480 32480 D ItemsScreen: text focus for 6ff0b91d-693f-47bf-936c-3f67955b3c9c = false
+12-31 11:39:05.677 32480 32480 D ItemsScreen: row focus for 6ff0b91d-693f-47bf-936c-3f67955b3c9c = false
+12-31 11:39:05.677 32480 32480 D ItemsScreen: card focus for 6ff0b91d-693f-47bf-936c-3f67955b3c9c = false
+12-31 11:39:05.703 32480 32480 D ItemsScreen: rendering item row id=4bb1e209-f87b-44ec-9b3c-8e841c00b024 text='harina pan'
+12-31 11:39:05.751 32480 32480 D ItemsScreen: text focus for 4bb1e209-f87b-44ec-9b3c-8e841c00b024 = false
+12-31 11:39:05.753 32480 32480 D ItemsScreen: row focus for 4bb1e209-f87b-44ec-9b3c-8e841c00b024 = false
+12-31 11:39:05.753 32480 32480 D ItemsScreen: card focus for 4bb1e209-f87b-44ec-9b3c-8e841c00b024 = false
+12-31 11:39:06.048 32480 32480 D ItemsScreen: rendering item row id=063f8fa7-c2e0-4c0f-8952-c5fe617b0b87 text='chia'
+12-31 11:39:06.095 32480 32480 D ItemsScreen: text focus for 063f8fa7-c2e0-4c0f-8952-c5fe617b0b87 = false
+12-31 11:39:06.096 32480 32480 D ItemsScreen: row focus for 063f8fa7-c2e0-4c0f-8952-c5fe617b0b87 = false
+12-31 11:39:06.097 32480 32480 D ItemsScreen: card focus for 063f8fa7-c2e0-4c0f-8952-c5fe617b0b87 = false
+12-31 11:39:06.122 32480 32480 D ItemsScreen: rendering item row id=6ff0b91d-693f-47bf-936c-3f67955b3c9c text='cafe'
+12-31 11:39:06.168 32480 32480 D ItemsScreen: text focus for 6ff0b91d-693f-47bf-936c-3f67955b3c9c = false
+12-31 11:39:06.169 32480 32480 D ItemsScreen: row focus for 6ff0b91d-693f-47bf-936c-3f67955b3c9c = false
+12-31 11:39:06.170 32480 32480 D ItemsScreen: card focus for 6ff0b91d-693f-47bf-936c-3f67955b3c9c = false
+12-31 11:39:06.177   504   546 D WCND    : is_cp2_alive_ok: open polling interface: /proc/mdbg/loopcheck, fd = 13
+12-31 11:39:06.194 32480 32480 D ItemsScreen: rendering item row id=4bb1e209-f87b-44ec-9b3c-8e841c00b024 text='harina pan'
+12-31 11:39:06.233 32480 32480 D ItemsScreen: text focus for 4bb1e209-f87b-44ec-9b3c-8e841c00b024 = false
+12-31 11:39:06.234 32480 32480 D ItemsScreen: row focus for 4bb1e209-f87b-44ec-9b3c-8e841c00b024 = false
+12-31 11:39:06.235 32480 32480 D ItemsScreen: card focus for 4bb1e209-f87b-44ec-9b3c-8e841c00b024 = false
+12-31 11:39:06.277   504   546 D WCND    : is_cp2_alive_ok: loop: /proc/mdbg/loopcheck is OK
+12-31 11:39:06.442   376   376 D PowerHAL: ###Exit launch scene bgn###
+12-31 11:39:06.442   376   376 D PowerHAL: Enter common_subsys_set: enable:0, duration: 0, subsys:cpufreq: conf_2:5
+12-31 11:39:06.442   376   376 D PowerHAL: Enter common_subsys_clear: cpufreq
+12-31 11:39:06.442   376   376 D PowerHAL: Enter devfreq_ddr_set: enable:0, duration: 0, /sys/class/devfreq/scene-frequency/sprd_governor/scene_boost_dfs: max
+12-31 11:39:06.443   376   376 D PowerHAL: ###Exit launch scene end###
+12-31 11:39:06.473 32480 32480 D ItemsScreen: rendering item row id=063f8fa7-c2e0-4c0f-8952-c5fe617b0b87 text='chia'
+12-31 11:39:06.498   388   388 I gralloc : gralloc_unregister_buffer hnd=0xad1734c0, share_fd=80, share_attr_fd=-1, magic=51647890, format=1, internal_format=1, byte_stride=1920, flags=4, usage=0xb00, size=1536000, width=480, height=800, internalWidth=480, internalHeight=800, stride=480, base=0xada60000, writeOwner=0, attr_base=0xffffffff, yuv_info=1, fd=-1, buf_idx=0, offset=0, min_pgsz=4096, phyaddr=0
+12-31 11:39:06.517 32480 32480 D ItemsScreen: text focus for 063f8fa7-c2e0-4c0f-8952-c5fe617b0b87 = false
+12-31 11:39:06.519 32480 32480 D ItemsScreen: row focus for 063f8fa7-c2e0-4c0f-8952-c5fe617b0b87 = false
+12-31 11:39:06.519 32480 32480 D ItemsScreen: card focus for 063f8fa7-c2e0-4c0f-8952-c5fe617b0b87 = false
+12-31 11:39:06.544 32480 32480 D ItemsScreen: rendering item row id=6ff0b91d-693f-47bf-936c-3f67955b3c9c text='cafe'
+12-31 11:39:06.585 32480 32480 D ItemsScreen: text focus for 6ff0b91d-693f-47bf-936c-3f67955b3c9c = false
+12-31 11:39:06.587 32480 32480 D ItemsScreen: row focus for 6ff0b91d-693f-47bf-936c-3f67955b3c9c = false
+12-31 11:39:06.588 32480 32480 D ItemsScreen: card focus for 6ff0b91d-693f-47bf-936c-3f67955b3c9c = false
+12-31 11:39:06.613 32480 32480 D ItemsScreen: rendering item row id=4bb1e209-f87b-44ec-9b3c-8e841c00b024 text='harina pan'
+12-31 11:39:06.652 32480 32480 D ItemsScreen: text focus for 4bb1e209-f87b-44ec-9b3c-8e841c00b024 = false
+12-31 11:39:06.654 32480 32480 D ItemsScreen: row focus for 4bb1e209-f87b-44ec-9b3c-8e841c00b024 = false
+12-31 11:39:06.655 32480 32480 D ItemsScreen: card focus for 4bb1e209-f87b-44ec-9b3c-8e841c00b024 = false
+12-31 11:39:06.935   482  1083 D GNSSMGT : watchdog: PowerState[CP SLEEP], gps_flag[3], readcount[1684], idle time = 0, HeartCount = 0
+12-31 11:39:06.938 32480 32480 D ItemsScreen: rendering item row id=063f8fa7-c2e0-4c0f-8952-c5fe617b0b87 text='chia'
+12-31 11:39:06.979 32480 32480 D ItemsScreen: text focus for 063f8fa7-c2e0-4c0f-8952-c5fe617b0b87 = false
+12-31 11:39:06.980 32480 32480 D ItemsScreen: row focus for 063f8fa7-c2e0-4c0f-8952-c5fe617b0b87 = false
+12-31 11:39:06.981 32480 32480 D ItemsScreen: card focus for 063f8fa7-c2e0-4c0f-8952-c5fe617b0b87 = false
+12-31 11:39:07.009 32480 32480 D ItemsScreen: rendering item row id=6ff0b91d-693f-47bf-936c-3f67955b3c9c text='cafe'
+12-31 11:39:07.047 32480 32480 D ItemsScreen: text focus for 6ff0b91d-693f-47bf-936c-3f67955b3c9c = false
+12-31 11:39:07.049 32480 32480 D ItemsScreen: row focus for 6ff0b91d-693f-47bf-936c-3f67955b3c9c = false
+12-31 11:39:07.050 32480 32480 D ItemsScreen: card focus for 6ff0b91d-693f-47bf-936c-3f67955b3c9c = false
+12-31 11:39:07.078 32480 32480 D ItemsScreen: rendering item row id=4bb1e209-f87b-44ec-9b3c-8e841c00b024 text='harina pan'
+12-31 11:39:07.113 32480 32480 D ItemsScreen: text focus for 4bb1e209-f87b-44ec-9b3c-8e841c00b024 = false
+12-31 11:39:07.114 32480 32480 D ItemsScreen: row focus for 4bb1e209-f87b-44ec-9b3c-8e841c00b024 = false
+12-31 11:39:07.114 32480 32480 D ItemsScreen: card focus for 4bb1e209-f87b-44ec-9b3c-8e841c00b024 = false
+12-31 11:39:07.370 32480 32480 D ItemsScreen: rendering item row id=063f8fa7-c2e0-4c0f-8952-c5fe617b0b87 text='chia'
+12-31 11:39:07.402 32480 32480 D ItemsScreen: text focus for 063f8fa7-c2e0-4c0f-8952-c5fe617b0b87 = false
+12-31 11:39:07.403 32480 32480 D ItemsScreen: row focus for 063f8fa7-c2e0-4c0f-8952-c5fe617b0b87 = false
+12-31 11:39:07.403 32480 32480 D ItemsScreen: card focus for 063f8fa7-c2e0-4c0f-8952-c5fe617b0b87 = false
+12-31 11:39:07.427 32480 32480 D ItemsScreen: rendering item row id=6ff0b91d-693f-47bf-936c-3f67955b3c9c text='cafe'
+12-31 11:39:07.456 32480 32480 D ItemsScreen: text focus for 6ff0b91d-693f-47bf-936c-3f67955b3c9c = false
+12-31 11:39:07.457 32480 32480 D ItemsScreen: row focus for 6ff0b91d-693f-47bf-936c-3f67955b3c9c = false
+12-31 11:39:07.458 32480 32480 D ItemsScreen: card focus for 6ff0b91d-693f-47bf-936c-3f67955b3c9c = false
+12-31 11:39:07.483 32480 32480 D ItemsScreen: rendering item row id=4bb1e209-f87b-44ec-9b3c-8e841c00b024 text='harina pan'
+12-31 11:39:07.513 32480 32480 D ItemsScreen: text focus for 4bb1e209-f87b-44ec-9b3c-8e841c00b024 = false
+12-31 11:39:07.514 32480 32480 D ItemsScreen: row focus for 4bb1e209-f87b-44ec-9b3c-8e841c00b024 = false
+12-31 11:39:07.514 32480 32480 D ItemsScreen: card focus for 4bb1e209-f87b-44ec-9b3c-8e841c00b024 = false
+12-31 11:39:07.752 32480 32480 D ItemsScreen: rendering item row id=063f8fa7-c2e0-4c0f-8952-c5fe617b0b87 text='chia'
+12-31 11:39:07.779 32480 32480 D ItemsScreen: text focus for 063f8fa7-c2e0-4c0f-8952-c5fe617b0b87 = false
+12-31 11:39:07.780 32480 32480 D ItemsScreen: row focus for 063f8fa7-c2e0-4c0f-8952-c5fe617b0b87 = false
+12-31 11:39:07.781 32480 32480 D ItemsScreen: card focus for 063f8fa7-c2e0-4c0f-8952-c5fe617b0b87 = false
+12-31 11:39:07.800 32480 32480 D ItemsScreen: rendering item row id=6ff0b91d-693f-47bf-936c-3f67955b3c9c text='cafe'
+12-31 11:39:07.822 32480 32480 D ItemsScreen: text focus for 6ff0b91d-693f-47bf-936c-3f67955b3c9c = false
+12-31 11:39:07.823 32480 32480 D ItemsScreen: row focus for 6ff0b91d-693f-47bf-936c-3f67955b3c9c = false
+12-31 11:39:07.823 32480 32480 D ItemsScreen: card focus for 6ff0b91d-693f-47bf-936c-3f67955b3c9c = false
+12-31 11:39:07.842 32480 32480 D ItemsScreen: rendering item row id=4bb1e209-f87b-44ec-9b3c-8e841c00b024 text='harina pan'
+12-31 11:39:07.866 32480 32480 D ItemsScreen: text focus for 4bb1e209-f87b-44ec-9b3c-8e841c00b024 = false
+12-31 11:39:07.867 32480 32480 D ItemsScreen: row focus for 4bb1e209-f87b-44ec-9b3c-8e841c00b024 = false
+12-31 11:39:07.867 32480 32480 D ItemsScreen: card focus for 4bb1e209-f87b-44ec-9b3c-8e841c00b024 = false
+12-31 11:39:08.061 32541 32541 D ip_monitor-438: 192.168.19.1 dev wlan0 lladdr c4:41:1e:37:37:30 STALE
+12-31 11:39:08.082 32480 32480 D ItemsScreen: rendering item row id=063f8fa7-c2e0-4c0f-8952-c5fe617b0b87 text='chia'
+12-31 11:39:08.106 32480 32480 D ItemsScreen: text focus for 063f8fa7-c2e0-4c0f-8952-c5fe617b0b87 = false
+12-31 11:39:08.107 32480 32480 D ItemsScreen: row focus for 063f8fa7-c2e0-4c0f-8952-c5fe617b0b87 = false
+12-31 11:39:08.107 32480 32480 D ItemsScreen: card focus for 063f8fa7-c2e0-4c0f-8952-c5fe617b0b87 = false
+12-31 11:39:08.125 32480 32480 D ItemsScreen: rendering item row id=6ff0b91d-693f-47bf-936c-3f67955b3c9c text='cafe'
+12-31 11:39:08.148 32480 32480 D ItemsScreen: text focus for 6ff0b91d-693f-47bf-936c-3f67955b3c9c = false
+12-31 11:39:08.149 32480 32480 D ItemsScreen: row focus for 6ff0b91d-693f-47bf-936c-3f67955b3c9c = false
+12-31 11:39:08.149 32480 32480 D ItemsScreen: card focus for 6ff0b91d-693f-47bf-936c-3f67955b3c9c = false
+12-31 11:39:08.167 32480 32480 D ItemsScreen: rendering item row id=4bb1e209-f87b-44ec-9b3c-8e841c00b024 text='harina pan'
+12-31 11:39:08.189 32480 32480 D ItemsScreen: text focus for 4bb1e209-f87b-44ec-9b3c-8e841c00b024 = false
+12-31 11:39:08.190 32480 32480 D ItemsScreen: row focus for 4bb1e209-f87b-44ec-9b3c-8e841c00b024 = false
+12-31 11:39:08.190 32480 32480 D ItemsScreen: card focus for 4bb1e209-f87b-44ec-9b3c-8e841c00b024 = false
+12-31 11:39:08.368 32480 32542 D ProfileInstaller: Installing profile for com.example.smartlist
+12-31 11:39:08.403 32480 32480 D ItemsScreen: rendering item row id=063f8fa7-c2e0-4c0f-8952-c5fe617b0b87 text='chia'
+12-31 11:39:08.423 32480 32480 D ItemsScreen: text focus for 063f8fa7-c2e0-4c0f-8952-c5fe617b0b87 = false
+12-31 11:39:08.425 32480 32480 D ItemsScreen: row focus for 063f8fa7-c2e0-4c0f-8952-c5fe617b0b87 = false
+12-31 11:39:08.425 32480 32480 D ItemsScreen: card focus for 063f8fa7-c2e0-4c0f-8952-c5fe617b0b87 = false
+12-31 11:39:08.444 32480 32480 D ItemsScreen: rendering item row id=6ff0b91d-693f-47bf-936c-3f67955b3c9c text='cafe'
+12-31 11:39:08.467 32480 32480 D ItemsScreen: text focus for 6ff0b91d-693f-47bf-936c-3f67955b3c9c = false
+12-31 11:39:08.468 32480 32480 D ItemsScreen: row focus for 6ff0b91d-693f-47bf-936c-3f67955b3c9c = false
+12-31 11:39:08.468 32480 32480 D ItemsScreen: card focus for 6ff0b91d-693f-47bf-936c-3f67955b3c9c = false
+12-31 11:39:08.485 32480 32480 D ItemsScreen: rendering item row id=4bb1e209-f87b-44ec-9b3c-8e841c00b024 text='harina pan'
+12-31 11:39:08.507 32480 32480 D ItemsScreen: text focus for 4bb1e209-f87b-44ec-9b3c-8e841c00b024 = false
+12-31 11:39:08.508 32480 32480 D ItemsScreen: row focus for 4bb1e209-f87b-44ec-9b3c-8e841c00b024 = false
+12-31 11:39:08.509 32480 32480 D ItemsScreen: card focus for 4bb1e209-f87b-44ec-9b3c-8e841c00b024 = false
+12-31 11:39:08.681   734   889 D WifiNetworkMonitor: EVENT_WIFI_RSSI_CHANGED
+12-31 11:39:08.681   734   889 E WifiNetworkMonitor: Not any Obervers!!!
+12-31 11:39:08.681   734   890 D WifiRssiLinkSpeedAndFrequencyMonitor: EVENT_WIFI_RSSI_LINKSPEED_FREQUENCY_CHANGED
+12-31 11:39:08.681   734   890 D WifiRssiLinkSpeedAndFrequencyMonitor: Not any Obervers!!!
+12-31 11:39:08.688   972   972 E PANCHENG: mWifiVisible true
+12-31 11:39:08.688   972   972 D StatusBarSignalPolicy: updateWifiIconWithState state : WifiIconState(resId=17302851, visible=true)
+12-31 11:39:08.718 32480 32480 D ItemsScreen: rendering item row id=063f8fa7-c2e0-4c0f-8952-c5fe617b0b87 text='chia'
+12-31 11:39:08.738 32480 32480 D ItemsScreen: text focus for 063f8fa7-c2e0-4c0f-8952-c5fe617b0b87 = false
+12-31 11:39:08.739 32480 32480 D ItemsScreen: row focus for 063f8fa7-c2e0-4c0f-8952-c5fe617b0b87 = false
+12-31 11:39:08.740 32480 32480 D ItemsScreen: card focus for 063f8fa7-c2e0-4c0f-8952-c5fe617b0b87 = false
+12-31 11:39:08.755 32480 32480 D ItemsScreen: rendering item row id=6ff0b91d-693f-47bf-936c-3f67955b3c9c text='cafe'
+12-31 11:39:08.777 32480 32480 D ItemsScreen: text focus for 6ff0b91d-693f-47bf-936c-3f67955b3c9c = false
+12-31 11:39:08.778 32480 32480 D ItemsScreen: row focus for 6ff0b91d-693f-47bf-936c-3f67955b3c9c = false
+12-31 11:39:08.778 32480 32480 D ItemsScreen: card focus for 6ff0b91d-693f-47bf-936c-3f67955b3c9c = false
+12-31 11:39:08.796 32480 32480 D ItemsScreen: rendering item row id=4bb1e209-f87b-44ec-9b3c-8e841c00b024 text='harina pan'
+12-31 11:39:08.829 32480 32480 D ItemsScreen: text focus for 4bb1e209-f87b-44ec-9b3c-8e841c00b024 = false
+12-31 11:39:08.831 32480 32480 D ItemsScreen: row focus for 4bb1e209-f87b-44ec-9b3c-8e841c00b024 = false
+12-31 11:39:08.831 32480 32480 D ItemsScreen: card focus for 4bb1e209-f87b-44ec-9b3c-8e841c00b024 = false
+12-31 11:39:08.935   482  1083 D GNSSMGT : watchdog: PowerState[CP SLEEP], gps_flag[3], readcount[1684], idle time = 0, HeartCount = 0
+12-31 11:39:09.032 32480 32480 D ItemsScreen: rendering item row id=063f8fa7-c2e0-4c0f-8952-c5fe617b0b87 text='chia'
+12-31 11:39:09.056 32480 32480 D ItemsScreen: text focus for 063f8fa7-c2e0-4c0f-8952-c5fe617b0b87 = false
+12-31 11:39:09.057 32480 32480 D ItemsScreen: row focus for 063f8fa7-c2e0-4c0f-8952-c5fe617b0b87 = false
+12-31 11:39:09.057 32480 32480 D ItemsScreen: card focus for 063f8fa7-c2e0-4c0f-8952-c5fe617b0b87 = false
+12-31 11:39:09.077 32480 32480 D ItemsScreen: rendering item row id=6ff0b91d-693f-47bf-936c-3f67955b3c9c text='cafe'
+12-31 11:39:09.098 32480 32480 D ItemsScreen: text focus for 6ff0b91d-693f-47bf-936c-3f67955b3c9c = false
+12-31 11:39:09.098 32480 32480 D ItemsScreen: row focus for 6ff0b91d-693f-47bf-936c-3f67955b3c9c = false
+12-31 11:39:09.099 32480 32480 D ItemsScreen: card focus for 6ff0b91d-693f-47bf-936c-3f67955b3c9c = false
+12-31 11:39:09.114 32480 32480 D ItemsScreen: rendering item row id=4bb1e209-f87b-44ec-9b3c-8e841c00b024 text='harina pan'
+12-31 11:39:09.134 32480 32480 D ItemsScreen: text focus for 4bb1e209-f87b-44ec-9b3c-8e841c00b024 = false
+12-31 11:39:09.135 32480 32480 D ItemsScreen: row focus for 4bb1e209-f87b-44ec-9b3c-8e841c00b024 = false
+12-31 11:39:09.135 32480 32480 D ItemsScreen: card focus for 4bb1e209-f87b-44ec-9b3c-8e841c00b024 = false
+12-31 11:39:09.329 32480 32480 D ItemsScreen: rendering item row id=063f8fa7-c2e0-4c0f-8952-c5fe617b0b87 text='chia'
+12-31 11:39:09.347 32480 32480 D ItemsScreen: text focus for 063f8fa7-c2e0-4c0f-8952-c5fe617b0b87 = false
+12-31 11:39:09.348 32480 32480 D ItemsScreen: row focus for 063f8fa7-c2e0-4c0f-8952-c5fe617b0b87 = false
+12-31 11:39:09.348 32480 32480 D ItemsScreen: card focus for 063f8fa7-c2e0-4c0f-8952-c5fe617b0b87 = false
+12-31 11:39:09.362 32480 32480 D ItemsScreen: rendering item row id=6ff0b91d-693f-47bf-936c-3f67955b3c9c text='cafe'
+12-31 11:39:09.382 32480 32480 D ItemsScreen: text focus for 6ff0b91d-693f-47bf-936c-3f67955b3c9c = false
+12-31 11:39:09.383 32480 32480 D ItemsScreen: row focus for 6ff0b91d-693f-47bf-936c-3f67955b3c9c = false
+12-31 11:39:09.383 32480 32480 D ItemsScreen: card focus for 6ff0b91d-693f-47bf-936c-3f67955b3c9c = false
+12-31 11:39:09.398 32480 32480 D ItemsScreen: rendering item row id=4bb1e209-f87b-44ec-9b3c-8e841c00b024 text='harina pan'
+12-31 11:39:09.424 32480 32480 D ItemsScreen: text focus for 4bb1e209-f87b-44ec-9b3c-8e841c00b024 = false
+12-31 11:39:09.425 32480 32480 D ItemsScreen: row focus for 4bb1e209-f87b-44ec-9b3c-8e841c00b024 = false
+12-31 11:39:09.425 32480 32480 D ItemsScreen: card focus for 4bb1e209-f87b-44ec-9b3c-8e841c00b024 = false
+12-31 11:39:09.617 32480 32480 D ItemsScreen: rendering item row id=063f8fa7-c2e0-4c0f-8952-c5fe617b0b87 text='chia'
+12-31 11:39:09.640 32480 32480 D ItemsScreen: text focus for 063f8fa7-c2e0-4c0f-8952-c5fe617b0b87 = false
+12-31 11:39:09.641 32480 32480 D ItemsScreen: row focus for 063f8fa7-c2e0-4c0f-8952-c5fe617b0b87 = false
+12-31 11:39:09.641 32480 32480 D ItemsScreen: card focus for 063f8fa7-c2e0-4c0f-8952-c5fe617b0b87 = false
+12-31 11:39:09.656 32480 32480 D ItemsScreen: rendering item row id=6ff0b91d-693f-47bf-936c-3f67955b3c9c text='cafe'
+12-31 11:39:09.663 32543 32543 D ip_monitor-438: fe80::c641:1eff:fe37:3730 dev wlan0 lladdr c4:41:1e:37:37:30 router PROBE
+12-31 11:39:09.678 32480 32480 D ItemsScreen: text focus for 6ff0b91d-693f-47bf-936c-3f67955b3c9c = false
+12-31 11:39:09.680 32480 32480 D ItemsScreen: row focus for 6ff0b91d-693f-47bf-936c-3f67955b3c9c = false
+12-31 11:39:09.680 32480 32480 D ItemsScreen: card focus for 6ff0b91d-693f-47bf-936c-3f67955b3c9c = false
+12-31 11:39:09.700 32480 32480 D ItemsScreen: rendering item row id=4bb1e209-f87b-44ec-9b3c-8e841c00b024 text='harina pan'
+12-31 11:39:09.723 32480 32480 D ItemsScreen: text focus for 4bb1e209-f87b-44ec-9b3c-8e841c00b024 = false
+12-31 11:39:09.724 32480 32480 D ItemsScreen: row focus for 4bb1e209-f87b-44ec-9b3c-8e841c00b024 = false
+12-31 11:39:09.724 32480 32480 D ItemsScreen: card focus for 4bb1e209-f87b-44ec-9b3c-8e841c00b024 = false
+12-31 11:39:09.899 32480 32480 D ItemsScreen: rendering item row id=063f8fa7-c2e0-4c0f-8952-c5fe617b0b87 text='chia'
+12-31 11:39:09.918 32480 32480 D ItemsScreen: text focus for 063f8fa7-c2e0-4c0f-8952-c5fe617b0b87 = false
+12-31 11:39:09.919 32480 32480 D ItemsScreen: row focus for 063f8fa7-c2e0-4c0f-8952-c5fe617b0b87 = false
+12-31 11:39:09.919 32480 32480 D ItemsScreen: card focus for 063f8fa7-c2e0-4c0f-8952-c5fe617b0b87 = false
+12-31 11:39:09.934 32480 32480 D ItemsScreen: rendering item row id=6ff0b91d-693f-47bf-936c-3f67955b3c9c text='cafe'
+12-31 11:39:09.947 32544 32544 D ip_monitor-438: fe80::c641:1eff:fe37:3730 dev wlan0 lladdr c4:41:1e:37:37:30 router REACHABLE
+12-31 11:39:09.950 32480 32480 D ItemsScreen: text focus for 6ff0b91d-693f-47bf-936c-3f67955b3c9c = false
+12-31 11:39:09.950 32480 32480 D ItemsScreen: row focus for 6ff0b91d-693f-47bf-936c-3f67955b3c9c = false
+12-31 11:39:09.951 32480 32480 D ItemsScreen: card focus for 6ff0b91d-693f-47bf-936c-3f67955b3c9c = false
+12-31 11:39:09.964 32480 32480 D ItemsScreen: rendering item row id=4bb1e209-f87b-44ec-9b3c-8e841c00b024 text='harina pan'
+12-31 11:39:09.984 32480 32480 D ItemsScreen: text focus for 4bb1e209-f87b-44ec-9b3c-8e841c00b024 = false
+12-31 11:39:09.984 32480 32480 D ItemsScreen: row focus for 4bb1e209-f87b-44ec-9b3c-8e841c00b024 = false
+12-31 11:39:09.985 32480 32480 D ItemsScreen: card focus for 4bb1e209-f87b-44ec-9b3c-8e841c00b024 = false
+12-31 11:39:10.146 32480 32480 D ItemsScreen: rendering item row id=063f8fa7-c2e0-4c0f-8952-c5fe617b0b87 text='chia'
+12-31 11:39:10.164 32480 32480 D ItemsScreen: text focus for 063f8fa7-c2e0-4c0f-8952-c5fe617b0b87 = false
+12-31 11:39:10.165 32480 32480 D ItemsScreen: row focus for 063f8fa7-c2e0-4c0f-8952-c5fe617b0b87 = false
+12-31 11:39:10.165 32480 32480 D ItemsScreen: card focus for 063f8fa7-c2e0-4c0f-8952-c5fe617b0b87 = false
+12-31 11:39:10.178 32480 32480 D ItemsScreen: rendering item row id=6ff0b91d-693f-47bf-936c-3f67955b3c9c text='cafe'
+12-31 11:39:10.195 32480 32480 D ItemsScreen: text focus for 6ff0b91d-693f-47bf-936c-3f67955b3c9c = false
+12-31 11:39:10.196 32480 32480 D ItemsScreen: row focus for 6ff0b91d-693f-47bf-936c-3f67955b3c9c = false
+12-31 11:39:10.196 32480 32480 D ItemsScreen: card focus for 6ff0b91d-693f-47bf-936c-3f67955b3c9c = false
+12-31 11:39:10.209 32480 32480 D ItemsScreen: rendering item row id=4bb1e209-f87b-44ec-9b3c-8e841c00b024 text='harina pan'
+12-31 11:39:10.225 32480 32480 D ItemsScreen: text focus for 4bb1e209-f87b-44ec-9b3c-8e841c00b024 = false
+12-31 11:39:10.226 32480 32480 D ItemsScreen: row focus for 4bb1e209-f87b-44ec-9b3c-8e841c00b024 = false
+12-31 11:39:10.226 32480 32480 D ItemsScreen: card focus for 4bb1e209-f87b-44ec-9b3c-8e841c00b024 = false
+12-31 11:39:10.400 32480 32480 D ItemsScreen: rendering item row id=063f8fa7-c2e0-4c0f-8952-c5fe617b0b87 text='chia'
+12-31 11:39:10.420 32480 32480 D ItemsScreen: text focus for 063f8fa7-c2e0-4c0f-8952-c5fe617b0b87 = false
+12-31 11:39:10.421 32480 32480 D ItemsScreen: row focus for 063f8fa7-c2e0-4c0f-8952-c5fe617b0b87 = false
+12-31 11:39:10.421 32480 32480 D ItemsScreen: card focus for 063f8fa7-c2e0-4c0f-8952-c5fe617b0b87 = false
+12-31 11:39:10.436 32480 32480 D ItemsScreen: rendering item row id=6ff0b91d-693f-47bf-936c-3f67955b3c9c text='cafe'
+12-31 11:39:10.456 32480 32480 D ItemsScreen: text focus for 6ff0b91d-693f-47bf-936c-3f67955b3c9c = false
+12-31 11:39:10.457 32480 32480 D ItemsScreen: row focus for 6ff0b91d-693f-47bf-936c-3f67955b3c9c = false
+12-31 11:39:10.457 32480 32480 D ItemsScreen: card focus for 6ff0b91d-693f-47bf-936c-3f67955b3c9c = false
+12-31 11:39:10.472 32480 32480 D ItemsScreen: rendering item row id=4bb1e209-f87b-44ec-9b3c-8e841c00b024 text='harina pan'
+12-31 11:39:10.488 32480 32480 D ItemsScreen: text focus for 4bb1e209-f87b-44ec-9b3c-8e841c00b024 = false
+12-31 11:39:10.489 32480 32480 D ItemsScreen: row focus for 4bb1e209-f87b-44ec-9b3c-8e841c00b024 = false
+12-31 11:39:10.489 32480 32480 D ItemsScreen: card focus for 4bb1e209-f87b-44ec-9b3c-8e841c00b024 = false
+12-31 11:39:10.645 32480 32480 D ItemsScreen: rendering item row id=063f8fa7-c2e0-4c0f-8952-c5fe617b0b87 text='chia'
+12-31 11:39:10.663 32480 32480 D ItemsScreen: text focus for 063f8fa7-c2e0-4c0f-8952-c5fe617b0b87 = false
+12-31 11:39:10.664 32480 32480 D ItemsScreen: row focus for 063f8fa7-c2e0-4c0f-8952-c5fe617b0b87 = false
+12-31 11:39:10.664 32480 32480 D ItemsScreen: card focus for 063f8fa7-c2e0-4c0f-8952-c5fe617b0b87 = false
+12-31 11:39:10.679 32480 32480 D ItemsScreen: rendering item row id=6ff0b91d-693f-47bf-936c-3f67955b3c9c text='cafe'
+12-31 11:39:10.697 32480 32480 D ItemsScreen: text focus for 6ff0b91d-693f-47bf-936c-3f67955b3c9c = false
+12-31 11:39:10.698 32480 32480 D ItemsScreen: row focus for 6ff0b91d-693f-47bf-936c-3f67955b3c9c = false
+12-31 11:39:10.698 32480 32480 D ItemsScreen: card focus for 6ff0b91d-693f-47bf-936c-3f67955b3c9c = false
+12-31 11:39:10.712 32480 32480 D ItemsScreen: rendering item row id=4bb1e209-f87b-44ec-9b3c-8e841c00b024 text='harina pan'
+12-31 11:39:10.727 32480 32480 D ItemsScreen: text focus for 4bb1e209-f87b-44ec-9b3c-8e841c00b024 = false
+12-31 11:39:10.728 32480 32480 D ItemsScreen: row focus for 4bb1e209-f87b-44ec-9b3c-8e841c00b024 = false
+12-31 11:39:10.728 32480 32480 D ItemsScreen: card focus for 4bb1e209-f87b-44ec-9b3c-8e841c00b024 = false
+12-31 11:39:10.879 32480 32480 D ItemsScreen: rendering item row id=063f8fa7-c2e0-4c0f-8952-c5fe617b0b87 text='chia'
+12-31 11:39:10.896 32480 32480 D ItemsScreen: text focus for 063f8fa7-c2e0-4c0f-8952-c5fe617b0b87 = false
+12-31 11:39:10.896 32480 32480 D ItemsScreen: row focus for 063f8fa7-c2e0-4c0f-8952-c5fe617b0b87 = false
+12-31 11:39:10.897 32480 32480 D ItemsScreen: card focus for 063f8fa7-c2e0-4c0f-8952-c5fe617b0b87 = false
+12-31 11:39:10.912 32480 32480 D ItemsScreen: rendering item row id=6ff0b91d-693f-47bf-936c-3f67955b3c9c text='cafe'
+12-31 11:39:10.926 32480 32480 D ItemsScreen: text focus for 6ff0b91d-693f-47bf-936c-3f67955b3c9c = false
+12-31 11:39:10.927 32480 32480 D ItemsScreen: row focus for 6ff0b91d-693f-47bf-936c-3f67955b3c9c = false
+12-31 11:39:10.927 32480 32480 D ItemsScreen: card focus for 6ff0b91d-693f-47bf-936c-3f67955b3c9c = false
+12-31 11:39:10.935   482  1083 D GNSSMGT : watchdog: PowerState[CP SLEEP], gps_flag[3], readcount[1684], idle time = 0, HeartCount = 0
+12-31 11:39:10.940 32480 32480 D ItemsScreen: rendering item row id=4bb1e209-f87b-44ec-9b3c-8e841c00b024 text='harina pan'
+12-31 11:39:10.955 32480 32480 D ItemsScreen: text focus for 4bb1e209-f87b-44ec-9b3c-8e841c00b024 = false
+12-31 11:39:10.956 32480 32480 D ItemsScreen: row focus for 4bb1e209-f87b-44ec-9b3c-8e841c00b024 = false
+12-31 11:39:10.956 32480 32480 D ItemsScreen: card focus for 4bb1e209-f87b-44ec-9b3c-8e841c00b024 = false
+12-31 11:39:11.096 32480 32480 D ItemsScreen: rendering item row id=063f8fa7-c2e0-4c0f-8952-c5fe617b0b87 text='chia'
+12-31 11:39:11.108 32480 32480 D ItemsScreen: text focus for 063f8fa7-c2e0-4c0f-8952-c5fe617b0b87 = false
+12-31 11:39:11.108 32480 32480 D ItemsScreen: row focus for 063f8fa7-c2e0-4c0f-8952-c5fe617b0b87 = false
+12-31 11:39:11.108 32480 32480 D ItemsScreen: card focus for 063f8fa7-c2e0-4c0f-8952-c5fe617b0b87 = false
+12-31 11:39:11.121 32480 32480 D ItemsScreen: rendering item row id=6ff0b91d-693f-47bf-936c-3f67955b3c9c text='cafe'
+12-31 11:39:11.136 32480 32480 D ItemsScreen: text focus for 6ff0b91d-693f-47bf-936c-3f67955b3c9c = false
+12-31 11:39:11.137 32480 32480 D ItemsScreen: row focus for 6ff0b91d-693f-47bf-936c-3f67955b3c9c = false
+12-31 11:39:11.137 32480 32480 D ItemsScreen: card focus for 6ff0b91d-693f-47bf-936c-3f67955b3c9c = false
+12-31 11:39:11.149 32480 32480 D ItemsScreen: rendering item row id=4bb1e209-f87b-44ec-9b3c-8e841c00b024 text='harina pan'
+12-31 11:39:11.164 32480 32480 D ItemsScreen: text focus for 4bb1e209-f87b-44ec-9b3c-8e841c00b024 = false
+12-31 11:39:11.165 32480 32480 D ItemsScreen: row focus for 4bb1e209-f87b-44ec-9b3c-8e841c00b024 = false
+12-31 11:39:11.165 32480 32480 D ItemsScreen: card focus for 4bb1e209-f87b-44ec-9b3c-8e841c00b024 = false
+12-31 11:39:11.282   504   546 D WCND    : is_cp2_alive_ok: open polling interface: /proc/mdbg/loopcheck, fd = 13
+12-31 11:39:11.295 32480 32480 D ItemsScreen: rendering item row id=063f8fa7-c2e0-4c0f-8952-c5fe617b0b87 text='chia'
+12-31 11:39:11.309 32480 32480 D ItemsScreen: text focus for 063f8fa7-c2e0-4c0f-8952-c5fe617b0b87 = false
+12-31 11:39:11.310 32480 32480 D ItemsScreen: row focus for 063f8fa7-c2e0-4c0f-8952-c5fe617b0b87 = false
+12-31 11:39:11.310 32480 32480 D ItemsScreen: card focus for 063f8fa7-c2e0-4c0f-8952-c5fe617b0b87 = false
+12-31 11:39:11.323 32480 32480 D ItemsScreen: rendering item row id=6ff0b91d-693f-47bf-936c-3f67955b3c9c text='cafe'
+12-31 11:39:11.337 32480 32480 D ItemsScreen: text focus for 6ff0b91d-693f-47bf-936c-3f67955b3c9c = false
+12-31 11:39:11.337 32480 32480 D ItemsScreen: row focus for 6ff0b91d-693f-47bf-936c-3f67955b3c9c = false
+12-31 11:39:11.337 32480 32480 D ItemsScreen: card focus for 6ff0b91d-693f-47bf-936c-3f67955b3c9c = false
+12-31 11:39:11.351 32480 32480 D ItemsScreen: rendering item row id=4bb1e209-f87b-44ec-9b3c-8e841c00b024 text='harina pan'
+12-31 11:39:11.364 32480 32480 D ItemsScreen: text focus for 4bb1e209-f87b-44ec-9b3c-8e841c00b024 = false
+12-31 11:39:11.364 32480 32480 D ItemsScreen: row focus for 4bb1e209-f87b-44ec-9b3c-8e841c00b024 = false
+12-31 11:39:11.365 32480 32480 D ItemsScreen: card focus for 4bb1e209-f87b-44ec-9b3c-8e841c00b024 = false
+12-31 11:39:11.382   504   546 D WCND    : is_cp2_alive_ok: loop: /proc/mdbg/loopcheck is OK
+12-31 11:39:11.494 32480 32480 D ItemsScreen: rendering item row id=063f8fa7-c2e0-4c0f-8952-c5fe617b0b87 text='chia'
+12-31 11:39:11.507 32480 32480 D ItemsScreen: text focus for 063f8fa7-c2e0-4c0f-8952-c5fe617b0b87 = false
+12-31 11:39:11.508 32480 32480 D ItemsScreen: row focus for 063f8fa7-c2e0-4c0f-8952-c5fe617b0b87 = false
+12-31 11:39:11.508 32480 32480 D ItemsScreen: card focus for 063f8fa7-c2e0-4c0f-8952-c5fe617b0b87 = false
+12-31 11:39:11.520 32480 32480 D ItemsScreen: rendering item row id=6ff0b91d-693f-47bf-936c-3f67955b3c9c text='cafe'
+12-31 11:39:11.532 32480 32480 D ItemsScreen: text focus for 6ff0b91d-693f-47bf-936c-3f67955b3c9c = false
+12-31 11:39:11.532 32480 32480 D ItemsScreen: row focus for 6ff0b91d-693f-47bf-936c-3f67955b3c9c = false
+12-31 11:39:11.533 32480 32480 D ItemsScreen: card focus for 6ff0b91d-693f-47bf-936c-3f67955b3c9c = false
+12-31 11:39:11.543 32480 32480 D ItemsScreen: rendering item row id=4bb1e209-f87b-44ec-9b3c-8e841c00b024 text='harina pan'
+12-31 11:39:11.555 32480 32480 D ItemsScreen: text focus for 4bb1e209-f87b-44ec-9b3c-8e841c00b024 = false
+12-31 11:39:11.556 32480 32480 D ItemsScreen: row focus for 4bb1e209-f87b-44ec-9b3c-8e841c00b024 = false
+12-31 11:39:11.556 32480 32480 D ItemsScreen: card focus for 4bb1e209-f87b-44ec-9b3c-8e841c00b024 = false
+12-31 11:39:11.675 32480 32480 D ItemsScreen: rendering item row id=063f8fa7-c2e0-4c0f-8952-c5fe617b0b87 text='chia'
+12-31 11:39:11.689 32480 32480 D ItemsScreen: text focus for 063f8fa7-c2e0-4c0f-8952-c5fe617b0b87 = false
+12-31 11:39:11.689 32480 32480 D ItemsScreen: row focus for 063f8fa7-c2e0-4c0f-8952-c5fe617b0b87 = false
+12-31 11:39:11.689 32480 32480 D ItemsScreen: card focus for 063f8fa7-c2e0-4c0f-8952-c5fe617b0b87 = false
+12-31 11:39:11.701 32480 32480 D ItemsScreen: rendering item row id=6ff0b91d-693f-47bf-936c-3f67955b3c9c text='cafe'
+12-31 11:39:11.713 32480 32480 D ItemsScreen: text focus for 6ff0b91d-693f-47bf-936c-3f67955b3c9c = false
+12-31 11:39:11.713 32480 32480 D ItemsScreen: row focus for 6ff0b91d-693f-47bf-936c-3f67955b3c9c = false
+12-31 11:39:11.713 32480 32480 D ItemsScreen: card focus for 6ff0b91d-693f-47bf-936c-3f67955b3c9c = false
+12-31 11:39:11.725 32480 32480 D ItemsScreen: rendering item row id=4bb1e209-f87b-44ec-9b3c-8e841c00b024 text='harina pan'
+12-31 11:39:11.737 32480 32480 D ItemsScreen: text focus for 4bb1e209-f87b-44ec-9b3c-8e841c00b024 = false
+12-31 11:39:11.738 32480 32480 D ItemsScreen: row focus for 4bb1e209-f87b-44ec-9b3c-8e841c00b024 = false
+12-31 11:39:11.738 32480 32480 D ItemsScreen: card focus for 4bb1e209-f87b-44ec-9b3c-8e841c00b024 = false
+12-31 11:39:11.793   734   889 D WifiNetworkMonitor: EVENT_WIFI_RSSI_CHANGED
+12-31 11:39:11.793   734   890 D WifiRssiLinkSpeedAndFrequencyMonitor: EVENT_WIFI_RSSI_LINKSPEED_FREQUENCY_CHANGED
+12-31 11:39:11.793   734   889 E WifiNetworkMonitor: Not any Obervers!!!
+12-31 11:39:11.793   734   890 D WifiRssiLinkSpeedAndFrequencyMonitor: Not any Obervers!!!
+12-31 11:39:11.802   972   972 E PANCHENG: mWifiVisible true
+12-31 11:39:11.802   972   972 D StatusBarSignalPolicy: updateWifiIconWithState state : WifiIconState(resId=17302851, visible=true)
+12-31 11:39:11.843 32480 32480 D ItemsScreen: rendering item row id=063f8fa7-c2e0-4c0f-8952-c5fe617b0b87 text='chia'
+12-31 11:39:11.855 32480 32480 D ItemsScreen: text focus for 063f8fa7-c2e0-4c0f-8952-c5fe617b0b87 = false
+12-31 11:39:11.855 32480 32480 D ItemsScreen: row focus for 063f8fa7-c2e0-4c0f-8952-c5fe617b0b87 = false
+12-31 11:39:11.855 32480 32480 D ItemsScreen: card focus for 063f8fa7-c2e0-4c0f-8952-c5fe617b0b87 = false
+12-31 11:39:11.865 32480 32480 D ItemsScreen: rendering item row id=6ff0b91d-693f-47bf-936c-3f67955b3c9c text='cafe'
+12-31 11:39:11.876 32480 32480 D ItemsScreen: text focus for 6ff0b91d-693f-47bf-936c-3f67955b3c9c = false
+12-31 11:39:11.877 32480 32480 D ItemsScreen: row focus for 6ff0b91d-693f-47bf-936c-3f67955b3c9c = false
+12-31 11:39:11.877 32480 32480 D ItemsScreen: card focus for 6ff0b91d-693f-47bf-936c-3f67955b3c9c = false
+12-31 11:39:11.888 32480 32480 D ItemsScreen: rendering item row id=4bb1e209-f87b-44ec-9b3c-8e841c00b024 text='harina pan'
+12-31 11:39:11.901 32480 32480 D ItemsScreen: text focus for 4bb1e209-f87b-44ec-9b3c-8e841c00b024 = false
+12-31 11:39:11.902 32480 32480 D ItemsScreen: row focus for 4bb1e209-f87b-44ec-9b3c-8e841c00b024 = false
+12-31 11:39:11.902 32480 32480 D ItemsScreen: card focus for 4bb1e209-f87b-44ec-9b3c-8e841c00b024 = false
+12-31 11:39:12.009 32480 32480 D ItemsScreen: rendering item row id=063f8fa7-c2e0-4c0f-8952-c5fe617b0b87 text='chia'
+12-31 11:39:12.024 32480 32480 D ItemsScreen: text focus for 063f8fa7-c2e0-4c0f-8952-c5fe617b0b87 = false
+12-31 11:39:12.025 32480 32480 D ItemsScreen: row focus for 063f8fa7-c2e0-4c0f-8952-c5fe617b0b87 = false
+12-31 11:39:12.025 32480 32480 D ItemsScreen: card focus for 063f8fa7-c2e0-4c0f-8952-c5fe617b0b87 = false
+12-31 11:39:12.038 32480 32480 D ItemsScreen: rendering item row id=6ff0b91d-693f-47bf-936c-3f67955b3c9c text='cafe'
+12-31 11:39:12.052 32480 32480 D ItemsScreen: text focus for 6ff0b91d-693f-47bf-936c-3f67955b3c9c = false
+12-31 11:39:12.052 32480 32480 D ItemsScreen: row focus for 6ff0b91d-693f-47bf-936c-3f67955b3c9c = false
+12-31 11:39:12.053 32480 32480 D ItemsScreen: card focus for 6ff0b91d-693f-47bf-936c-3f67955b3c9c = false
+12-31 11:39:12.063 32480 32480 D ItemsScreen: rendering item row id=4bb1e209-f87b-44ec-9b3c-8e841c00b024 text='harina pan'
+12-31 11:39:12.073 32480 32480 D ItemsScreen: text focus for 4bb1e209-f87b-44ec-9b3c-8e841c00b024 = false
+12-31 11:39:12.073 32480 32480 D ItemsScreen: row focus for 4bb1e209-f87b-44ec-9b3c-8e841c00b024 = false
+12-31 11:39:12.073 32480 32480 D ItemsScreen: card focus for 4bb1e209-f87b-44ec-9b3c-8e841c00b024 = false
+12-31 11:39:12.178 32480 32480 D ItemsScreen: rendering item row id=063f8fa7-c2e0-4c0f-8952-c5fe617b0b87 text='chia'
+12-31 11:39:12.193 32480 32480 D ItemsScreen: text focus for 063f8fa7-c2e0-4c0f-8952-c5fe617b0b87 = false
+12-31 11:39:12.193 32480 32480 D ItemsScreen: row focus for 063f8fa7-c2e0-4c0f-8952-c5fe617b0b87 = false
+12-31 11:39:12.193 32480 32480 D ItemsScreen: card focus for 063f8fa7-c2e0-4c0f-8952-c5fe617b0b87 = false
+12-31 11:39:12.216 32480 32480 D ItemsScreen: rendering item row id=6ff0b91d-693f-47bf-936c-3f67955b3c9c text='cafe'
+12-31 11:39:12.231 32480 32480 D ItemsScreen: text focus for 6ff0b91d-693f-47bf-936c-3f67955b3c9c = false
+12-31 11:39:12.232 32480 32480 D ItemsScreen: row focus for 6ff0b91d-693f-47bf-936c-3f67955b3c9c = false
+12-31 11:39:12.232 32480 32480 D ItemsScreen: card focus for 6ff0b91d-693f-47bf-936c-3f67955b3c9c = false
+12-31 11:39:12.245 32480 32480 D ItemsScreen: rendering item row id=4bb1e209-f87b-44ec-9b3c-8e841c00b024 text='harina pan'
+12-31 11:39:12.256 32480 32480 D ItemsScreen: text focus for 4bb1e209-f87b-44ec-9b3c-8e841c00b024 = false
+12-31 11:39:12.257 32480 32480 D ItemsScreen: row focus for 4bb1e209-f87b-44ec-9b3c-8e841c00b024 = false
+12-31 11:39:12.257 32480 32480 D ItemsScreen: card focus for 4bb1e209-f87b-44ec-9b3c-8e841c00b024 = false
+12-31 11:39:12.335   365   440 D sensor  : PlsSensor: default value = 0
+12-31 11:39:12.335   365   440 D sensor  : PlsSensor: default value = 40
+12-31 11:39:12.335   365   440 D sensor  : PlsSensor: default value = 980
+12-31 11:39:12.335   365   440 D sensor  : PlsSensor: default value = 127
+12-31 11:39:12.335   365   440 D sensor  : PlsSensor: default value = 1
+12-31 11:39:12.335   365   440 E sensor  : Pls_CTPSensor: unknown event (type=1, code=330)
+12-31 11:39:12.336   734   867 D InputReader: processEventsLocked: type=3 Count=8 code=57 value=0 deviceId=1
+12-31 11:39:12.348   365   440 D sensor  : PlsSensor: default value = 0
+12-31 11:39:12.348   365   440 D sensor  : PlsSensor: default value = 40
+12-31 11:39:12.348   365   440 D sensor  : PlsSensor: default value = 980
+12-31 11:39:12.348   365   440 D sensor  : PlsSensor: default value = 127
+12-31 11:39:12.348   365   440 D sensor  : PlsSensor: default value = 1
+12-31 11:39:12.355   734   867 D VibratorService: TigoCmasStatus = 0
+12-31 11:39:12.362   734   867 D InputReader: processEventsLocked: type=3 Count=7 code=57 value=0 deviceId=1
+12-31 11:39:12.362   376   376 D PowerHAL: ###Enter interaction_other scene bgn###
+12-31 11:39:12.364   376   376 D PowerHAL: Enter common_set: enable:1, duration: 500, /sys/devices/system/cpu/cpuhotplug/cluster0_core_min_limit: 4
+12-31 11:39:12.364   365   440 D sensor  : PlsSensor: default value = 0
+12-31 11:39:12.364   365   440 D sensor  : PlsSensor: default value = 40
+12-31 11:39:12.364   365   440 D sensor  : PlsSensor: default value = 980
+12-31 11:39:12.364   365   440 D sensor  : PlsSensor: default value = 127
+12-31 11:39:12.364   365   440 D sensor  : PlsSensor: default value = 1
+12-31 11:39:12.365   734   867 D InputReader: processEventsLocked: type=3 Count=7 code=57 value=0 deviceId=1
+12-31 11:39:12.365   376   376 D PowerHAL: Enter common_set: enable:1, duration: 500, /sys/devices/system/cpu/cpuhotplug/cluster0_core_max_limit: 4
+12-31 11:39:12.366   376   376 D PowerHAL: Enter common_subsys_set: enable:1, duration: 500, subsys:cpufreq: conf_2:5
+12-31 11:39:12.366   376   376 D PowerHAL: Enter common_subsys_set_current_config: 
+12-31 11:39:12.367   376   376 D PowerHAL: ###Enter interaction_other scene end###
+12-31 11:39:12.367   376   376 D PowerHAL: ###Enter interaction_other scene bgn###
+12-31 11:39:12.367   376   376 D PowerHAL: Enter common_set: enable:1, duration: 500, /sys/devices/system/cpu/cpuhotplug/cluster0_core_min_limit: 4
+12-31 11:39:12.367   376   376 D PowerHAL: Enter common_set: enable:1, duration: 500, /sys/devices/system/cpu/cpuhotplug/cluster0_core_max_limit: 4
+12-31 11:39:12.367   376   376 D PowerHAL: Enter common_subsys_set: enable:1, duration: 500, subsys:cpufreq: conf_2:5
+12-31 11:39:12.367   376   376 D PowerHAL: ###Enter interaction_other scene end###
+12-31 11:39:12.373   365   440 D sensor  : PlsSensor: default value = 0
+12-31 11:39:12.373   365   440 D sensor  : PlsSensor: default value = 40
+12-31 11:39:12.373   365   440 D sensor  : PlsSensor: default value = 980
+12-31 11:39:12.373   365   440 D sensor  : PlsSensor: default value = 127
+12-31 11:39:12.373   365   440 D sensor  : PlsSensor: default value = 1
+12-31 11:39:12.374   734   867 D InputReader: processEventsLocked: type=3 Count=7 code=57 value=0 deviceId=1
+12-31 11:39:12.385   365   440 D sensor  : PlsSensor: default value = 0
+12-31 11:39:12.385   365   440 D sensor  : PlsSensor: default value = 40
+12-31 11:39:12.385   365   440 D sensor  : PlsSensor: default value = 980
+12-31 11:39:12.385   365   440 D sensor  : PlsSensor: default value = 127
+12-31 11:39:12.385   365   440 D sensor  : PlsSensor: default value = 1
+12-31 11:39:12.386   734   867 D InputReader: processEventsLocked: type=3 Count=7 code=57 value=0 deviceId=1
+12-31 11:39:12.392 32480 32480 D ItemsScreen: rendering item row id=063f8fa7-c2e0-4c0f-8952-c5fe617b0b87 text='chia'
+12-31 11:39:12.398   365   440 D sensor  : PlsSensor: default value = 0
+12-31 11:39:12.398   365   440 D sensor  : PlsSensor: default value = 40
+12-31 11:39:12.398   365   440 D sensor  : PlsSensor: default value = 980
+12-31 11:39:12.398   365   440 D sensor  : PlsSensor: default value = 127
+12-31 11:39:12.398   365   440 D sensor  : PlsSensor: default value = 1
+12-31 11:39:12.399   734   867 D InputReader: processEventsLocked: type=3 Count=7 code=57 value=0 deviceId=1
+12-31 11:39:12.404 32480 32480 D ItemsScreen: text focus for 063f8fa7-c2e0-4c0f-8952-c5fe617b0b87 = false
+12-31 11:39:12.405 32480 32480 D ItemsScreen: row focus for 063f8fa7-c2e0-4c0f-8952-c5fe617b0b87 = false
+12-31 11:39:12.405 32480 32480 D ItemsScreen: card focus for 063f8fa7-c2e0-4c0f-8952-c5fe617b0b87 = false
+12-31 11:39:12.411   365   440 D sensor  : PlsSensor: default value = 0
+12-31 11:39:12.411   365   440 D sensor  : PlsSensor: default value = 40
+12-31 11:39:12.411   365   440 D sensor  : PlsSensor: default value = 980
+12-31 11:39:12.411   365   440 D sensor  : PlsSensor: default value = 127
+12-31 11:39:12.411   365   440 D sensor  : PlsSensor: default value = 1
+12-31 11:39:12.411   734   867 D InputReader: processEventsLocked: type=3 Count=7 code=57 value=0 deviceId=1
+12-31 11:39:12.416 32480 32480 D ItemsScreen: rendering item row id=6ff0b91d-693f-47bf-936c-3f67955b3c9c text='cafe'
+12-31 11:39:12.423   365   440 D sensor  : PlsSensor: default value = 0
+12-31 11:39:12.423   365   440 D sensor  : PlsSensor: default value = 40
+12-31 11:39:12.423   365   440 D sensor  : PlsSensor: default value = 980
+12-31 11:39:12.423   365   440 D sensor  : PlsSensor: default value = 127
+12-31 11:39:12.423   365   440 D sensor  : PlsSensor: default value = 1
+12-31 11:39:12.424   734   867 D InputReader: processEventsLocked: type=3 Count=7 code=57 value=0 deviceId=1
+12-31 11:39:12.427 32480 32480 D ItemsScreen: text focus for 6ff0b91d-693f-47bf-936c-3f67955b3c9c = false
+12-31 11:39:12.428 32480 32480 D ItemsScreen: row focus for 6ff0b91d-693f-47bf-936c-3f67955b3c9c = false
+12-31 11:39:12.428 32480 32480 D ItemsScreen: card focus for 6ff0b91d-693f-47bf-936c-3f67955b3c9c = false
+12-31 11:39:12.436   365   440 E sensor  : Pls_CTPSensor: unknown event (type=1, code=330)
+12-31 11:39:12.436   734   867 D InputReader: processEventsLocked: type=1 Count=3 code=330 value=0 deviceId=1
+12-31 11:39:12.439 32480 32480 D ItemsScreen: rendering item row id=4bb1e209-f87b-44ec-9b3c-8e841c00b024 text='harina pan'
+12-31 11:39:12.441   376   376 D PowerHAL: ###Enter interaction_other scene bgn###
+12-31 11:39:12.441   376   376 D PowerHAL: Enter common_set: enable:1, duration: 500, /sys/devices/system/cpu/cpuhotplug/cluster0_core_min_limit: 4
+12-31 11:39:12.441   376   376 D PowerHAL: Enter common_set: enable:1, duration: 500, /sys/devices/system/cpu/cpuhotplug/cluster0_core_max_limit: 4
+12-31 11:39:12.441   376   376 D PowerHAL: Enter common_subsys_set: enable:1, duration: 500, subsys:cpufreq: conf_2:5
+12-31 11:39:12.441   376   376 D PowerHAL: ###Enter interaction_other scene end###
+12-31 11:39:12.441   376   376 D PowerHAL: ###Enter interaction_other scene bgn###
+12-31 11:39:12.441   376   376 D PowerHAL: Enter common_set: enable:1, duration: 500, /sys/devices/system/cpu/cpuhotplug/cluster0_core_min_limit: 4
+12-31 11:39:12.441   376   376 D PowerHAL: Enter common_set: enable:1, duration: 500, /sys/devices/system/cpu/cpuhotplug/cluster0_core_max_limit: 4
+12-31 11:39:12.441   376   376 D PowerHAL: Enter common_subsys_set: enable:1, duration: 500, subsys:cpufreq: conf_2:5
+12-31 11:39:12.441   376   376 D PowerHAL: ###Enter interaction_other scene end###
+12-31 11:39:12.450 32480 32480 D ItemsScreen: text focus for 4bb1e209-f87b-44ec-9b3c-8e841c00b024 = false
+12-31 11:39:12.450 32480 32480 D ItemsScreen: row focus for 4bb1e209-f87b-44ec-9b3c-8e841c00b024 = false
+12-31 11:39:12.450 32480 32480 D ItemsScreen: card focus for 4bb1e209-f87b-44ec-9b3c-8e841c00b024 = false
+12-31 11:39:12.566   734  6937 V WindowManager: Set focused app to: AppWindowToken{a69b11d token=Token{1b525f4 ActivityRecord{81a9bc7 u0 com.android.launcher3/.Launcher t9954}}} moveFocusNow=true displayId=0
+12-31 11:39:12.566   734  6937 D WindowManager: Input focus has changed to null
+12-31 11:39:12.570   734  6937 V WindowManager: Set focused app to: AppWindowToken{a69b11d token=Token{1b525f4 ActivityRecord{81a9bc7 u0 com.android.launcher3/.Launcher t9954}}} moveFocusNow=true displayId=0
+12-31 11:39:12.571   734   870 D SectionHabit: updateFgTimeInner pkgName:com.example.smartlist,type:2,data:package:com.example.smartlist ,count :15,launchCountIndex:0,fgtime:4047,fgtimeIndex:1
+12-31 11:39:12.584   734  1044 V WindowManager: Set focused app to: AppWindowToken{a69b11d token=Token{1b525f4 ActivityRecord{81a9bc7 u0 com.android.launcher3/.Launcher t9954}}} moveFocusNow=true displayId=0
+12-31 11:39:12.586   376   376 D android.hardware.power@4.0-impl: Enter getSceneIdByName: sceneName:com.android.launcher3
+12-31 11:39:12.604 32480 32480 D ItemsScreen: rendering item row id=063f8fa7-c2e0-4c0f-8952-c5fe617b0b87 text='chia'
+12-31 11:39:12.620 32480 32480 D ItemsScreen: text focus for 063f8fa7-c2e0-4c0f-8952-c5fe617b0b87 = false
+12-31 11:39:12.624 32480 32480 D ItemsScreen: row focus for 063f8fa7-c2e0-4c0f-8952-c5fe617b0b87 = false
+12-31 11:39:12.624 32480 32480 D ItemsScreen: card focus for 063f8fa7-c2e0-4c0f-8952-c5fe617b0b87 = false
+12-31 11:39:12.627   734   750 D WindowManager: Input focus has changed to Window{39388e9 u0 com.android.launcher3/com.android.launcher3.Launcher}
+12-31 11:39:12.631 27813 27861 D mali_winsys: EGLint new_window_surface(egl_winsys_display *, void *, EGLSurface, EGLConfig, egl_winsys_surface **, EGLBoolean) returns 0x3000
+12-31 11:39:12.623   358   358 W allocator@2.0-s: type=1400 audit(0.0:49059): avc: denied { read } for name="u:object_r:default_prop:s0" dev="tmpfs" ino=7774 scontext=u:r:hal_graphics_allocator_default:s0 tcontext=u:object_r:default_prop:s0 tclass=file permissive=0
+12-31 11:39:12.632   358   358 I gralloc : mali_gralloc_select_format, AFBC is disabled now
+12-31 11:39:12.632   358   358 I gralloc : mali_gralloc_select_format: req_format=0x00000001 req_fmt_mapped=0x0 internal_format=0x1 usage=0xb00
+12-31 11:39:12.633   358   358 E libc    : Access denied finding property "enable_ion_heap_id_mask_cam"
+12-31 11:39:12.635   358   358 I gralloc : gralloc=>alloc, share_fd=8, share_attr_fd=-1, magic=51647890, format=1, internal_format=1, byte_stride=1920, flags=4, usage=0x2816, size=1536000, width=480, height=800, internalWidth=480, internalHeight=800, stride=480, ADP_VSTRIDE=0,base=0xac72b000, writeOwner=0, attr_base=0xffffffff, yuv_info=1, fd=-1, buf_idx=0, offset=0, min_pgsz=4096, phyaddr=0
+12-31 11:39:12.635   358   358 I gralloc : gralloc_unregister_buffer hnd=0xad53d000, share_fd=8, share_attr_fd=-1, magic=51647890, format=1, internal_format=1, byte_stride=1920, flags=4, usage=0xb00, size=1536000, width=480, height=800, internalWidth=480, internalHeight=800, stride=480, base=0xac72b000, writeOwner=0, attr_base=0xffffffff, yuv_info=1, fd=-1, buf_idx=0, offset=0, min_pgsz=4096, phyaddr=0
+12-31 11:39:12.635   358   358 I gralloc : gralloc=>free hnd=0xad53d000, share_fd=8, share_attr_fd=-1, magic=51647890, format=1, internal_format=1, byte_stride=1920, flags=4, usage=2816, size=1536000, width=480, height=800, internalWidth=480, internalHeight=800, stride=480, base=0xac72b000, writeOwner=0, attr_base=0xffffffff, yuv_info=1, fd=-1, buf_idx=0, offset=0, min_pgsz=4096, phyaddr=0
+12-31 11:39:12.636   388   532 I gralloc : gralloc_register_buffer hnd=0xad1716c0, share_fd=79, share_attr_fd=-1, magic=51647890, format=1, internal_format=1, byte_stride=1920, flags=4, usage=0xb00, size=1536000, width=480, height=800, internalWidth=480, internalHeight=800, stride=480, base=0xadc4b000, writeOwner=0, attr_base=0xffffffff, yuv_info=1, fd=-1, buf_idx=0, offset=0, min_pgsz=4096, phyaddr=0
+12-31 11:39:12.636   358   358 I gralloc : mali_gralloc_select_format, AFBC is disabled now
+12-31 11:39:12.636   358   358 I gralloc : mali_gralloc_select_format: req_format=0x00000001 req_fmt_mapped=0x0 internal_format=0x1 usage=0xb00
+12-31 11:39:12.637   358   358 E libc    : Access denied finding property "enable_ion_heap_id_mask_cam"
+12-31 11:39:12.638   358   358 I gralloc : gralloc=>alloc, share_fd=8, share_attr_fd=-1, magic=51647890, format=1, internal_format=1, byte_stride=1920, flags=4, usage=0x2816, size=1536000, width=480, height=800, internalWidth=480, internalHeight=800, stride=480, ADP_VSTRIDE=0,base=0xac72b000, writeOwner=0, attr_base=0xffffffff, yuv_info=1, fd=-1, buf_idx=0, offset=0, min_pgsz=4096, phyaddr=0
+12-31 11:39:12.638   358   358 I gralloc : gralloc_unregister_buffer hnd=0xad53d000, share_fd=8, share_attr_fd=-1, magic=51647890, format=1, internal_format=1, byte_stride=1920, flags=4, usage=0xb00, size=1536000, width=480, height=800, internalWidth=480, internalHeight=800, stride=480, base=0xac72b000, writeOwner=0, attr_base=0xffffffff, yuv_info=1, fd=-1, buf_idx=0, offset=0, min_pgsz=4096, phyaddr=0
+12-31 11:39:12.639   358   358 I gralloc : gralloc=>free hnd=0xad53d000, share_fd=8, share_attr_fd=-1, magic=51647890, format=1, internal_format=1, byte_stride=1920, flags=4, usage=2816, size=1536000, width=480, height=800, internalWidth=480, internalHeight=800, stride=480, base=0xac72b000, writeOwner=0, attr_base=0xffffffff, yuv_info=1, fd=-1, buf_idx=0, offset=0, min_pgsz=4096, phyaddr=0
+12-31 11:39:12.639   388   532 I gralloc : gralloc_register_buffer hnd=0xad1734c0, share_fd=86, share_attr_fd=-1, magic=51647890, format=1, internal_format=1, byte_stride=1920, flags=4, usage=0xb00, size=1536000, width=480, height=800, internalWidth=480, internalHeight=800, stride=480, base=0xada60000, writeOwner=0, attr_base=0xffffffff, yuv_info=1, fd=-1, buf_idx=0, offset=0, min_pgsz=4096, phyaddr=0
+12-31 11:39:12.639   358   358 I gralloc : mali_gralloc_select_format, AFBC is disabled now
+12-31 11:39:12.639   358   358 I gralloc : mali_gralloc_select_format: req_format=0x00000001 req_fmt_mapped=0x0 internal_format=0x1 usage=0xb00
+12-31 11:39:12.639   358   358 E libc    : Access denied finding property "enable_ion_heap_id_mask_cam"
+12-31 11:39:12.641   358   358 I gralloc : gralloc=>alloc, share_fd=8, share_attr_fd=-1, magic=51647890, format=1, internal_format=1, byte_stride=1920, flags=4, usage=0x2816, size=1536000, width=480, height=800, internalWidth=480, internalHeight=800, stride=480, ADP_VSTRIDE=0,base=0xac72b000, writeOwner=0, attr_base=0xffffffff, yuv_info=1, fd=-1, buf_idx=0, offset=0, min_pgsz=4096, phyaddr=0
+12-31 11:39:12.641   388   532 I gralloc : gralloc_register_buffer hnd=0xad173d00, share_fd=87, share_attr_fd=-1, magic=51647890, format=1, internal_format=1, byte_stride=1920, flags=4, usage=0xb00, size=1536000, width=480, height=800, internalWidth=480, internalHeight=800, stride=480, base=0xacf0b000, writeOwner=0, attr_base=0xffffffff, yuv_info=1, fd=-1, buf_idx=0, offset=0, min_pgsz=4096, phyaddr=0
+12-31 11:39:12.641   358   358 I gralloc : gralloc_unregister_buffer hnd=0xad53d000, share_fd=8, share_attr_fd=-1, magic=51647890, format=1, internal_format=1, byte_stride=1920, flags=4, usage=0xb00, size=1536000, width=480, height=800, internalWidth=480, internalHeight=800, stride=480, base=0xac72b000, writeOwner=0, attr_base=0xffffffff, yuv_info=1, fd=-1, buf_idx=0, offset=0, min_pgsz=4096, phyaddr=0
+12-31 11:39:12.641   358   358 I gralloc : gralloc=>free hnd=0xad53d000, share_fd=8, share_attr_fd=-1, magic=51647890, format=1, internal_format=1, byte_stride=1920, flags=4, usage=2816, size=1536000, width=480, height=800, internalWidth=480, internalHeight=800, stride=480, base=0xac72b000, writeOwner=0, attr_base=0xffffffff, yuv_info=1, fd=-1, buf_idx=0, offset=0, min_pgsz=4096, phyaddr=0
+12-31 11:39:12.644 32480 32480 D ItemsScreen: rendering item row id=6ff0b91d-693f-47bf-936c-3f67955b3c9c text='cafe'
+12-31 11:39:12.623   358   358 W allocator@2.0-s: type=1400 audit(0.0:49061): avc: denied { read } for name="u:object_r:default_prop:s0" dev="tmpfs" ino=7774 scontext=u:r:hal_graphics_allocator_default:s0 tcontext=u:object_r:default_prop:s0 tclass=file permissive=0
+12-31 11:39:12.653 27813 27861 I gralloc : gralloc_register_buffer hnd=0x8410c200, share_fd=110, share_attr_fd=-1, magic=51647890, format=1, internal_format=1, byte_stride=1920, flags=4, usage=0xb00, size=1536000, width=480, height=800, internalWidth=480, internalHeight=800, stride=480, base=0x81c45000, writeOwner=0, attr_base=0xffffffff, yuv_info=1, fd=-1, buf_idx=0, offset=0, min_pgsz=4096, phyaddr=0
+12-31 11:39:12.653 27813 27861 I gralloc : mali_gralloc_select_format, AFBC is disabled now
+12-31 11:39:12.653 27813 27861 I gralloc : mali_gralloc_select_format: req_format=0x00000001 req_fmt_mapped=0x0 internal_format=0x1 usage=0xb00
+12-31 11:39:12.653 27813 27861 E         : Shared attribute region not available to be mapped
+12-31 11:39:12.661   388   532 E         : Shared attribute region not available to be mapped
+12-31 11:39:12.667 27813 27861 I gralloc : gralloc_register_buffer hnd=0x84262480, share_fd=114, share_attr_fd=-1, magic=51647890, format=1, internal_format=1, byte_stride=1920, flags=4, usage=0xb00, size=1536000, width=480, height=800, internalWidth=480, internalHeight=800, stride=480, base=0x817ae000, writeOwner=0, attr_base=0xffffffff, yuv_info=1, fd=-1, buf_idx=0, offset=0, min_pgsz=4096, phyaddr=0
+12-31 11:39:12.667 27813 27861 I gralloc : mali_gralloc_select_format, AFBC is disabled now
+12-31 11:39:12.667 27813 27861 I gralloc : mali_gralloc_select_format: req_format=0x00000001 req_fmt_mapped=0x0 internal_format=0x1 usage=0xb00
+12-31 11:39:12.667 27813 27861 E         : Shared attribute region not available to be mapped
+12-31 11:39:12.672   388   726 E         : Shared attribute region not available to be mapped
+12-31 11:39:12.676   358   358 I gralloc : mali_gralloc_select_format, AFBC is disabled now
+12-31 11:39:12.663   358   358 W allocator@2.0-s: type=1400 audit(0.0:49062): avc: denied { read } for name="u:object_r:default_prop:s0" dev="tmpfs" ino=7774 scontext=u:r:hal_graphics_allocator_default:s0 tcontext=u:object_r:default_prop:s0 tclass=file permissive=0
+12-31 11:39:12.676   358   358 I gralloc : mali_gralloc_select_format: req_format=0x00000001 req_fmt_mapped=0x0 internal_format=0x1 usage=0x366
+12-31 11:39:12.676   358   358 E libc    : Access denied finding property "enable_ion_heap_id_mask_cam"
+12-31 11:39:12.677   358   358 I gralloc : gralloc=>alloc, share_fd=8, share_attr_fd=-1, magic=51647890, format=1, internal_format=1, byte_stride=1152, flags=4, usage=0x870, size=552960, width=288, height=480, internalWidth=288, internalHeight=480, stride=288, ADP_VSTRIDE=0,base=0xac81b000, writeOwner=0, attr_base=0xffffffff, yuv_info=1, fd=-1, buf_idx=0, offset=0, min_pgsz=4096, phyaddr=0
+12-31 11:39:12.677   388   726 I gralloc : gralloc_register_buffer hnd=0xad173dc0, share_fd=90, share_attr_fd=-1, magic=51647890, format=1, internal_format=1, byte_stride=1152, flags=4, usage=0x366, size=552960, width=288, height=480, internalWidth=288, internalHeight=480, stride=288, base=0xace84000, writeOwner=0, attr_base=0xffffffff, yuv_info=1, fd=-1, buf_idx=0, offset=0, min_pgsz=4096, phyaddr=0
+12-31 11:39:12.677   388   388 E         : Shared attribute region not available to be mapped
+12-31 11:39:12.678   358   358 I gralloc : gralloc_unregister_buffer hnd=0xad53d000, share_fd=8, share_attr_fd=-1, magic=51647890, format=1, internal_format=1, byte_stride=1152, flags=4, usage=0x366, size=552960, width=288, height=480, internalWidth=288, internalHeight=480, stride=288, base=0xac81b000, writeOwner=0, attr_base=0xffffffff, yuv_info=1, fd=-1, buf_idx=0, offset=0, min_pgsz=4096, phyaddr=0
+12-31 11:39:12.678   358   358 I gralloc : gralloc=>free hnd=0xad53d000, share_fd=8, share_attr_fd=-1, magic=51647890, format=1, internal_format=1, byte_stride=1152, flags=4, usage=870, size=552960, width=288, height=480, internalWidth=288, internalHeight=480, stride=288, base=0xac81b000, writeOwner=0, attr_base=0xffffffff, yuv_info=1, fd=-1, buf_idx=0, offset=0, min_pgsz=4096, phyaddr=0
+12-31 11:39:12.680   376   376 D PowerHAL: ###Enter interaction_other scene bgn###
+12-31 11:39:12.680   376   376 D PowerHAL: Enter common_set: enable:1, duration: 500, /sys/devices/system/cpu/cpuhotplug/cluster0_core_min_limit: 4
+12-31 11:39:12.680   376   376 D PowerHAL: Enter common_set: enable:1, duration: 500, /sys/devices/system/cpu/cpuhotplug/cluster0_core_max_limit: 4
+12-31 11:39:12.680   376   376 D PowerHAL: Enter common_subsys_set: enable:1, duration: 500, subsys:cpufreq: conf_2:5
+12-31 11:39:12.680   376   376 D PowerHAL: ###Enter interaction_other scene end###
+12-31 11:39:12.683 32480 32480 D ItemsScreen: text focus for 6ff0b91d-693f-47bf-936c-3f67955b3c9c = false
+12-31 11:39:12.683   734   756 I gralloc : gralloc_register_buffer hnd=0x80bf7280, share_fd=391, share_attr_fd=-1, magic=51647890, format=1, internal_format=1, byte_stride=1152, flags=4, usage=0x366, size=552960, width=288, height=480, internalWidth=288, internalHeight=480, stride=288, base=0x6da40000, writeOwner=0, attr_base=0xffffffff, yuv_info=1, fd=-1, buf_idx=0, offset=0, min_pgsz=4096, phyaddr=0
+12-31 11:39:12.683   734   756 I gralloc : mali_gralloc_select_format, AFBC is disabled now
+12-31 11:39:12.683   734   756 I gralloc : mali_gralloc_select_format: req_format=0x00000001 req_fmt_mapped=0x0 internal_format=0x1 usage=0x366
+12-31 11:39:12.684 32480 32480 D ItemsScreen: row focus for 6ff0b91d-693f-47bf-936c-3f67955b3c9c = false
+12-31 11:39:12.685 32480 32480 D ItemsScreen: card focus for 6ff0b91d-693f-47bf-936c-3f67955b3c9c = false
+12-31 11:39:12.689 27813 30236 I gralloc : gralloc_register_buffer hnd=0x84262d80, share_fd=132, share_attr_fd=-1, magic=51647890, format=1, internal_format=1, byte_stride=1152, flags=4, usage=0x366, size=552960, width=288, height=480, internalWidth=288, internalHeight=480, stride=288, base=0x81727000, writeOwner=0, attr_base=0xffffffff, yuv_info=1, fd=-1, buf_idx=0, offset=0, min_pgsz=4096, phyaddr=0
+12-31 11:39:12.690 27813 30236 I gralloc : mali_gralloc_select_format, AFBC is disabled now
+12-31 11:39:12.690 27813 30236 I gralloc : mali_gralloc_select_format: req_format=0x00000001 req_fmt_mapped=0x0 internal_format=0x1 usage=0x366
+12-31 11:39:12.690   972  4993 I gralloc : gralloc_register_buffer hnd=0x783148c0, share_fd=145, share_attr_fd=-1, magic=51647890, format=1, internal_format=1, byte_stride=1152, flags=4, usage=0x366, size=552960, width=288, height=480, internalWidth=288, internalHeight=480, stride=288, base=0x7dddf000, writeOwner=0, attr_base=0xffffffff, yuv_info=1, fd=-1, buf_idx=0, offset=0, min_pgsz=4096, phyaddr=0
+12-31 11:39:12.690   972  4993 I gralloc : mali_gralloc_select_format, AFBC is disabled now
+12-31 11:39:12.690   972  4993 I gralloc : mali_gralloc_select_format: req_format=0x00000001 req_fmt_mapped=0x0 internal_format=0x1 usage=0x366
+12-31 11:39:12.695 29176 29176 I GoogleInputMethodService: GoogleInputMethodService.onFinishInput():2092 
+12-31 11:39:12.697 29176 29176 I Module  : DeviceLockedStatusModuleProvider$Module.updateDeviceLockedStatus():103 repeatCheckTimes = 0, locked = false
+12-31 11:39:12.697 29176 29176 I GoogleInputMethodService: GoogleInputMethodService.onStartInput():1349 onStartInput(EditorInfo{EditorInfo{packageName=com.android.launcher3, inputType=0, inputTypeString=NULL, enableLearning=false, autoCorrection=false, autoComplete=false, imeOptions=0, privateImeOptions=null, actionName=UNSPECIFIED, actionLabel=null, initialSelStart=-1, initialSelEnd=-1, initialCapsMode=0, label=null, fieldId=-1, fieldName=null, extras=null, hintText=null, hintLocales=[]}}, false)
+12-31 11:39:12.699 29176 29176 I Module  : DeviceLockedStatusModuleProvider$Module.updateDeviceLockedStatus():103 repeatCheckTimes = 1, locked = false
+12-31 11:39:12.706 32480 32480 D ItemsScreen: rendering item row id=4bb1e209-f87b-44ec-9b3c-8e841c00b024 text='harina pan'
+12-31 11:39:12.715   359   359 I gralloc : gralloc_register_buffer hnd=0xacc3d380, share_fd=46, share_attr_fd=-1, magic=51647890, format=1, internal_format=1, byte_stride=1920, flags=4, usage=0xb00, size=1536000, width=480, height=800, internalWidth=480, internalHeight=800, stride=480, base=0xa94c0000, writeOwner=0, attr_base=0xffffffff, yuv_info=1, fd=-1, buf_idx=0, offset=0, min_pgsz=4096, phyaddr=0
+12-31 11:39:12.715   359   359 I gralloc : gralloc_register_buffer hnd=0xacc3d440, share_fd=48, share_attr_fd=-1, magic=51647890, format=1, internal_format=1, byte_stride=1920, flags=4, usage=0xb00, size=1536000, width=480, height=800, internalWidth=480, internalHeight=800, stride=480, base=0xa9349000, writeOwner=0, attr_base=0xffffffff, yuv_info=1, fd=-1, buf_idx=0, offset=0, min_pgsz=4096, phyaddr=0
+12-31 11:39:12.716   388   388 I gralloc : gralloc_unregister_buffer hnd=0xad173dc0, share_fd=90, share_attr_fd=-1, magic=51647890, format=1, internal_format=1, byte_stride=1152, flags=4, usage=0x366, size=552960, width=288, height=480, internalWidth=288, internalHeight=480, stride=288, base=0xace84000, writeOwner=0, attr_base=0xffffffff, yuv_info=1, fd=-1, buf_idx=0, offset=0, min_pgsz=4096, phyaddr=0
+12-31 11:39:12.720 32480 32480 D ItemsScreen: text focus for 4bb1e209-f87b-44ec-9b3c-8e841c00b024 = false
+12-31 11:39:12.721 32480 32480 D ItemsScreen: row focus for 4bb1e209-f87b-44ec-9b3c-8e841c00b024 = false
+12-31 11:39:12.721 32480 32480 D ItemsScreen: card focus for 4bb1e209-f87b-44ec-9b3c-8e841c00b024 = false
+12-31 11:39:12.845 32480 32480 D ItemsScreen: rendering item row id=063f8fa7-c2e0-4c0f-8952-c5fe617b0b87 text='chia'
+12-31 11:39:12.858 32480 32480 D ItemsScreen: text focus for 063f8fa7-c2e0-4c0f-8952-c5fe617b0b87 = false
+12-31 11:39:12.859 32480 32480 D ItemsScreen: row focus for 063f8fa7-c2e0-4c0f-8952-c5fe617b0b87 = false
+12-31 11:39:12.859 32480 32480 D ItemsScreen: card focus for 063f8fa7-c2e0-4c0f-8952-c5fe617b0b87 = false
+12-31 11:39:12.870 32480 32480 D ItemsScreen: rendering item row id=6ff0b91d-693f-47bf-936c-3f67955b3c9c text='cafe'
+12-31 11:39:12.881 32480 32480 D ItemsScreen: text focus for 6ff0b91d-693f-47bf-936c-3f67955b3c9c = false
+12-31 11:39:12.882 32480 32480 D ItemsScreen: row focus for 6ff0b91d-693f-47bf-936c-3f67955b3c9c = false
+12-31 11:39:12.882 32480 32480 D ItemsScreen: card focus for 6ff0b91d-693f-47bf-936c-3f67955b3c9c = false
+12-31 11:39:12.898   359   359 I gralloc : gralloc_unregister_buffer hnd=0xacc3ccc0, share_fd=43, share_attr_fd=-1, magic=51647890, format=1, internal_format=1, byte_stride=1920, flags=4, usage=0xb00, size=1536000, width=480, height=800, internalWidth=480, internalHeight=800, stride=480, base=0xa9dcf000, writeOwner=0, attr_base=0xffffffff, yuv_info=1, fd=-1, buf_idx=0, offset=0, min_pgsz=4096, phyaddr=0
+12-31 11:39:12.898   359   359 I gralloc : gralloc_unregister_buffer hnd=0xacc3d140, share_fd=29, share_attr_fd=-1, magic=51647890, format=1, internal_format=1, byte_stride=1920, flags=4, usage=0xb00, size=1536000, width=480, height=800, internalWidth=480, internalHeight=800, stride=480, base=0xa9f46000, writeOwner=0, attr_base=0xffffffff, yuv_info=1, fd=-1, buf_idx=0, offset=0, min_pgsz=4096, phyaddr=0
+12-31 11:39:12.898   359   359 I gralloc : gralloc_unregister_buffer hnd=0xacc3cc00, share_fd=35, share_attr_fd=-1, magic=51647890, format=1, internal_format=1, byte_stride=1920, flags=4, usage=0xb00, size=1536000, width=480, height=800, internalWidth=480, internalHeight=800, stride=480, base=0xaa1be000, writeOwner=0, attr_base=0xffffffff, yuv_info=1, fd=-1, buf_idx=0, offset=0, min_pgsz=4096, phyaddr=0
+12-31 11:39:12.898 32480 32480 D ItemsScreen: rendering item row id=4bb1e209-f87b-44ec-9b3c-8e841c00b024 text='harina pan'
+12-31 11:39:12.912 32480 32480 D ItemsScreen: text focus for 4bb1e209-f87b-44ec-9b3c-8e841c00b024 = false
+12-31 11:39:12.912 32480 32480 D ItemsScreen: row focus for 4bb1e209-f87b-44ec-9b3c-8e841c00b024 = false
+12-31 11:39:12.913 32480 32480 D ItemsScreen: card focus for 4bb1e209-f87b-44ec-9b3c-8e841c00b024 = false
+12-31 11:39:12.920   734 12076 E         : Shared attribute region not available to be mapped
+12-31 11:39:12.922   734 12076 I gralloc : gralloc_unregister_buffer hnd=0x80bf7880, share_fd=392, share_attr_fd=-1, magic=51647890, format=1, internal_format=1, byte_stride=1152, flags=4, usage=0x366, size=552960, width=288, height=480, internalWidth=288, internalHeight=480, stride=288, base=0x6e2c7000, writeOwner=0, attr_base=0xffffffff, yuv_info=1, fd=-1, buf_idx=0, offset=0, min_pgsz=4096, phyaddr=0
+12-31 11:39:12.923   734 12076 I gralloc : gralloc_unregister_buffer hnd=0x80bf7400, share_fd=393, share_attr_fd=-1, magic=51647890, format=1, internal_format=1, byte_stride=1152, flags=4, usage=0x366, size=552960, width=288, height=480, internalWidth=288, internalHeight=480, stride=288, base=0x6e240000, writeOwner=0, attr_base=0xffffffff, yuv_info=1, fd=-1, buf_idx=0, offset=0, min_pgsz=4096, phyaddr=0
+12-31 11:39:12.935   482  1083 D GNSSMGT : watchdog: PowerState[CP SLEEP], gps_flag[3], readcount[1684], idle time = 0, HeartCount = 0
+12-31 11:39:13.172   388  1189 I gralloc : gralloc_unregister_buffer hnd=0xad173ac0, share_fd=82, share_attr_fd=-1, magic=51647890, format=1, internal_format=1, byte_stride=1920, flags=4, usage=0xb00, size=1536000, width=480, height=800, internalWidth=480, internalHeight=800, stride=480, base=0xad570000, writeOwner=0, attr_base=0xffffffff, yuv_info=1, fd=-1, buf_idx=0, offset=0, min_pgsz=4096, phyaddr=0
+12-31 11:39:13.172 32480 32523 I gralloc : gralloc_unregister_buffer hnd=0x83958b40, share_fd=67, share_attr_fd=-1, magic=51647890, format=1, internal_format=1, byte_stride=1920, flags=4, usage=0xb00, size=1536000, width=480, height=800, internalWidth=480, internalHeight=800, stride=480, base=0x817ae000, writeOwner=0, attr_base=0xffffffff, yuv_info=1, fd=-1, buf_idx=0, offset=0, min_pgsz=4096, phyaddr=0
+12-31 11:39:13.172 32480 32523 I gralloc : gralloc_unregister_buffer hnd=0x839598c0, share_fd=69, share_attr_fd=-1, magic=51647890, format=1, internal_format=1, byte_stride=1920, flags=4, usage=0xb00, size=1536000, width=480, height=800, internalWidth=480, internalHeight=800, stride=480, base=0x80086000, writeOwner=0, attr_base=0xffffffff, yuv_info=1, fd=-1, buf_idx=0, offset=0, min_pgsz=4096, phyaddr=0
+12-31 11:39:13.173 32480 32523 I gralloc : gralloc_unregister_buffer hnd=0x97868e00, share_fd=64, share_attr_fd=-1, magic=51647890, format=1, internal_format=1, byte_stride=1920, flags=4, usage=0xb00, size=1536000, width=480, height=800, internalWidth=480, internalHeight=800, stride=480, base=0x81c30000, writeOwner=0, attr_base=0xffffffff, yuv_info=1, fd=-1, buf_idx=0, offset=0, min_pgsz=4096, phyaddr=0
+12-31 11:39:13.173   388  1189 E BufferQueueProducer: [com.example.smartlist/com.example.smartlist.MainActivity#0] disconnect: not connected (req=1)
+12-31 11:39:13.174 32480 32523 W libEGL  : EGLNativeWindowType 0x9782ae28 disconnect failed
+12-31 11:39:13.180   388   388 I gralloc : gralloc_unregister_buffer hnd=0xad173c40, share_fd=89, share_attr_fd=-1, magic=51647890, format=1, internal_format=1, byte_stride=1920, flags=4, usage=0xb00, size=1536000, width=480, height=800, internalWidth=480, internalHeight=800, stride=480, base=0xad282000, writeOwner=0, attr_base=0xffffffff, yuv_info=1, fd=-1, buf_idx=0, offset=0, min_pgsz=4096, phyaddr=0
+12-31 11:39:13.181   376   419 D PowerHAL: ##Timing deboost
+12-31 11:39:13.181   376   419 D PowerHAL: Enter common_set: enable:0, duration: 0, /sys/devices/system/cpu/cpuhotplug/cluster0_core_min_limit: 
+12-31 11:39:13.181   376   419 D PowerHAL: Enter common_clear: 
+12-31 11:39:13.181   376   419 D PowerHAL: ##Timing deboost
+12-31 11:39:13.181   376   419 D PowerHAL: Enter common_set: enable:0, duration: 0, /sys/devices/system/cpu/cpuhotplug/cluster0_core_max_limit: 
+12-31 11:39:13.181   376   419 D PowerHAL: Enter common_clear: 
+12-31 11:39:13.181   376   419 D PowerHAL: ##Timing deboost
+12-31 11:39:13.181   376   419 D PowerHAL: Enter common_subsys_set: enable:0, duration: 0, subsys:cpufreq: 
+12-31 11:39:13.181   376   419 D PowerHAL: Enter common_subsys_clear: cpufreq
+12-31 11:39:13.184   388   388 I gralloc : gralloc_unregister_buffer hnd=0xad173b80, share_fd=85, share_attr_fd=-1, magic=51647890, format=1, internal_format=1, byte_stride=1920, flags=4, usage=0xb00, size=1536000, width=480, height=800, internalWidth=480, internalHeight=800, stride=480, base=0xad3f9000, writeOwner=0, attr_base=0xffffffff, yuv_info=1, fd=-1, buf_idx=0, offset=0, min_pgsz=4096, phyaddr=0
+12-31 11:39:14.813   734   890 D WifiRssiLinkSpeedAndFrequencyMonitor: EVENT_WIFI_RSSI_LINKSPEED_FREQUENCY_CHANGED
+12-31 11:39:14.813   734   889 D WifiNetworkMonitor: EVENT_WIFI_RSSI_CHANGED
+12-31 11:39:14.813   734   890 D WifiRssiLinkSpeedAndFrequencyMonitor: Not any Obervers!!!
+12-31 11:39:14.813   734   889 E WifiNetworkMonitor: Not any Obervers!!!
+12-31 11:39:14.825   972   972 E PANCHENG: mWifiVisible true
+12-31 11:39:14.825   972   972 D StatusBarSignalPolicy: updateWifiIconWithState state : WifiIconState(resId=17302851, visible=true)
+12-31 11:39:14.936   482  1083 D GNSSMGT : watchdog: PowerState[CP SLEEP], gps_flag[3], readcount[1684], idle time = 0, HeartCount = 0

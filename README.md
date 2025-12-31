@@ -97,29 +97,31 @@ High level architecture
 
 What we fixed and why
 ---------------------
-Issue observed:
-- Items added from the UI sometimes persisted as empty strings. Device logs showed `Repository.addItem` being called with blank text.
+ 
+ Additional recent changes (edit/update & ViewModel refactor)
+ ----------------------------------------------------------
+ - app/src/main/java/com/example/smartlist/ui/viewmodel/ItemsViewModel.kt — new ViewModel that manages the edit dialog state and exposes helper methods to add/update/delete/restore items from the repository using viewModelScope.
+ - app/src/main/java/com/example/smartlist/ui/screens/ItemsScreen.kt — refactored to use `ItemsViewModel` for repository interactions and moved the edit AlertDialog into the screen bound to ViewModel state; `ItemRow` now exposes `onEditStart` instead of performing the edit UI itself.
+ - app/src/main/java/com/example/smartlist/data/repository/Repository.kt — added `updateItem(item: ItemEntity)` which sets `updatedAt` and calls DAO.update; existing guards in `addItem` remain in place.
+ 
+ User-visible behavior added:
+ - Edit / Update item: each row shows an Edit icon which opens a dialog (now managed by `ItemsViewModel`). Updates are validated (empty edits are ignored) and persisted via `Repository.updateItem`.
+ - The edit dialog is now scoped to the ViewModel which improves testability and avoids UI-local coroutine scoping issues.
 
-Root cause:
-- A subtle race between the UI clearing the input text (`input = ""`) on the main thread and a coroutine launched to call `repo.addItem(listId, input.trim())` on an IO dispatcher. Because the coroutine evaluated `input.trim()` later, it sometimes saw the cleared UI state and inserted an empty item.
+- Rename / Update list name: Lists can now be renamed from the `ListsScreen` UI. Implementation highlights:
+	- `ListDao` gained an `@Update` method and `Repository.updateList(list: ListEntity)` was added to persist title changes.
+	- `ListsViewModel` holds dialog state and exposes `startEdit`, `updateEditingTitle`, `cancelEdit`, and `saveEdit` which calls `repository.updateList` from `viewModelScope`.
+	- `ListsScreen` shows a ViewModel-driven `AlertDialog` that contains a single-line `TextField` using `Modifier.fillMaxWidth()` for renaming lists.
 
-Fixes applied:
-1. UI fix (in `ItemsScreen.kt`):
-	- Capture and trim the value into a local variable before launching the coroutine:
-	  - `val toAdd = input.trim()`
-	  - `coroutineScope.launch(Dispatchers.IO) { repo.addItem(listId, toAdd) }`
-	- Use `rememberCoroutineScope()` instead of a global `CoroutineScope` to avoid leaking scopes and to run coroutines tied to composition.
-	- Log both the raw and trimmed values for debugging.
-
-2. Defensive repository guard (in `Repository.addItem`):
-	- Early-return when `text.isBlank()` to prevent blank items from ever being persisted.
-	- Added a warning log (temporarily includes a stacktrace during development).
-
-3. Diagnostic logs & tests:
-	- Added `Log.d` in UI just before adding to confirm what value the UI attempted to add.
-	- Added defensive stacktrace logs in `Repository.addItem` to make it easy to trace accidental blank writes while debugging.
-	- Increased instrumentation test timeouts and called `waitForIdle()` after clicking Add to reduce flakiness on slow physical devices.
-	- Added `RepositoryGuardTest` (instrumentation) verifying blank items are ignored and non-blank items are persisted.
+- Top app-bar select action icon changed: the toolbar action that enters selection mode was replaced from a pencil icon to a check icon to avoid visual confusion with the per-item edit (pencil) affordance.
+ 
+ Test tags and automation notes
+ ------------------------------
+ - Existing test tags remain useful for automation: `item_<id>`, `edit_item_<id>`, `delete_item_<id>`, `item_input`, `add_item_button`, `back_button`, `select_mode_button`.
+ - Suggested instrumentation test for edit flow:
+   1. Click the edit icon (test tag `edit_item_<id>`).
+   2. Update the text in the dialog's `TextField` and click Save.
+   3. Assert the row text updates to the new value.
 
 Files changed (high-level)
 --------------------------
@@ -184,10 +186,10 @@ Notes on testing
 
 Developer recommendations / next steps
 -------------------------------------
-- Remove or lower development stacktrace logs in `Repository.addItem` once you are satisfied with stability (switch to `Log.d` or remove) to reduce noisy logs.
-- Add a lightweight JVM unit test suite for `Repository` using fake DAO implementations to get fast feedback on guarding behavior in CI.
-- Consider moving UI logic and coroutine scope into a `ViewModel` (e.g., `viewModelScope`) for better architecture and testability.
-- Add CI integration to run the JVM tests and, optionally, an emulator for the critical connected tests.
+ 
+ Progress note
+ -------------
+ - As of 2025-12-29 the edit/update feature and ViewModel refactor have been implemented and the project builds successfully (`./gradlew :app:assembleDebug`). Instrumentation tests have been adjusted for stability, but an automated instrumentation test for the edit flow is still pending (I can add it next).
 
 Contact / notes
 ----------------
@@ -196,3 +198,15 @@ Contact / notes
 Changelog (brief)
 -----------------
 - 2025-12-29: Fixed empty-item bug (UI input capture race), added repository guard + instrumentation test, hardened Compose test waits, added logging for diagnosis.
+
+Recent build & UI fixes (dec 29, 2025)
+------------------------------------
+- Resolved ambiguous import and experimental API compile errors in `ItemsScreen.kt` by cleaning duplicate imports and adding the required opt-in annotation:
+	- Added `@OptIn(ExperimentalMaterial3Api::class)` to `ItemsScreen` so `TopAppBar` usages compile cleanly.
+- Replaced a textual back affordance in the app bar with a proper Material back icon for better appearance and accessibility:
+	- `Text("<- Back")` was replaced with `Icon(Icons.Default.ArrowBack, ...)` and a `testTag("back_button")` was added to simplify UI tests.
+- Implemented batch delete / selection mode UI:
+	- Selection mode with per-item checkboxes, Delete Selected action, and Undo snackbar flow are available in `ItemsScreen`.
+- Build verification:
+	- After the fixes the project builds successfully with `./gradlew assembleDebug` (noting an AGP warning about `compileSdk=34` vs AGP tested up to 33).
+

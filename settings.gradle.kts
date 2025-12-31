@@ -13,5 +13,5 @@ dependencyResolutionManagement {
 	}
 }
 
-rootProject.name = "smart-list"
-include(":app")
+rootProject.name = "SmartList"
+include(":smartlist")

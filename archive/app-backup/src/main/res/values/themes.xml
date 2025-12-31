@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Minimal theme placeholder so the app has required resources. -->
+    <style name="Theme.SmartList">
+        <item name="android:windowBackground">@color/white</item>
+    </style>
+    <style name="Theme">
+        <item name="android:windowBackground">@color/white</item>
+    </style>
+</resources>
