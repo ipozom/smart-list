@@ -10,8 +10,14 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material.Button
 import androidx.compose.material.Icon
+import androidx.compose.material.IconButton
+import androidx.compose.material.AlertDialog
+import androidx.compose.material.TextButton
+import androidx.compose.material.DropdownMenu
+import androidx.compose.material.DropdownMenuItem
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.OutlinedTextField
+import androidx.compose.material.TextField
 import androidx.compose.material.Scaffold
 import androidx.compose.material.Surface
 import androidx.compose.material.Text
@@ -23,6 +29,10 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.rememberCoroutineScope
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
+import kotlinx.coroutines.Dispatchers
 import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
@@ -30,6 +40,10 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import androidx.lifecycle.viewmodel.compose.viewModel
+
+import androidx.compose.material.icons.filled.MoreVert
+import androidx.compose.runtime.setValue
+import com.example.smartlist.data.AppDatabase
 
 @Composable
 fun ItemsScreen(listId: Long, listName: String, navController: NavController) {
@@ -52,8 +66,27 @@ fun ItemsScreen(listId: Long, listName: String, navController: NavController) {
     val query by itemsVm.query.collectAsState()
 
     val showDialog = remember { mutableStateOf(false) }
+    var menuExpanded by remember { mutableStateOf(false) }
+    var showRenameDialog by remember { mutableStateOf(false) }
+    var renameText by remember { mutableStateOf(listName) }
+    val coroutineScope = rememberCoroutineScope()
 
-    Scaffold(topBar = { TopAppBar(title = { Text(listName) }) }, floatingActionButton = {
+    Scaffold(topBar = {
+        TopAppBar(title = { Text(listName) }, actions = {
+            IconButton(onClick = { menuExpanded = true }) {
+                Icon(imageVector = Icons.Default.MoreVert, contentDescription = "More")
+            }
+            DropdownMenu(expanded = menuExpanded, onDismissRequest = { menuExpanded = false }) {
+                DropdownMenuItem(onClick = {
+                    menuExpanded = false
+                    renameText = listName
+                    showRenameDialog = true
+                }) {
+                    Text("Rename")
+                }
+            }
+        })
+    }, floatingActionButton = {
         FloatingActionButton(onClick = { showDialog.value = true }) { Icon(imageVector = Icons.Default.Add, contentDescription = "Add item") }
     }) { inner ->
         Column(modifier = Modifier
@@ -81,6 +114,24 @@ fun ItemsScreen(listId: Long, listName: String, navController: NavController) {
                 itemsVm.add(it)
                 showDialog.value = false
             }, onCancel = { showDialog.value = false })
+        }
+
+        if (showRenameDialog) {
+            AlertDialog(onDismissRequest = { showRenameDialog = false }, title = { Text("Rename list") }, text = {
+                TextField(value = renameText, onValueChange = { renameText = it }, modifier = Modifier.fillMaxWidth())
+            }, confirmButton = {
+                TextButton(onClick = {
+                    // perform update
+                    coroutineScope.launch {
+                        withContext(Dispatchers.IO) {
+                            AppDatabase.getInstance(context).listNameDao().updateName(listId, renameText.trim())
+                        }
+                    }
+                    showRenameDialog = false
+                }) { Text("Save") }
+            }, dismissButton = {
+                TextButton(onClick = { showRenameDialog = false }) { Text("Cancel") }
+            })
         }
     }
 }

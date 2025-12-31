@@ -16,4 +16,7 @@ interface ListNameDao {
 
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     suspend fun insert(item: ListNameEntity)
+
+    @Query("UPDATE list_names SET name = :newName WHERE id = :id")
+    suspend fun updateName(id: Long, newName: String)
 }
