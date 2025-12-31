@@ -13,6 +13,8 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.material.Button
 import androidx.compose.material.FloatingActionButton
 import androidx.compose.material.Icon
+import androidx.compose.material.FabPosition
+import androidx.compose.material.Scaffold
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.OutlinedTextField
 import androidx.compose.material.Surface
@@ -22,54 +24,71 @@ import androidx.compose.material.icons.filled.Add
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.ui.window.Dialog
+import androidx.compose.ui.window.DialogProperties
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.navigation.NavController
+import androidx.core.net.UriCompat
+import androidx.core.net.toUri
 
 
 @Composable
-fun MainScreen(viewModel: ListViewModel) {
+fun MainScreen(navController: NavController) {
+    val viewModel: ListViewModel = viewModel()
+
     Surface(modifier = Modifier.fillMaxSize(), color = MaterialTheme.colors.background) {
-    // Collect StateFlow values as Compose State so UI updates when ViewModel emits
-    val query by viewModel.query.collectAsState()
-    val items by viewModel.items.collectAsState()
+        // Collect StateFlow values as Compose State so UI updates when ViewModel emits
+        val query by viewModel.query.collectAsState()
+        val items by viewModel.items.collectAsState()
 
-        Column(modifier = Modifier.fillMaxSize()) {
-            // Top search field
-            SearchBar(
-                value = query,
-                onValueChange = { viewModel.setQuery(it) }
-            )
+        // Keep dialog state at top of screen so FAB can toggle it
+        val showDialog = remember { mutableStateOf(false) }
 
-            // List
-            LazyColumn(modifier = Modifier.fillMaxSize()) {
-                items(items, key = { it.id }) { item ->
-                    Row(modifier = Modifier
-                        .fillMaxWidth()
-                        .clickable { /* could open list */ }
-                        .padding(16.dp), horizontalArrangement = Arrangement.SpaceBetween) {
-                        Text(text = item.name)
+        Scaffold(
+            floatingActionButton = {
+                FloatingActionButton(onClick = { showDialog.value = true }) {
+                    Icon(imageVector = Icons.Default.Add, contentDescription = "Add")
+                }
+            },
+            floatingActionButtonPosition = FabPosition.End,
+        ) { innerPadding ->
+            Column(modifier = Modifier
+                .fillMaxSize()
+                .padding(innerPadding)) {
+
+                // Top search field
+                SearchBar(
+                    value = query,
+                    onValueChange = { viewModel.setQuery(it) }
+                )
+
+                // List
+                LazyColumn(modifier = Modifier.fillMaxSize()) {
+                    items(items, key = { it.id }) { item ->
+                        Row(modifier = Modifier
+                            .fillMaxWidth()
+                            .clickable {
+                                // Navigate to items screen for this list
+                                val encoded = java.net.URLEncoder.encode(item.name, "utf-8")
+                                navController.navigate("items/${item.id}/$encoded")
+                            }
+                            .padding(16.dp), horizontalArrangement = Arrangement.SpaceBetween) {
+                            Text(text = item.name)
+                        }
                     }
                 }
             }
 
-            // FAB in bottom-right overlay
-            Box(modifier = Modifier.fillMaxWidth().padding(16.dp)) {
-                val showDialog = remember { mutableStateOf(false) }
-                Box(modifier = Modifier.align(Alignment.BottomEnd)) {
-                    FloatingActionButton(onClick = { showDialog.value = true }) {
-                        Icon(imageVector = Icons.Default.Add, contentDescription = "Add")
-                    }
-                }
-
-                if (showDialog.value) {
-                    AddNameDialog(onAdd = {
-                        viewModel.add(it)
-                        showDialog.value = false
-                    }, onCancel = { showDialog.value = false })
-                }
+            if (showDialog.value) {
+                AddNameDialog(onAdd = {
+                    viewModel.add(it)
+                    showDialog.value = false
+                }, onCancel = { showDialog.value = false })
             }
         }
     }
@@ -88,14 +107,31 @@ private fun SearchBar(value: String, onValueChange: (String) -> Unit) {
 }
 
 @Composable
-private fun AddNameDialog(onAdd: (String) -> Unit, onCancel: () -> Unit) {
+fun AddNameDialog(onAdd: (String) -> Unit, onCancel: () -> Unit) {
     val text = remember { mutableStateOf("") }
-    Surface(modifier = Modifier.padding(16.dp)) {
-        Column(modifier = Modifier.fillMaxWidth().padding(16.dp)) {
-            OutlinedTextField(value = text.value, onValueChange = { text.value = it }, label = { Text("List name") })
-            Row(modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.End) {
-                Button(onClick = onCancel, modifier = Modifier.padding(8.dp)) { Text("Cancel") }
-                Button(onClick = { onAdd(text.value) }, modifier = Modifier.padding(8.dp)) { Text("Add") }
+
+    // Use a Dialog to center the content vertically in the window
+    Dialog(onDismissRequest = onCancel, properties = DialogProperties(usePlatformDefaultWidth = false)) {
+        // Outer Box to control dialog width and padding
+        Box(modifier = Modifier
+            .fillMaxWidth()
+            .padding(horizontal = 32.dp), contentAlignment = Alignment.Center) {
+            Surface(elevation = 8.dp, shape = MaterialTheme.shapes.medium) {
+                Column(modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(16.dp)) {
+                    OutlinedTextField(
+                        value = text.value,
+                        onValueChange = { text.value = it },
+                        label = { Text("List name") },
+                        modifier = Modifier.fillMaxWidth()
+                    )
+
+                    Row(modifier = Modifier.fillMaxWidth().padding(top = 12.dp), horizontalArrangement = Arrangement.End) {
+                        Button(onClick = onCancel, modifier = Modifier.padding(8.dp)) { Text("Cancel") }
+                        Button(onClick = { onAdd(text.value) }, modifier = Modifier.padding(8.dp)) { Text("Add") }
+                    }
+                }
             }
         }
     }
