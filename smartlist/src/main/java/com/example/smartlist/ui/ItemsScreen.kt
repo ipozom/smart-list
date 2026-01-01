@@ -139,6 +139,9 @@ fun ItemsScreen(listId: Long, navController: NavController) {
             AddNameDialog(onAdd = {
                 itemsVm.add(it)
                 showDialog.value = false
+                coroutineScope.launch {
+                    scaffoldState.snackbarHostState.showSnackbar("Item added")
+                }
             }, onCancel = { showDialog.value = false }, labelText = "Item name")
         }
 

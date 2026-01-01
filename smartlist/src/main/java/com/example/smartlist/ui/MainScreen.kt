@@ -24,6 +24,9 @@ import androidx.compose.material.icons.filled.Add
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.material.rememberScaffoldState
+import androidx.compose.runtime.rememberCoroutineScope
+import kotlinx.coroutines.launch
 import androidx.compose.ui.window.Dialog
 import androidx.compose.ui.window.DialogProperties
 import androidx.compose.runtime.getValue
@@ -41,6 +44,8 @@ import androidx.core.net.toUri
 @Composable
 fun MainScreen(navController: NavController) {
     val viewModel: ListViewModel = viewModel()
+    val scaffoldState = rememberScaffoldState()
+    val coroutineScope = rememberCoroutineScope()
 
     Surface(modifier = Modifier.fillMaxSize(), color = MaterialTheme.colors.background) {
         // Collect StateFlow values as Compose State so UI updates when ViewModel emits
@@ -51,6 +56,7 @@ fun MainScreen(navController: NavController) {
         val showDialog = remember { mutableStateOf(false) }
 
         Scaffold(
+            scaffoldState = scaffoldState,
             floatingActionButton = {
                 FloatingActionButton(onClick = { showDialog.value = true }) {
                     Icon(imageVector = Icons.Default.Add, contentDescription = "Add")
@@ -89,6 +95,9 @@ fun MainScreen(navController: NavController) {
                 AddNameDialog(onAdd = {
                     viewModel.add(it)
                     showDialog.value = false
+                    coroutineScope.launch {
+                        scaffoldState.snackbarHostState.showSnackbar("List added")
+                    }
                 }, onCancel = { showDialog.value = false })
             }
         }
