@@ -12,7 +12,8 @@ interface MasterItemDao {
     suspend fun insert(item: MasterItemEntity): Long
 
     // search by substring (use LIKE wildcards when calling)
-    @Query("SELECT content FROM master_items WHERE content LIKE :filter ORDER BY content LIMIT 10")
+    // Case-insensitive substring search for suggestions
+    @Query("SELECT content FROM master_items WHERE LOWER(content) LIKE LOWER(:filter) ORDER BY content LIMIT 10")
     fun search(filter: String): Flow<List<String>>
 
     @Query("SELECT COUNT(*) FROM master_items")
