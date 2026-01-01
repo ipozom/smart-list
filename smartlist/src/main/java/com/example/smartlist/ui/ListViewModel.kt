@@ -173,8 +173,8 @@ class ListViewModel(application: Application) : AndroidViewModel(application) {
         }
     }
 
-    // Use a small replay buffer so newly resumed collectors (e.g. MainScreen after navigation)
-    // can still observe the most recent UI events like deletions.
-    private val _events = MutableSharedFlow<UiEvent>(replay = 4, extraBufferCapacity = 4)
+    // UI events flow for one-off notifications. No replay — events are delivered to active
+    // collectors only to avoid showing stale snackbars when navigating to a new screen.
+    private val _events = MutableSharedFlow<UiEvent>(replay = 0, extraBufferCapacity = 4)
     val events: SharedFlow<UiEvent> = _events.asSharedFlow()
 }
