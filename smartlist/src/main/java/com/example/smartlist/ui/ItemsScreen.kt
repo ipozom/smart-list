@@ -139,7 +139,7 @@ fun ItemsScreen(listId: Long, navController: NavController) {
             AddNameDialog(onAdd = {
                 itemsVm.add(it)
                 showDialog.value = false
-            }, onCancel = { showDialog.value = false })
+            }, onCancel = { showDialog.value = false }, labelText = "Item name")
         }
 
         if (showRenameDialog) {

@@ -108,7 +108,7 @@ private fun SearchBar(value: String, onValueChange: (String) -> Unit) {
 }
 
 @Composable
-fun AddNameDialog(onAdd: (String) -> Unit, onCancel: () -> Unit) {
+fun AddNameDialog(onAdd: (String) -> Unit, onCancel: () -> Unit, labelText: String = "List name") {
     val text = remember { mutableStateOf("") }
 
     // Use a Dialog to center the content vertically in the window
@@ -124,7 +124,7 @@ fun AddNameDialog(onAdd: (String) -> Unit, onCancel: () -> Unit) {
                     OutlinedTextField(
                         value = text.value,
                         onValueChange = { text.value = it },
-                        label = { Text("List name") },
+                        label = { Text(labelText) },
                         modifier = Modifier.fillMaxWidth()
                     )
 
