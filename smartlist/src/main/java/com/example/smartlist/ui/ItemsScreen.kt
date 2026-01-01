@@ -92,13 +92,6 @@ fun ItemsScreen(listId: Long, navController: NavController) {
     // Debug: show an ephemeral snackbar once when this list screen is opened so we can
     // verify whether the list is a template or a clone on-device. This is temporary.
     val debugInfoShown = remember { mutableStateOf(false) }
-    LaunchedEffect(currentList) {
-        if (!debugInfoShown.value && currentList != null) {
-            val info = "isTemplate=${currentList.isTemplate} isCloned=${currentList.isCloned}"
-            scaffoldState.snackbarHostState.showSnackbar(info)
-            debugInfoShown.value = true
-        }
-    }
 
     val showDialog = remember { mutableStateOf(false) }
     var menuExpanded by remember { mutableStateOf(false) }
@@ -110,6 +103,17 @@ fun ItemsScreen(listId: Long, navController: NavController) {
     var editingItemId by remember { mutableStateOf<Long?>(null) }
     var editingItemText by remember { mutableStateOf("") }
     val scaffoldState = rememberScaffoldState()
+
+    // Show the debug snackbar after scaffoldState is available. Use a local copy of currentList
+    // to avoid smart-cast issues on properties with custom getters.
+    LaunchedEffect(currentList) {
+        val list = currentList
+        if (!debugInfoShown.value && list != null) {
+            val info = "isTemplate=${list.isTemplate} isCloned=${list.isCloned}"
+            scaffoldState.snackbarHostState.showSnackbar(info)
+            debugInfoShown.value = true
+        }
+    }
 
     // Lazy list state so we can programmatically scroll to the top when new items arrive
     val listState = rememberLazyListState()
