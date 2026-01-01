@@ -10,7 +10,7 @@ data class ListNameEntity(
     // mark this list as a template/master list. Template lists are protected from rename/delete.
     val isTemplate: Boolean = false,
     // If this list was cloned from a template, masterId points to the template's id
-    val masterId: Long? = null
+    val masterId: Long? = null,
     // Mark this list as a clone created from a template/master list
     val isCloned: Boolean = false
 )
