@@ -2,6 +2,7 @@ package com.example.smartlist.ui
 
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.ExperimentalFoundationApi
+import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.foundation.combinedClickable
 import androidx.compose.foundation.interaction.MutableInteractionSource
 // animateItemPlacement is an experimental API provided by the foundation lazy package; resolved by the compiler if available
@@ -62,7 +63,7 @@ import androidx.compose.material.icons.filled.MoreVert
 import androidx.compose.runtime.setValue
 import com.example.smartlist.data.AppDatabase
 
-@OptIn(ExperimentalFoundationApi::class)
+@OptIn(ExperimentalFoundationApi::class, ExperimentalMaterialApi::class)
 @Composable
 fun ItemsScreen(listId: Long, navController: NavController) {
     val context = LocalContext.current.applicationContext as android.app.Application
