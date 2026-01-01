@@ -40,29 +40,93 @@ class ListViewModel(application: Application) : AndroidViewModel(application) {
     }
 
     fun add(name: String) {
-        if (name.isBlank()) return
+        val trimmed = name.trim()
+        if (trimmed.isBlank()) {
+            viewModelScope.launch { _events.tryEmit(UiEvent.ShowSnackbar("List cannot be empty")) }
+            return
+        }
+
         viewModelScope.launch {
-            dao.insert(ListNameEntity(name = name))
+            val existing = dao.countByName(trimmed)
+            if (existing > 0) {
+                _events.tryEmit(UiEvent.ShowSnackbar("List already exists"))
+                return@launch
+            }
+
+            dao.insert(ListNameEntity(name = trimmed))
             _events.tryEmit(UiEvent.ShowSnackbar("List added"))
+            _events.tryEmit(UiEvent.ScrollToTop)
         }
     }
 
     // Rename a list and emit UI events for success/failure
+    private val renameBackup = mutableMapOf<Long, String>()
+    private val deleteBackup = mutableMapOf<Long, String>()
+
+    fun deleteList(id: Long) {
+        viewModelScope.launch {
+            val name = dao.getNameById(id) ?: return@launch
+            deleteBackup[id] = name
+            dao.deleteById(id)
+            _events.tryEmit(UiEvent.ShowSnackbar("List deleted", actionLabel = "Undo", undoInfo = UiEvent.UndoInfo("list_delete", id)))
+        }
+    }
+
     fun renameList(id: Long, newName: String) {
-        if (newName.isBlank()) {
+        val trimmed = newName.trim()
+        if (trimmed.isBlank()) {
             _events.tryEmit(UiEvent.ShowSnackbar("Name cannot be empty"))
             return
         }
+
         viewModelScope.launch {
             try {
-                dao.updateName(id, newName)
-                _events.tryEmit(UiEvent.ShowSnackbar("List renamed"))
+                val existing = dao.countByNameExceptId(trimmed, id)
+                if (existing > 0) {
+                    _events.tryEmit(UiEvent.ShowSnackbar("List already exists"))
+                    return@launch
+                }
+
+                val old = dao.getNameById(id) ?: ""
+                renameBackup[id] = old
+
+                dao.updateName(id, trimmed)
+                _events.tryEmit(UiEvent.ShowSnackbar("List renamed", actionLabel = "Undo", undoInfo = UiEvent.UndoInfo("list_rename", id)))
             } catch (t: Throwable) {
                 _events.tryEmit(UiEvent.ShowSnackbar("Rename failed: ${t.message}"))
             }
         }
     }
 
-    private val _events = MutableSharedFlow<UiEvent>(extraBufferCapacity = 4)
+    fun handleUndo(undoInfo: UiEvent.UndoInfo) {
+        viewModelScope.launch {
+            when (undoInfo.kind) {
+                "list_rename" -> {
+                    val old = renameBackup.remove(undoInfo.id)
+                    if (old != null) {
+                        dao.updateName(undoInfo.id, old)
+                        _events.tryEmit(UiEvent.ShowSnackbar("Rename undone"))
+                    }
+                }
+                "list_add" -> {
+                    dao.deleteById(undoInfo.id)
+                    _events.tryEmit(UiEvent.ShowSnackbar("Add undone"))
+                }
+                "list_delete" -> {
+                        val old = deleteBackup.remove(undoInfo.id)
+                        if (old != null) {
+                            // Re-insert with the original id so screens observing that id pick it up
+                            dao.insert(ListNameEntity(id = undoInfo.id, name = old))
+                            _events.tryEmit(UiEvent.ShowSnackbar("Delete undone"))
+                            _events.tryEmit(UiEvent.ScrollToTop)
+                        }
+                }
+            }
+        }
+    }
+
+    // Use a small replay buffer so newly resumed collectors (e.g. MainScreen after navigation)
+    // can still observe the most recent UI events like deletions.
+    private val _events = MutableSharedFlow<UiEvent>(replay = 4, extraBufferCapacity = 4)
     val events: SharedFlow<UiEvent> = _events.asSharedFlow()
 }

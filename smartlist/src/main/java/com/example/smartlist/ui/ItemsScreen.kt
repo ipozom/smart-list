@@ -31,6 +31,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.material.rememberScaffoldState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.foundation.lazy.rememberLazyListState
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import kotlinx.coroutines.Dispatchers
@@ -87,19 +88,47 @@ fun ItemsScreen(listId: Long, navController: NavController) {
     val coroutineScope = rememberCoroutineScope()
     val scaffoldState = rememberScaffoldState()
 
+    // Lazy list state so we can programmatically scroll to the top when new items arrive
+    val listState = rememberLazyListState()
+
     // Collect events from ItemsViewModel and ListViewModel
     LaunchedEffect(itemsVm, listVm) {
         launch {
             itemsVm.events.collect { ev ->
                 when (ev) {
-                    is UiEvent.ShowSnackbar -> scaffoldState.snackbarHostState.showSnackbar(ev.message, ev.actionLabel ?: "")
+                    is UiEvent.ShowSnackbar -> {
+                        val result = scaffoldState.snackbarHostState.showSnackbar(ev.message, ev.actionLabel ?: "")
+                        if (result == androidx.compose.material.SnackbarResult.ActionPerformed && ev.undoInfo != null) {
+                            itemsVm.handleUndo(ev.undoInfo)
+                        }
+                    }
+                    is UiEvent.ScrollToTop -> listState.animateScrollToItem(0)
                 }
             }
         }
         launch {
             listVm.events.collect { ev ->
                 when (ev) {
-                    is UiEvent.ShowSnackbar -> scaffoldState.snackbarHostState.showSnackbar(ev.message, ev.actionLabel ?: "")
+                    is UiEvent.ShowSnackbar -> {
+                        // If the list was deleted, show the snackbar here first so the user sees it
+                        if (ev.undoInfo?.kind == "list_delete") {
+                            val result = scaffoldState.snackbarHostState.showSnackbar(ev.message, ev.actionLabel ?: "")
+                            if (result == androidx.compose.material.SnackbarResult.ActionPerformed && ev.undoInfo != null) {
+                                listVm.handleUndo(ev.undoInfo)
+                                // stay on this screen after undo
+                            } else {
+                                // proceed to navigate back after showing snackbar
+                                navController.popBackStack()
+                            }
+                            return@collect
+                        }
+
+                        val result = scaffoldState.snackbarHostState.showSnackbar(ev.message, ev.actionLabel ?: "")
+                        if (result == androidx.compose.material.SnackbarResult.ActionPerformed && ev.undoInfo != null) {
+                            listVm.handleUndo(ev.undoInfo)
+                        }
+                    }
+                    is UiEvent.ScrollToTop -> { /* ignore: handled by itemsVm events */ }
                 }
             }
         }
@@ -118,6 +147,13 @@ fun ItemsScreen(listId: Long, navController: NavController) {
                 }) {
                     Text("Rename")
                 }
+                DropdownMenuItem(onClick = {
+                    menuExpanded = false
+                    // delete the list (ViewModel will emit snackbar with undo)
+                    listVm.deleteList(listId)
+                }) {
+                    Text("Delete")
+                }
             }
         })
     }, floatingActionButton = {
@@ -131,7 +167,7 @@ fun ItemsScreen(listId: Long, navController: NavController) {
                 .fillMaxWidth()
                 .padding(8.dp), label = { Text("Search items") })
 
-            LazyColumn(modifier = Modifier.fillMaxWidth()) {
+            LazyColumn(state = listState, modifier = Modifier.fillMaxWidth()) {
                 items(items, key = { it.id }) { item ->
                     Row(modifier = Modifier
                         .fillMaxWidth()
@@ -150,6 +186,10 @@ fun ItemsScreen(listId: Long, navController: NavController) {
                                 editingItemText = item.content
                                 showItemRenameDialog = true
                             }) { Text("Rename") }
+                            DropdownMenuItem(onClick = {
+                                expandedItemId = null
+                                itemsVm.deleteItem(item.id)
+                            }) { Text("Delete") }
                         }
                     }
                 }
@@ -158,11 +198,9 @@ fun ItemsScreen(listId: Long, navController: NavController) {
 
         if (showDialog.value) {
             AddNameDialog(onAdd = {
+                // delegate add and snackbar to ViewModel events to avoid duplicate snackbars
                 itemsVm.add(it)
                 showDialog.value = false
-                coroutineScope.launch {
-                    scaffoldState.snackbarHostState.showSnackbar("Item added")
-                }
             }, onCancel = { showDialog.value = false }, labelText = "Item name")
         }
 
@@ -186,22 +224,11 @@ fun ItemsScreen(listId: Long, navController: NavController) {
             }, confirmButton = {
                 TextButton(onClick = {
                     val newContent = editingItemText.trim()
-                    if (newContent.isEmpty()) {
-                        coroutineScope.launch { scaffoldState.snackbarHostState.showSnackbar("Item cannot be empty") }
-                        return@TextButton
-                    }
+                    if (editingItemId == null) return@TextButton
 
-                    coroutineScope.launch {
-                        try {
-                            withContext(Dispatchers.IO) {
-                                AppDatabase.getInstance(context).itemDao().updateContent(editingItemId!!, newContent)
-                            }
-                            showItemRenameDialog = false
-                            scaffoldState.snackbarHostState.showSnackbar("Item renamed")
-                        } catch (t: Throwable) {
-                            scaffoldState.snackbarHostState.showSnackbar("Rename failed: ${t.message}")
-                        }
-                    }
+                    // delegate validation, update and snackbar emission to the ViewModel
+                    itemsVm.renameItem(editingItemId!!, newContent)
+                    showItemRenameDialog = false
                 }) { Text("Save") }
             }, dismissButton = {
                 TextButton(onClick = { showItemRenameDialog = false }) { Text("Cancel") }

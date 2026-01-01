@@ -34,25 +34,93 @@ class ItemsViewModel(application: Application, private val listId: Long) : Andro
 
     fun setQuery(q: String) { _query.value = q }
 
-    fun add(content: String) {
-        if (content.isBlank()) return
+    // backups for undo operations
+    private val renameBackup = mutableMapOf<Long, String>()
+    private val deleteBackup = mutableMapOf<Long, String>()
+
+    fun deleteItem(id: Long) {
         viewModelScope.launch {
-            dao.insert(ItemEntity(listId = listId, content = content))
-            _events.tryEmit(UiEvent.ShowSnackbar("Item added"))
+            val content = dao.getContentById(id) ?: return@launch
+            deleteBackup[id] = content
+            dao.deleteById(id)
+            _events.tryEmit(UiEvent.ShowSnackbar("Item deleted", actionLabel = "Undo", undoInfo = UiEvent.UndoInfo("item_delete", id)))
+        }
+    }
+
+    fun add(content: String) {
+        val trimmed = content.trim()
+        if (trimmed.isBlank()) {
+            viewModelScope.launch { _events.tryEmit(UiEvent.ShowSnackbar("Item cannot be empty")) }
+            return
+        }
+
+        viewModelScope.launch {
+            // check duplicate in the same list
+            val existing = dao.countByContent(listId, trimmed)
+            if (existing > 0) {
+                _events.tryEmit(UiEvent.ShowSnackbar("Item already exists"))
+                return@launch
+            }
+
+            val newId = dao.insert(ItemEntity(listId = listId, content = trimmed))
+            // notify UI: show snackbar and scroll to top to reveal the new item
+            _events.tryEmit(UiEvent.ShowSnackbar("Item added", actionLabel = "Undo", undoInfo = UiEvent.UndoInfo("item_add", newId)))
+            _events.tryEmit(UiEvent.ScrollToTop)
         }
     }
 
     fun renameItem(id: Long, newContent: String) {
-        if (newContent.isBlank()) {
-            _events.tryEmit(UiEvent.ShowSnackbar("Item cannot be empty"))
+        val trimmed = newContent.trim()
+        if (trimmed.isBlank()) {
+            viewModelScope.launch { _events.tryEmit(UiEvent.ShowSnackbar("Item cannot be empty")) }
             return
         }
+
         viewModelScope.launch {
             try {
-                dao.updateContent(id, newContent)
-                _events.tryEmit(UiEvent.ShowSnackbar("Item renamed"))
+                // prevent renaming to a duplicate value in the same list
+                val existing = dao.countByContentExceptId(listId, trimmed, id)
+                if (existing > 0) {
+                    _events.tryEmit(UiEvent.ShowSnackbar("Item already exists"))
+                    return@launch
+                }
+
+                // fetch current content to allow undo
+                val old = dao.getContentById(id) ?: ""
+                renameBackup[id] = old
+
+                dao.updateContent(id, trimmed)
+                _events.tryEmit(UiEvent.ShowSnackbar("Item renamed", actionLabel = "Undo", undoInfo = UiEvent.UndoInfo("item_rename", id)))
             } catch (t: Throwable) {
                 _events.tryEmit(UiEvent.ShowSnackbar("Rename failed: ${t.message}"))
+            }
+        }
+    }
+
+    fun handleUndo(undoInfo: UiEvent.UndoInfo) {
+        viewModelScope.launch {
+            when (undoInfo.kind) {
+                "item_add" -> {
+                    // delete the added item
+                    dao.deleteById(undoInfo.id)
+                    _events.tryEmit(UiEvent.ShowSnackbar("Add undone"))
+                }
+                "item_rename" -> {
+                    val old = renameBackup.remove(undoInfo.id)
+                    if (old != null) {
+                        dao.updateContent(undoInfo.id, old)
+                        _events.tryEmit(UiEvent.ShowSnackbar("Rename undone"))
+                    }
+                }
+                "item_delete" -> {
+                    val old = deleteBackup.remove(undoInfo.id)
+                        if (old != null) {
+                            // Re-insert with the original id so UI observing this id can pick it up
+                            dao.insert(ItemEntity(id = undoInfo.id, listId = listId, content = old))
+                            _events.tryEmit(UiEvent.ShowSnackbar("Delete undone"))
+                            _events.tryEmit(UiEvent.ScrollToTop)
+                        }
+                }
             }
         }
     }

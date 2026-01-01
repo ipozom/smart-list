@@ -24,6 +24,7 @@ import androidx.compose.material.icons.filled.Add
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.material.rememberScaffoldState
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.LaunchedEffect
@@ -65,6 +66,8 @@ fun MainScreen(navController: NavController) {
             },
             floatingActionButtonPosition = FabPosition.End,
         ) { innerPadding ->
+            val listState = rememberLazyListState()
+
             Column(modifier = Modifier
                 .fillMaxSize()
                 .padding(innerPadding)) {
@@ -76,7 +79,7 @@ fun MainScreen(navController: NavController) {
                 )
 
                 // List
-                LazyColumn(modifier = Modifier.fillMaxSize()) {
+                LazyColumn(state = listState, modifier = Modifier.fillMaxSize()) {
                     items(items, key = { it.id }) { item ->
                         Row(modifier = Modifier
                             .fillMaxWidth()
@@ -96,7 +99,13 @@ fun MainScreen(navController: NavController) {
                 LaunchedEffect(viewModel) {
                     viewModel.events.collect { ev ->
                         when (ev) {
-                            is UiEvent.ShowSnackbar -> scaffoldState.snackbarHostState.showSnackbar(ev.message, ev.actionLabel ?: "")
+                            is UiEvent.ShowSnackbar -> {
+                                val result = scaffoldState.snackbarHostState.showSnackbar(ev.message, ev.actionLabel ?: "")
+                                if (result == androidx.compose.material.SnackbarResult.ActionPerformed && ev.undoInfo != null) {
+                                    viewModel.handleUndo(ev.undoInfo)
+                                }
+                            }
+                            is UiEvent.ScrollToTop -> listState.animateScrollToItem(0)
                         }
                     }
                 }
