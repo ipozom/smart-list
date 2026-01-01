@@ -8,14 +8,9 @@ import androidx.compose.foundation.interaction.MutableInteractionSource
 // animateItemPlacement is an experimental API provided by the foundation lazy package; resolved by the compiler if available
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.background
 import androidx.compose.ui.graphics.Color
-import androidx.compose.material.SwipeToDismiss
-import androidx.compose.material.DismissValue
-import androidx.compose.material.DismissDirection
-import androidx.compose.material.rememberDismissState
 import androidx.compose.material.icons.filled.Delete
+import androidx.compose.material.icons.filled.Edit
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -26,8 +21,7 @@ import androidx.compose.material.Icon
 import androidx.compose.material.IconButton
 import androidx.compose.material.AlertDialog
 import androidx.compose.material.TextButton
-import androidx.compose.material.DropdownMenu
-import androidx.compose.material.DropdownMenuItem
+// ...existing code...
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.OutlinedTextField
 import androidx.compose.material.TextField
@@ -59,11 +53,11 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import androidx.lifecycle.viewmodel.compose.viewModel
 
-import androidx.compose.material.icons.filled.MoreVert
+// ...existing code...
 import androidx.compose.runtime.setValue
 import com.example.smartlist.data.AppDatabase
 
-@OptIn(ExperimentalFoundationApi::class, ExperimentalMaterialApi::class)
+@OptIn(ExperimentalFoundationApi::class)
 @Composable
 fun ItemsScreen(listId: Long, navController: NavController) {
     val context = LocalContext.current.applicationContext as android.app.Application
@@ -98,8 +92,7 @@ fun ItemsScreen(listId: Long, navController: NavController) {
     var menuExpanded by remember { mutableStateOf(false) }
     var showRenameDialog by remember { mutableStateOf(false) }
     var renameText by remember { mutableStateOf("") }
-    // per-item menu / rename state
-    var expandedItemId by remember { mutableStateOf<Long?>(null) }
+    // per-item rename state
     var showItemRenameDialog by remember { mutableStateOf(false) }
     var editingItemId by remember { mutableStateOf<Long?>(null) }
     var editingItemText by remember { mutableStateOf("") }
@@ -215,87 +208,54 @@ fun ItemsScreen(listId: Long, navController: NavController) {
             LazyColumn(state = listState, modifier = Modifier.fillMaxWidth()) {
                 items(items, key = { it.id }) { item ->
                     val isCloned = currentList?.isCloned == true
-                    val dismissState = rememberDismissState(confirmStateChange = { newState ->
-                        if (newState == DismissValue.DismissedToEnd || newState == DismissValue.DismissedToStart) {
-                            if (isCloned) {
-                                itemsVm.deleteItem(item.id)
-                                true
-                            } else {
-                                // prevent dismiss for non-cloned lists
-                                false
-                            }
-                        } else true
-                    })
 
                     val interactionSource = remember { MutableInteractionSource() }
 
-                    SwipeToDismiss(
-                        state = dismissState,
-                        background = {
-                            // simple red background with delete icon aligned to end
-                            Box(modifier = Modifier
-                                .fillMaxWidth()
-                                .padding(12.dp)
-                                .background(Color.Red), contentAlignment = androidx.compose.ui.Alignment.CenterEnd) {
-                                Icon(imageVector = Icons.Default.Delete, contentDescription = "Delete", tint = Color.White, modifier = Modifier.padding(16.dp))
-                            }
-                        },
-                        dismissContent = {
-                            Row(
-                                verticalAlignment = androidx.compose.ui.Alignment.CenterVertically,
-                                modifier = Modifier
-                                    .fillMaxWidth()
-                                    .animateItemPlacement()
-                                    .combinedClickable(
-                                        onClick = { /* single tap: no-op here */ },
-                                        onDoubleClick = {
-                                            // delegate to ViewModel which will allow toggling on clones and non-templates
-                                            itemsVm.toggleStrike(item.id)
-                                        },
-                                        interactionSource = interactionSource,
-                                        indication = null
-                                    )
-                                    .padding(12.dp)
-                            ) {
-                                Checkbox(
-                                    checked = item.isStruck,
-                                    onCheckedChange = { _ -> itemsVm.toggleStrike(item.id) },
-                                    modifier = Modifier.padding(end = 12.dp),
-                                    enabled = !(currentList?.isTemplate == true)
-                                )
+                    Row(
+                        verticalAlignment = androidx.compose.ui.Alignment.CenterVertically,
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .animateItemPlacement()
+                            .combinedClickable(
+                                onClick = { /* single tap: no-op here */ },
+                                onDoubleClick = {
+                                    // delegate to ViewModel which will allow toggling on clones and non-templates
+                                    itemsVm.toggleStrike(item.id)
+                                },
+                                interactionSource = interactionSource,
+                                indication = null
+                            )
+                            .padding(12.dp)
+                    ) {
+                        Checkbox(
+                            checked = item.isStruck,
+                            onCheckedChange = { _ -> itemsVm.toggleStrike(item.id) },
+                            modifier = Modifier.padding(end = 12.dp),
+                            enabled = !(currentList?.isTemplate == true)
+                        )
 
-                                Text(
-                                    text = item.content,
-                                    modifier = Modifier.weight(1f),
-                                    style = if (item.isStruck) MaterialTheme.typography.body1.copy(textDecoration = TextDecoration.LineThrough) else MaterialTheme.typography.body1
-                                )
+                        Text(
+                            text = item.content,
+                            modifier = Modifier.weight(1f),
+                            style = if (item.isStruck) MaterialTheme.typography.body1.copy(textDecoration = TextDecoration.LineThrough) else MaterialTheme.typography.body1
+                        )
 
-                                // fallback inline trash button for cloned lists (accessibility + discoverability)
-                                if (isCloned) {
-                                    IconButton(onClick = { itemsVm.deleteItem(item.id) }) {
-                                        Icon(imageVector = Icons.Default.Delete, contentDescription = "Delete item")
-                                    }
-                                }
-
-                                IconButton(onClick = { expandedItemId = item.id }) {
-                                    Icon(imageVector = androidx.compose.material.icons.Icons.Default.MoreVert, contentDescription = "Item menu")
-                                }
-
-                                DropdownMenu(expanded = expandedItemId == item.id, onDismissRequest = { expandedItemId = null }) {
-                                    DropdownMenuItem(onClick = {
-                                        expandedItemId = null
-                                        editingItemId = item.id
-                                        editingItemText = item.content
-                                        showItemRenameDialog = true
-                                    }) { Text("Rename") }
-                                    DropdownMenuItem(onClick = {
-                                        expandedItemId = null
-                                        itemsVm.deleteItem(item.id)
-                                    }) { Text("Delete") }
-                                }
+                        // inline trash button for cloned lists (accessibility + discoverability)
+                        if (isCloned) {
+                            IconButton(onClick = { itemsVm.deleteItem(item.id) }) {
+                                Icon(imageVector = Icons.Default.Delete, contentDescription = "Delete item")
                             }
                         }
-                    )
+
+                        // rename icon placed next to trash
+                        IconButton(onClick = {
+                            editingItemId = item.id
+                            editingItemText = item.content
+                            showItemRenameDialog = true
+                        }) {
+                            Icon(imageVector = androidx.compose.material.icons.Icons.Default.Edit, contentDescription = "Rename item")
+                        }
+                    }
                 }
             }
         }
