@@ -99,6 +99,35 @@ Design intent: keep side effects (DB writes) in ViewModels and treat composables
 
 - Added double-tap strikethrough for items (toggle isStruck). Cloned lists allow strikethrough; template lists block it. Added Room migration 3→4 to add the `isStruck` column and updated `ItemDao.getForList` ordering so struck items appear at the end.
 
+## Latest implemented features (2026-01-01)
+
+These items summarize the most recent behavior and data-model changes merged on 2026-01-01.
+
+- Inline per-item delete + rename (finalized)
+  - Removed the swipe-to-delete gesture (it was experimented with and then removed by request).
+  - Each item row now shows an inline trash icon (delete) and an edit/rename icon (pencil) next to the item text. Tapping trash uses the existing ViewModel delete + Undo flow.
+  - The per-item overflow (three-dot) menu was removed and replaced by the direct rename icon to improve discoverability and accessibility.
+
+- Clone metadata & DB migration
+  - Introduced `isCloned: Boolean` on `ListNameEntity` to mark lists created by cloning templates.
+  - Added a Room migration (5 → 6) that adds the `isCloned` column with a default value of `0` so existing databases upgrade safely.
+  - `ListViewModel.cloneList()` sets `isCloned = true` on newly-created clones.
+
+- Gesture & input handling improvements
+  - Replaced a custom pointerInput/detectTapGestures handler with `combinedClickable` so the double-tap strike interaction cooperates with other gestures when present.
+  - Later the swipe gesture was removed and the row keeps double-tap support via `combinedClickable`.
+
+- UI events / snackbar behavior
+  - Changed the UI events SharedFlow in `ListViewModel` to not replay old events (MutableSharedFlow now created with `replay = 0`). This avoids stale snackbars (for example "List added") reappearing when navigating into a new screen.
+  - Removed a temporary one-time debug snackbar that showed `isTemplate`/`isCloned` flags on list open; that was only used during debugging and has been removed.
+
+- List-item deletion policy
+  - Items may be deleted directly from any list (templates, clones, normal lists) via the inline trash icon. The list-level delete action (removing the entire list) remains protected for template/master lists — to delete a template list you must first unmark it as a template.
+
+- Misc
+  - Reworked imports and opt-ins where needed (e.g., material experimental API opt-ins were adjusted while SwipeToDismiss was present and then removed).
+  - All changes were committed and pushed to `origin/main` on 2026-01-01.
+
 ## Next steps & backlog
 
 1. Replace destructive migrations with explicit Room `Migration` objects.
