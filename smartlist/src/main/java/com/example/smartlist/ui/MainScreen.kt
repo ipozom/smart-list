@@ -75,9 +75,8 @@ fun MainScreen(navController: NavController) {
                             .fillMaxWidth()
                             .clickable {
                                 // Navigate to items screen for this list
-                                // Use Uri.encode to percent-encode spaces as %20 (not '+' from form encoding)
-                                val encoded = Uri.encode(item.name)
-                                navController.navigate("items/${item.id}/$encoded")
+                                // Navigate passing ONLY the id; ItemsScreen will read the name from the DB
+                                navController.navigate("items/${item.id}")
                             }
                             .padding(16.dp), horizontalArrangement = Arrangement.SpaceBetween) {
                             Text(text = item.name)

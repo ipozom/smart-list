@@ -33,15 +33,13 @@ fun AppNavHost() {
         }
 
         composable(
-            "items/{listId}/{listName}",
+            "items/{listId}",
             arguments = listOf(
-                navArgument("listId") { type = NavType.LongType },
-                navArgument("listName") { type = NavType.StringType }
+                navArgument("listId") { type = NavType.LongType }
             )
         ) { backStack ->
             val listId = backStack.arguments?.getLong("listId") ?: 0L
-            val listName = backStack.arguments?.getString("listName") ?: ""
-            ItemsScreen(listId = listId, listName = listName, navController = navController)
+            ItemsScreen(listId = listId, navController = navController)
         }
     }
 }

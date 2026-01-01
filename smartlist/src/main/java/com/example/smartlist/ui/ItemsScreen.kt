@@ -48,7 +48,7 @@ import androidx.compose.runtime.setValue
 import com.example.smartlist.data.AppDatabase
 
 @Composable
-fun ItemsScreen(listId: Long, listName: String, navController: NavController) {
+fun ItemsScreen(listId: Long, navController: NavController) {
     val context = LocalContext.current.applicationContext as android.app.Application
 
     // Provide a factory that knows how to create ItemsViewModel(listId)
@@ -69,13 +69,13 @@ fun ItemsScreen(listId: Long, listName: String, navController: NavController) {
 
     // Observe the current list name from DB so UI updates after rename
     val listDao = AppDatabase.getInstance(context).listNameDao()
-    val currentList by listDao.getById(listId).collectAsState(initial = ListNameEntity(id = listId, name = listName))
-    val displayedName = currentList?.name ?: listName
+    val currentList by listDao.getById(listId).collectAsState(initial = ListNameEntity(id = listId, name = ""))
+    val displayedName = currentList?.name ?: ""
 
     val showDialog = remember { mutableStateOf(false) }
     var menuExpanded by remember { mutableStateOf(false) }
     var showRenameDialog by remember { mutableStateOf(false) }
-    var renameText by remember { mutableStateOf(listName) }
+    var renameText by remember { mutableStateOf("") }
     val coroutineScope = rememberCoroutineScope()
     val scaffoldState = rememberScaffoldState()
 
@@ -87,7 +87,7 @@ fun ItemsScreen(listId: Long, listName: String, navController: NavController) {
             DropdownMenu(expanded = menuExpanded, onDismissRequest = { menuExpanded = false }) {
                 DropdownMenuItem(onClick = {
                     menuExpanded = false
-                    renameText = listName
+                    renameText = displayedName
                     showRenameDialog = true
                 }) {
                     Text("Rename")
