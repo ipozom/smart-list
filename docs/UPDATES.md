@@ -1,3 +1,115 @@
+# SmartList — Updates & Changelog
+Last updated: 2026-01-01
+This document captures the current state of the `smartlist` module: features implemented, architecture and design decisions, developer notes, tests, and recommended next steps.
+
+## Overview
+
+SmartList is a small, local-first Compose app that demonstrates a clean separation between UI and business logic using Android ViewModel + Room + Kotlin Coroutines/Flow. The project intentionally keeps dependencies minimal to make the baseline easy to build and iterate on.
+
+Primary goals implemented
+
+- Minimal, stable Compose baseline (module `:smartlist`).
+- Persistent local storage with Room (lists and list items).
+- Reactive UI using Flows and Compose (StateFlow, SharedFlow, collectAsState).
+- Event-driven UI for one-off actions (snackbars, scrolls) via a `UiEvent` sealed class.
+- Input sanitization and duplicate prevention for list and item names.
+- Undoable operations for add/rename/delete with short-lived in-memory backups.
+
+## How to run
+
+1. Open the project in Android Studio (Arctic Fox or later recommended).
+2. Let Gradle sync, then run the `:smartlist` module on a device or emulator.
+3. (Optional) To allow adb device access on Linux, add recommended udev rules (see the project README `UPDATES.md` / instructions in the root README).
+
+## Key features (user-facing)
+
+- Lists screen (MainScreen)
+  - Shows lists persisted in Room.
+  - Search/filter lists.
+  - Add a new list (trimmed and validated; duplicate names blocked).
+  - Rename a list (with validation, duplicate-check, and undo option).
+  - Delete a list (undoable). When you delete a list from the Items screen, the app shows a deletion snackbar and allows Undo; if not undone the app navigates back.
+
+- Items screen (ItemsScreen)
+  - Shows items for a selected list (observes list name and items via Room Flow).
+  - Search/filter items.
+  - Add item: input trimmed, duplicates blocked; after add the list scrolls to the top so the new item is visible and a snackbar is shown.
+  - Rename item: validation and duplicate prevention; emits undoable snackbar.
+  - Delete item: undoable; re-insert on undo and scroll to top.
+
+## Architecture & design notes
+
+- Data layer
+  - Room entities: `ListNameEntity(id: Long, name: String)` and `ItemEntity(id: Long, listId: Long, content: String)`.
+  - DAOs include search, countByName/countByContent helpers, and convenience methods for undo (getContentById/getNameById, deleteById).
+  - Database uses `fallbackToDestructiveMigration()` during development — replace with explicit Room migrations before shipping to users.
+
+- ViewModels
+  - `ListViewModel` and `ItemsViewModel` expose StateFlow for UI state and a SharedFlow (`events`) for one-off UI events.
+  - ViewModels centralize business logic: sanitize inputs (trim), prevent duplicates, perform DB writes on `viewModelScope`, and emit `UiEvent.ShowSnackbar` and `UiEvent.ScrollToTop` events.
+  - Undo support:
+    - Adds/Deletes/renames create small in-memory backups (maps) to support immediate undo within the app session.
+    - Undo actions are performed by ViewModel `handleUndo` methods.
+    - For re-insert-on-undo we reinsert the entity using the original id so screens observing by id see the restored row immediately.
+
+- UI (Compose)
+  - Screens collect StateFlow using `collectAsState()` and listen for events using `LaunchedEffect` + `.collect { }`.
+  - Snackbars are shown from screens when `UiEvent.ShowSnackbar` arrives. If the event carries `undoInfo`, the screen awaits the snackbar result and calls the ViewModel to perform the undo.
+  - To avoid duplicated snackbars, the UI delegates add/rename/delete logic entirely to ViewModels and only shows snackbars in response to emitted events (no optimistic local snackbars for operations already handled by the ViewModel).
+  - Lazy lists use `rememberLazyListState()` and respond to `UiEvent.ScrollToTop` to animate the list to the top after add/undo operations.
+
+## UiEvent contract
+
+- UiEvent.ShowSnackbar(message: String, actionLabel: String? = null, undoInfo: UndoInfo?) — one-off UI prompts.
+- UiEvent.ScrollToTop — instructs the UI to scroll the list to the first element.
+
+Design intent: keep side effects (DB writes) in ViewModels and treat composables as pure renderers and event handlers that call ViewModel APIs.
+
+## Edge cases & caveats
+
+- Undo is short-lived and stored only in memory. If the app process restarts the undo buffer is lost.
+- Re-inserting rows with the original primary key is used to preserve identity when undoing a delete. This is safe when the original row was removed and no other row reused the id, but if a concurrent insert created the same id before undo, the insert will be ignored (Room insert uses OnConflictStrategy.IGNORE) and undo will fail.
+- Database currently allows destructive migrations. This is convenient for dev but not correct for production. Add explicit Room Migrations before releasing.
+
+## Developer notes & warnings
+
+- You may see a couple of harmless Kotlin warnings (unused local variables like `coroutineScope` in some composables, or the experimental coroutines opt-in note for `flatMapLatest`/`stateIn` usage). These do not affect correctness but can be cleaned up.
+
+## Tests & verification
+
+- Recommended unit tests:
+  - ViewModel tests using fake DAOs verifying:
+    - add/rename/delete behavior and emitted `UiEvent`s,
+    - duplicate name prevention,
+    - undo logic (handleUndo),
+    - scroll events after add/undo.
+
+- Recommended instrumentation/compose tests:
+  - Add a list and verify the list appears, scrolling behavior, and snackbar shown once.
+  - Delete a list from ItemsScreen, verify the snackbar appears and undo restores the name correctly.
+
+## Recent changes (high level)
+
+- Input sanitization and duplicate checks for lists and items.
+- Centralized snackbar/event flow (ViewModels emit events; screens collect and display snackbar/undo actions).
+- Scroll-to-top on add/undo for immediate visual confirmation.
+- Undo support for add/rename/delete (in-memory backups and reinserts with original ids).
+
+## Next steps & backlog
+
+1. Replace destructive migrations with explicit Room `Migration` objects.
+2. Add unit tests for ViewModels and small Compose tests for the UI flows.
+3. (Optional) Replace in-memory undo with soft-delete (recommended for robust undo and to preserve ids reliably across restarts).
+4. Clean up minor warnings and add `@OptIn` annotations where needed for coroutine APIs.
+5. Consider a small Repository layer and DI (Hilt) to make testing and wiring easier.
+
+If you'd like, I can open a PR that adds the tests (1-2 unit tests for add/undo), or implement soft-delete for more robust undo behavior. Which would you prefer next?
+
+----
+
+Notes: this document was generated from the current codebase snapshot (Jan 01, 2026). For low-level details, consult the following source files in the `smartlist` module:
+- `ListViewModel.kt`, `ItemsViewModel.kt`, `MainScreen.kt`, `ItemsScreen.kt`, `UiEvent.kt`, `ListNameDao.kt`, `ItemDao.kt`, `AppDatabase.kt`.
+
 SmartList — Updates & Changelog
 
 This document summarizes recent work done on the project (dec 29, 2025) and how to test/verify the changes.
