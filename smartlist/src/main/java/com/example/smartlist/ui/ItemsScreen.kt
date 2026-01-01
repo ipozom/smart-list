@@ -7,6 +7,14 @@ import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.background
+import androidx.compose.ui.graphics.Color
+import androidx.compose.material.SwipeToDismiss
+import androidx.compose.material.DismissValue
+import androidx.compose.material.DismissDirection
+import androidx.compose.material.rememberDismissState
+import androidx.compose.material.icons.filled.Delete
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -190,49 +198,83 @@ fun ItemsScreen(listId: Long, navController: NavController) {
 
             LazyColumn(state = listState, modifier = Modifier.fillMaxWidth()) {
                 items(items, key = { it.id }) { item ->
-                    Row(
-                        verticalAlignment = androidx.compose.ui.Alignment.CenterVertically,
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .animateItemPlacement()
-                            .pointerInput(currentList) {
-                                detectTapGestures(onDoubleTap = {
-                                    // delegate to ViewModel which will block template lists and emit snackbar/undo
-                                    itemsVm.toggleStrike(item.id)
-                                })
-                            }
-                            .padding(12.dp)
-                    ) {
-                        Checkbox(
-                            checked = item.isStruck,
-                            onCheckedChange = { _ -> itemsVm.toggleStrike(item.id) },
-                            modifier = Modifier.padding(end = 12.dp),
-                            enabled = !(currentList?.isTemplate == true)
-                        )
-
-                        Text(
-                            text = item.content,
-                            modifier = Modifier.weight(1f),
-                            style = if (item.isStruck) MaterialTheme.typography.body1.copy(textDecoration = TextDecoration.LineThrough) else MaterialTheme.typography.body1
-                        )
-
-                        IconButton(onClick = { expandedItemId = item.id }) {
-                            Icon(imageVector = androidx.compose.material.icons.Icons.Default.MoreVert, contentDescription = "Item menu")
-                        }
-
-                        DropdownMenu(expanded = expandedItemId == item.id, onDismissRequest = { expandedItemId = null }) {
-                            DropdownMenuItem(onClick = {
-                                expandedItemId = null
-                                editingItemId = item.id
-                                editingItemText = item.content
-                                showItemRenameDialog = true
-                            }) { Text("Rename") }
-                            DropdownMenuItem(onClick = {
-                                expandedItemId = null
+                    val isCloned = currentList?.isCloned == true
+                    val dismissState = rememberDismissState(confirmStateChange = { newState ->
+                        if (newState == DismissValue.DismissedToEnd || newState == DismissValue.DismissedToStart) {
+                            if (isCloned) {
                                 itemsVm.deleteItem(item.id)
-                            }) { Text("Delete") }
+                                true
+                            } else {
+                                // prevent dismiss for non-cloned lists
+                                false
+                            }
+                        } else true
+                    })
+
+                    SwipeToDismiss(
+                        state = dismissState,
+                        background = {
+                            // simple red background with delete icon aligned to end
+                            Box(modifier = Modifier
+                                .fillMaxWidth()
+                                .padding(12.dp)
+                                .background(Color.Red), contentAlignment = androidx.compose.ui.Alignment.CenterEnd) {
+                                Icon(imageVector = Icons.Default.Delete, contentDescription = "Delete", tint = Color.White, modifier = Modifier.padding(16.dp))
+                            }
+                        },
+                        dismissContent = {
+                            Row(
+                                verticalAlignment = androidx.compose.ui.Alignment.CenterVertically,
+                                modifier = Modifier
+                                    .fillMaxWidth()
+                                    .animateItemPlacement()
+                                    .pointerInput(currentList) {
+                                        detectTapGestures(onDoubleTap = {
+                                            // delegate to ViewModel which will block template lists and emit snackbar/undo
+                                            itemsVm.toggleStrike(item.id)
+                                        })
+                                    }
+                                    .padding(12.dp)
+                            ) {
+                                Checkbox(
+                                    checked = item.isStruck,
+                                    onCheckedChange = { _ -> itemsVm.toggleStrike(item.id) },
+                                    modifier = Modifier.padding(end = 12.dp),
+                                    enabled = !(currentList?.isTemplate == true)
+                                )
+
+                                Text(
+                                    text = item.content,
+                                    modifier = Modifier.weight(1f),
+                                    style = if (item.isStruck) MaterialTheme.typography.body1.copy(textDecoration = TextDecoration.LineThrough) else MaterialTheme.typography.body1
+                                )
+
+                                // fallback inline trash button for cloned lists (accessibility + discoverability)
+                                if (isCloned) {
+                                    IconButton(onClick = { itemsVm.deleteItem(item.id) }) {
+                                        Icon(imageVector = Icons.Default.Delete, contentDescription = "Delete item")
+                                    }
+                                }
+
+                                IconButton(onClick = { expandedItemId = item.id }) {
+                                    Icon(imageVector = androidx.compose.material.icons.Icons.Default.MoreVert, contentDescription = "Item menu")
+                                }
+
+                                DropdownMenu(expanded = expandedItemId == item.id, onDismissRequest = { expandedItemId = null }) {
+                                    DropdownMenuItem(onClick = {
+                                        expandedItemId = null
+                                        editingItemId = item.id
+                                        editingItemText = item.content
+                                        showItemRenameDialog = true
+                                    }) { Text("Rename") }
+                                    DropdownMenuItem(onClick = {
+                                        expandedItemId = null
+                                        itemsVm.deleteItem(item.id)
+                                    }) { Text("Delete") }
+                                }
+                            }
                         }
-                    }
+                    )
                 }
             }
         }

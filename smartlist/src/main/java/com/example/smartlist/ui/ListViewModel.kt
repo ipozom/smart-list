@@ -159,7 +159,7 @@ class ListViewModel(application: Application) : AndroidViewModel(application) {
             val originalName = source.name
             val ts = SimpleDateFormat("yyyyMMdd_HHmmss", Locale.US).format(Date())
             val newName = "$originalName $ts"
-            val newId = dao.insert(ListNameEntity(name = newName, isTemplate = false, masterId = sourceListId))
+            val newId = dao.insert(ListNameEntity(name = newName, isTemplate = false, masterId = sourceListId, isCloned = true))
 
             // copy items
             val itemDao = db.itemDao()

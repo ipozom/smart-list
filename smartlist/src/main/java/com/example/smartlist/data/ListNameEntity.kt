@@ -11,4 +11,6 @@ data class ListNameEntity(
     val isTemplate: Boolean = false,
     // If this list was cloned from a template, masterId points to the template's id
     val masterId: Long? = null
+    // Mark this list as a clone created from a template/master list
+    val isCloned: Boolean = false
 )

@@ -9,7 +9,7 @@ import androidx.sqlite.db.SupportSQLiteDatabase
 import kotlinx.coroutines.runBlocking
 import java.util.concurrent.Executors
 
-@Database(entities = [ListNameEntity::class, ItemEntity::class, MasterItemEntity::class], version = 5, exportSchema = false)
+@Database(entities = [ListNameEntity::class, ItemEntity::class, MasterItemEntity::class], version = 6, exportSchema = false)
 abstract class AppDatabase : RoomDatabase() {
     abstract fun listNameDao(): ListNameDao
     abstract fun itemDao(): ItemDao
@@ -33,6 +33,13 @@ abstract class AppDatabase : RoomDatabase() {
             }
         }
 
+        // Migration from 5 -> 6: add isCloned column to list_names
+        val MIGRATION_5_6 = object : Migration(5, 6) {
+            override fun migrate(database: SupportSQLiteDatabase) {
+                database.execSQL("ALTER TABLE list_names ADD COLUMN isCloned INTEGER NOT NULL DEFAULT 0")
+            }
+        }
+
         fun getInstance(context: Context): AppDatabase {
             return INSTANCE ?: synchronized(this) {
                 val inst = Room.databaseBuilder(
@@ -41,7 +48,7 @@ abstract class AppDatabase : RoomDatabase() {
                     "smartlist.db"
                 )
                     // Add explicit migrations for 3->4 (adds isStruck) and 4->5 (master_items).
-                    .addMigrations(MIGRATION_3_4, MIGRATION_4_5)
+                    .addMigrations(MIGRATION_3_4, MIGRATION_4_5, MIGRATION_5_6)
                     .fallbackToDestructiveMigration()
                     .build()
                 INSTANCE = inst
