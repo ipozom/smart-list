@@ -6,11 +6,14 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.room.migration.Migration
 import androidx.sqlite.db.SupportSQLiteDatabase
+import kotlinx.coroutines.runBlocking
+import java.util.concurrent.Executors
 
-@Database(entities = [ListNameEntity::class, ItemEntity::class], version = 4, exportSchema = false)
+@Database(entities = [ListNameEntity::class, ItemEntity::class, MasterItemEntity::class], version = 5, exportSchema = false)
 abstract class AppDatabase : RoomDatabase() {
     abstract fun listNameDao(): ListNameDao
     abstract fun itemDao(): ItemDao
+    abstract fun masterItemDao(): MasterItemDao
 
     companion object {
         @Volatile
@@ -23,6 +26,13 @@ abstract class AppDatabase : RoomDatabase() {
             }
         }
 
+        // Migration from 4 -> 5: create master_items table
+        val MIGRATION_4_5 = object : Migration(4, 5) {
+            override fun migrate(database: SupportSQLiteDatabase) {
+                database.execSQL("CREATE TABLE IF NOT EXISTS `master_items` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `content` TEXT NOT NULL, UNIQUE(`content`))")
+            }
+        }
+
         fun getInstance(context: Context): AppDatabase {
             return INSTANCE ?: synchronized(this) {
                 val inst = Room.databaseBuilder(
@@ -30,11 +40,41 @@ abstract class AppDatabase : RoomDatabase() {
                     AppDatabase::class.java,
                     "smartlist.db"
                 )
-                    // Add explicit migration for 3->4 (adds isStruck). Keep destructive fallback for other dev migrations.
-                    .addMigrations(MIGRATION_3_4)
+                    // Add explicit migrations for 3->4 (adds isStruck) and 4->5 (master_items).
+                    .addMigrations(MIGRATION_3_4, MIGRATION_4_5)
                     .fallbackToDestructiveMigration()
                     .build()
                 INSTANCE = inst
+
+                // Seed master_items on first run in a background thread
+                Executors.newSingleThreadExecutor().execute {
+                    try {
+                        runBlocking {
+                            val dao = inst.masterItemDao()
+                            val count = dao.countAll()
+                            if (count == 0) {
+                                val seeds = listOf(
+                                    "cacao en polvo",
+                                    "harina de soya",
+                                    "carne",
+                                    "pollo",
+                                    "quinoa",
+                                    "chía",
+                                    "cebollas",
+                                    "lentejas",
+                                    "salsa de soya",
+                                    "harina pan"
+                                )
+                                seeds.forEach { s ->
+                                    dao.insert(MasterItemEntity(content = s))
+                                }
+                            }
+                        }
+                    } catch (_: Throwable) {
+                        // ignore seeding errors in dev
+                    }
+                }
+
                 inst
             }
         }

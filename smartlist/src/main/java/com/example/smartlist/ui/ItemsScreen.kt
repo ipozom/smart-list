@@ -241,11 +241,15 @@ fun ItemsScreen(listId: Long, navController: NavController) {
         }
 
         if (showDialog.value) {
-            AddNameDialog(onAdd = {
+            AddItemDialog(onAdd = {
                 // delegate add and snackbar to ViewModel events to avoid duplicate snackbars
                 itemsVm.add(it)
+                itemsVm.setAddQuery("")
                 showDialog.value = false
-            }, onCancel = { showDialog.value = false }, labelText = "Item name")
+            }, onCancel = {
+                itemsVm.setAddQuery("")
+                showDialog.value = false
+            }, itemsVm = itemsVm)
         }
 
         if (showRenameDialog) {

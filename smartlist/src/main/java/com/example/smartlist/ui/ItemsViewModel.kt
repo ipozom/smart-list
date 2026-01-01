@@ -21,9 +21,23 @@ import kotlinx.coroutines.flow.first
 class ItemsViewModel(application: Application, private val listId: Long) : AndroidViewModel(application) {
     private val dao = AppDatabase.getInstance(application).itemDao()
     private val listDao = AppDatabase.getInstance(application).listNameDao()
+    private val masterDao = AppDatabase.getInstance(application).masterItemDao()
 
     private val _query = MutableStateFlow("")
     val query: StateFlow<String> = _query
+
+    // for add dialog suggestions
+    private val _addQuery = MutableStateFlow("")
+    val addQuery: StateFlow<String> = _addQuery
+
+    val suggestions = _addQuery
+        .flatMapLatest { q ->
+            if (q.isBlank()) kotlinx.coroutines.flow.flowOf(emptyList())
+            else masterDao.search("%$q%")
+        }
+        .stateIn(viewModelScope, SharingStarted.Eagerly, emptyList())
+
+    fun setAddQuery(q: String) { _addQuery.value = q }
 
     val items = _query
         .flatMapLatest { q ->
@@ -70,6 +84,8 @@ class ItemsViewModel(application: Application, private val listId: Long) : Andro
             // notify UI: show snackbar and scroll to top to reveal the new item
             _events.tryEmit(UiEvent.ShowSnackbar("Item added", actionLabel = "Undo", undoInfo = UiEvent.UndoInfo("item_add", newId)))
             _events.tryEmit(UiEvent.ScrollToTop)
+            // add to master items so future adds can suggest it
+            masterDao.insert(com.example.smartlist.data.MasterItemEntity(content = trimmed))
         }
     }
 
