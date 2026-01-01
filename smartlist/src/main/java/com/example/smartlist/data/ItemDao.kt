@@ -13,4 +13,7 @@ interface ItemDao {
 
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     suspend fun insert(item: ItemEntity)
+
+    @Query("UPDATE items SET content = :newContent WHERE id = :id")
+    suspend fun updateContent(id: Long, newContent: String)
 }

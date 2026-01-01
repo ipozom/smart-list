@@ -76,6 +76,11 @@ fun ItemsScreen(listId: Long, navController: NavController) {
     var menuExpanded by remember { mutableStateOf(false) }
     var showRenameDialog by remember { mutableStateOf(false) }
     var renameText by remember { mutableStateOf("") }
+    // per-item menu / rename state
+    var expandedItemId by remember { mutableStateOf<Long?>(null) }
+    var showItemRenameDialog by remember { mutableStateOf(false) }
+    var editingItemId by remember { mutableStateOf<Long?>(null) }
+    var editingItemText by remember { mutableStateOf("") }
     val coroutineScope = rememberCoroutineScope()
     val scaffoldState = rememberScaffoldState()
 
@@ -111,7 +116,20 @@ fun ItemsScreen(listId: Long, navController: NavController) {
                         .fillMaxWidth()
                         .clickable { /* future item actions */ }
                         .padding(16.dp)) {
-                        Text(text = item.content)
+                        Text(text = item.content, modifier = Modifier.weight(1f))
+
+                        IconButton(onClick = { expandedItemId = item.id }) {
+                            Icon(imageVector = androidx.compose.material.icons.Icons.Default.MoreVert, contentDescription = "Item menu", modifier = Modifier.padding(start = 8.dp))
+                        }
+
+                        DropdownMenu(expanded = expandedItemId == item.id, onDismissRequest = { expandedItemId = null }) {
+                            DropdownMenuItem(onClick = {
+                                expandedItemId = null
+                                editingItemId = item.id
+                                editingItemText = item.content
+                                showItemRenameDialog = true
+                            }) { Text("Rename") }
+                        }
                     }
                 }
             }
@@ -152,6 +170,34 @@ fun ItemsScreen(listId: Long, navController: NavController) {
                 }) { Text("Save") }
             }, dismissButton = {
                 TextButton(onClick = { showRenameDialog = false }) { Text("Cancel") }
+            })
+        }
+
+        if (showItemRenameDialog && editingItemId != null) {
+            AlertDialog(onDismissRequest = { showItemRenameDialog = false }, title = { Text("Rename item") }, text = {
+                TextField(value = editingItemText, onValueChange = { editingItemText = it }, modifier = Modifier.fillMaxWidth())
+            }, confirmButton = {
+                TextButton(onClick = {
+                    val newContent = editingItemText.trim()
+                    if (newContent.isEmpty()) {
+                        coroutineScope.launch { scaffoldState.snackbarHostState.showSnackbar("Item cannot be empty") }
+                        return@TextButton
+                    }
+
+                    coroutineScope.launch {
+                        try {
+                            withContext(Dispatchers.IO) {
+                                AppDatabase.getInstance(context).itemDao().updateContent(editingItemId!!, newContent)
+                            }
+                            showItemRenameDialog = false
+                            scaffoldState.snackbarHostState.showSnackbar("Item renamed")
+                        } catch (t: Throwable) {
+                            scaffoldState.snackbarHostState.showSnackbar("Rename failed: ${t.message}")
+                        }
+                    }
+                }) { Text("Save") }
+            }, dismissButton = {
+                TextButton(onClick = { showItemRenameDialog = false }) { Text("Cancel") }
             })
         }
     }
