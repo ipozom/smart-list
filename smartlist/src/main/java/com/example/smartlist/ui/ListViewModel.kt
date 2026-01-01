@@ -16,6 +16,11 @@ import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.asSharedFlow
 import kotlinx.coroutines.flow.SharedFlow
 import com.example.smartlist.ui.UiEvent
+import kotlinx.coroutines.flow.first
+import com.example.smartlist.data.ItemEntity
+import java.text.SimpleDateFormat
+import java.util.Date
+import java.util.Locale
 
 class ListViewModel(application: Application) : AndroidViewModel(application) {
     private val db = AppDatabase.getInstance(application)
@@ -65,7 +70,12 @@ class ListViewModel(application: Application) : AndroidViewModel(application) {
 
     fun deleteList(id: Long) {
         viewModelScope.launch {
-            val name = dao.getNameById(id) ?: return@launch
+            val entity = dao.getById(id).first() ?: return@launch
+            if (entity.isTemplate) {
+                _events.tryEmit(UiEvent.ShowSnackbar("Cannot delete a template/master list"))
+                return@launch
+            }
+            val name = entity.name
             deleteBackup[id] = name
             dao.deleteById(id)
             _events.tryEmit(UiEvent.ShowSnackbar("List deleted", actionLabel = "Undo", undoInfo = UiEvent.UndoInfo("list_delete", id)))
@@ -81,6 +91,11 @@ class ListViewModel(application: Application) : AndroidViewModel(application) {
 
         viewModelScope.launch {
             try {
+                val entity = dao.getById(id).first() ?: return@launch
+                if (entity.isTemplate) {
+                    _events.tryEmit(UiEvent.ShowSnackbar("Cannot rename a template/master list"))
+                    return@launch
+                }
                 val existing = dao.countByNameExceptId(trimmed, id)
                 if (existing > 0) {
                     _events.tryEmit(UiEvent.ShowSnackbar("List already exists"))
@@ -122,6 +137,35 @@ class ListViewModel(application: Application) : AndroidViewModel(application) {
                         }
                 }
             }
+        }
+    }
+
+    // Mark/unmark a list as template/master. Template lists are protected from rename/delete.
+    fun setTemplate(id: Long, isTemplate: Boolean) {
+        viewModelScope.launch {
+            dao.setTemplateFlag(id, isTemplate)
+            _events.tryEmit(UiEvent.ShowSnackbar(if (isTemplate) "List marked as template" else "List unmarked as template"))
+        }
+    }
+
+    // Clone a template (or any) list: create a new list with timestamp appended and copy all items.
+    fun cloneList(sourceListId: Long) {
+        viewModelScope.launch {
+            val source = dao.getById(sourceListId).first() ?: return@launch
+            val originalName = source.name
+            val ts = SimpleDateFormat("yyyyMMdd_HHmmss", Locale.US).format(Date())
+            val newName = "$originalName $ts"
+            val newId = dao.insert(ListNameEntity(name = newName, isTemplate = false, masterId = sourceListId))
+
+            // copy items
+            val itemDao = db.itemDao()
+            val items = itemDao.getForList(sourceListId).first()
+            items.forEach { item ->
+                itemDao.insert(ItemEntity(listId = newId, content = item.content))
+            }
+
+            _events.tryEmit(UiEvent.ShowSnackbar("Cloned list \"$newName\""))
+            _events.tryEmit(UiEvent.ScrollToTop)
         }
     }
 

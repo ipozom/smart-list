@@ -135,25 +135,42 @@ fun ItemsScreen(listId: Long, navController: NavController) {
     }
 
     Scaffold(scaffoldState = scaffoldState, topBar = {
-        TopAppBar(title = { Text(displayedName) }, actions = {
+        TopAppBar(title = {
+            // show list name and template toggle
+            Row(verticalAlignment = androidx.compose.ui.Alignment.CenterVertically) {
+                Text(displayedName)
+            }
+        }, actions = {
+            // template toggle shown in actions area
+            val isTemplate = currentList?.isTemplate == true
+            androidx.compose.material.Switch(checked = isTemplate, onCheckedChange = { checked ->
+                // toggle template flag via ViewModel
+                listVm.setTemplate(listId, checked)
+            })
             IconButton(onClick = { menuExpanded = true }) {
                 Icon(imageVector = Icons.Default.MoreVert, contentDescription = "More")
             }
             DropdownMenu(expanded = menuExpanded, onDismissRequest = { menuExpanded = false }) {
+                // Rename is disabled for template lists
                 DropdownMenuItem(onClick = {
                     menuExpanded = false
                     renameText = displayedName
                     showRenameDialog = true
-                }) {
+                }, enabled = !(currentList?.isTemplate == true)) {
                     Text("Rename")
                 }
                 DropdownMenuItem(onClick = {
                     menuExpanded = false
                     // delete the list (ViewModel will emit snackbar with undo)
                     listVm.deleteList(listId)
-                }) {
+                }, enabled = !(currentList?.isTemplate == true)) {
                     Text("Delete")
                 }
+                // Clone (available for templates or normal lists) — creates a copy with timestamp and items
+                DropdownMenuItem(onClick = {
+                    menuExpanded = false
+                    listVm.cloneList(listId)
+                }) { Text("Clone list") }
             }
         })
     }, floatingActionButton = {

@@ -23,6 +23,12 @@ interface ListNameDao {
     @Query("DELETE FROM list_names WHERE id = :id")
     suspend fun deleteById(id: Long)
 
+    @Query("UPDATE list_names SET isTemplate = :isTemplate WHERE id = :id")
+    suspend fun setTemplateFlag(id: Long, isTemplate: Boolean)
+
+    @Query("UPDATE list_names SET masterId = :masterId WHERE id = :id")
+    suspend fun setMasterId(id: Long, masterId: Long?)
+
     @Query("SELECT COUNT(*) FROM list_names WHERE name = :name")
     suspend fun countByName(name: String): Int
 
