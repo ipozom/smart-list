@@ -7,5 +7,7 @@ import androidx.room.PrimaryKey
 data class ItemEntity(
     @PrimaryKey(autoGenerate = true) val id: Long = 0,
     val listId: Long,
-    val content: String
+    val content: String,
+    // whether the item is struck-through (completed)
+    val isStruck: Boolean = false
 )

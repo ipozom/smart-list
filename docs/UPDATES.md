@@ -34,6 +34,7 @@ Primary goals implemented
   - Shows items for a selected list (observes list name and items via Room Flow).
   - Search/filter items.
   - Add item: input trimmed, duplicates blocked; after add the list scrolls to the top so the new item is visible and a snackbar is shown.
+  - Double-tap to toggle strikethrough: items can be double-tapped to mark/unmark them as struck-through (a lightweight "completed" state). This action is only blocked for template lists; cloned lists allow strikethrough. Struck items are persisted and shown at the end of the item list.
   - Rename item: validation and duplicate prevention; emits undoable snackbar.
   - Delete item: undoable; re-insert on undo and scroll to top.
 
@@ -41,6 +42,7 @@ Primary goals implemented
 
 - Data layer
   - Room entities: `ListNameEntity(id: Long, name: String)` and `ItemEntity(id: Long, listId: Long, content: String)`.
+  - Note: `ItemEntity` now includes an `isStruck: Boolean` field (persisted). The project includes an explicit Room migration (3 → 4) that adds the `isStruck` column with a default of 0; the DAO ordering was updated so struck items are returned after non-struck items.
   - DAOs include search, countByName/countByContent helpers, and convenience methods for undo (getContentById/getNameById, deleteById).
   - Database uses `fallbackToDestructiveMigration()` during development — replace with explicit Room migrations before shipping to users.
 
@@ -94,6 +96,8 @@ Design intent: keep side effects (DB writes) in ViewModels and treat composables
 - Centralized snackbar/event flow (ViewModels emit events; screens collect and display snackbar/undo actions).
 - Scroll-to-top on add/undo for immediate visual confirmation.
 - Undo support for add/rename/delete (in-memory backups and reinserts with original ids).
+
+- Added double-tap strikethrough for items (toggle isStruck). Cloned lists allow strikethrough; template lists block it. Added Room migration 3→4 to add the `isStruck` column and updated `ItemDao.getForList` ordering so struck items appear at the end.
 
 ## Next steps & backlog
 

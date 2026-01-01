@@ -1,6 +1,8 @@
 package com.example.smartlist.ui
 
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.gestures.detectTapGestures
+import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
@@ -21,6 +23,7 @@ import androidx.compose.material.TextField
 import androidx.compose.material.Scaffold
 import androidx.compose.material.Surface
 import androidx.compose.material.Text
+import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.material.TopAppBar
 import androidx.compose.material.FloatingActionButton
 import androidx.compose.material.icons.Icons
@@ -188,9 +191,20 @@ fun ItemsScreen(listId: Long, navController: NavController) {
                 items(items, key = { it.id }) { item ->
                     Row(modifier = Modifier
                         .fillMaxWidth()
-                        .clickable { /* future item actions */ }
+                        .pointerInput(currentList) {
+                            detectTapGestures(onDoubleTap = {
+                                // only allow toggling for lists that are not templates and not cloned (masterId == null)
+                                if (currentList?.isTemplate == true) {
+                                        coroutineScope.launch {
+                                            scaffoldState.snackbarHostState.showSnackbar("Cannot strike items in template lists")
+                                        }
+                                    } else {
+                                        itemsVm.toggleStrike(item.id)
+                                    }
+                            })
+                        }
                         .padding(16.dp)) {
-                        Text(text = item.content, modifier = Modifier.weight(1f))
+                        Text(text = item.content, modifier = Modifier.weight(1f), style = if (item.isStruck) MaterialTheme.typography.body1.copy(textDecoration = TextDecoration.LineThrough) else MaterialTheme.typography.body1)
 
                         IconButton(onClick = { expandedItemId = item.id }) {
                             Icon(imageVector = androidx.compose.material.icons.Icons.Default.MoreVert, contentDescription = "Item menu", modifier = Modifier.padding(start = 8.dp))

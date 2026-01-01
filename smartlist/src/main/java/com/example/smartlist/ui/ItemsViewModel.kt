@@ -16,9 +16,11 @@ import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.asSharedFlow
 import kotlinx.coroutines.flow.SharedFlow
 import com.example.smartlist.ui.UiEvent
+import kotlinx.coroutines.flow.first
 
 class ItemsViewModel(application: Application, private val listId: Long) : AndroidViewModel(application) {
     private val dao = AppDatabase.getInstance(application).itemDao()
+    private val listDao = AppDatabase.getInstance(application).listNameDao()
 
     private val _query = MutableStateFlow("")
     val query: StateFlow<String> = _query
@@ -121,6 +123,28 @@ class ItemsViewModel(application: Application, private val listId: Long) : Andro
                             _events.tryEmit(UiEvent.ScrollToTop)
                         }
                 }
+            }
+        }
+    }
+
+    /** Toggle strike state for an item. Only allowed for lists that are neither templates nor cloned (masterId == null). */
+    fun toggleStrike(itemId: Long) {
+        viewModelScope.launch {
+            try {
+                val list = listDao.getById(listId).first()
+                // disallow only for template lists. Allow toggling on cloned lists.
+                if (list?.isTemplate == true) {
+                    _events.tryEmit(UiEvent.ShowSnackbar("Cannot toggle strike on template or cloned lists"))
+                    return@launch
+                }
+
+                val item = dao.getById(itemId) ?: return@launch
+                val newState = !item.isStruck
+                dao.setIsStruck(itemId, newState)
+                // optionally show a small snackbar indicating change
+                _events.tryEmit(UiEvent.ShowSnackbar(if (newState) "Item marked" else "Item unmarked"))
+            } catch (t: Throwable) {
+                _events.tryEmit(UiEvent.ShowSnackbar("Failed to toggle strike: ${t.message}"))
             }
         }
     }

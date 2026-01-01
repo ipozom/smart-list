@@ -9,6 +9,8 @@ Key features implemented in this scaffold:
 - Hilt dependency injection
 - WorkManager `SyncWorker` stub for background sync (implement remote logic to integrate Firestore/Supabase)
 
+- Double-tap item strikethrough: items can be double-tapped to toggle a struck-through (completed) state. This is available only on non-template lists (cloned lists allow strikethrough). Struck items are persisted in Room and are shown at the end of the list (newest-first within each group).
+
 What this scaffold is intentionally NOT doing yet:
 - No Firebase or Supabase remote integration included by default. Remote sync is a pluggable module.
 - Not all UI screens are implemented; `ListsScreen` is a placeholder demonstrating Compose layout.
