@@ -12,6 +12,10 @@ import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.flow.flatMapLatest
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.flow.MutableSharedFlow
+import kotlinx.coroutines.flow.asSharedFlow
+import kotlinx.coroutines.flow.SharedFlow
+import com.example.smartlist.ui.UiEvent
 
 class ItemsViewModel(application: Application, private val listId: Long) : AndroidViewModel(application) {
     private val dao = AppDatabase.getInstance(application).itemDao()
@@ -34,6 +38,25 @@ class ItemsViewModel(application: Application, private val listId: Long) : Andro
         if (content.isBlank()) return
         viewModelScope.launch {
             dao.insert(ItemEntity(listId = listId, content = content))
+            _events.tryEmit(UiEvent.ShowSnackbar("Item added"))
         }
     }
+
+    fun renameItem(id: Long, newContent: String) {
+        if (newContent.isBlank()) {
+            _events.tryEmit(UiEvent.ShowSnackbar("Item cannot be empty"))
+            return
+        }
+        viewModelScope.launch {
+            try {
+                dao.updateContent(id, newContent)
+                _events.tryEmit(UiEvent.ShowSnackbar("Item renamed"))
+            } catch (t: Throwable) {
+                _events.tryEmit(UiEvent.ShowSnackbar("Rename failed: ${t.message}"))
+            }
+        }
+    }
+
+    private val _events = MutableSharedFlow<UiEvent>(extraBufferCapacity = 8)
+    val events: SharedFlow<UiEvent> = _events.asSharedFlow()
 }

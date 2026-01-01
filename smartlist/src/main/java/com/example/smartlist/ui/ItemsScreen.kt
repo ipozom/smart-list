@@ -35,6 +35,8 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import kotlinx.coroutines.Dispatchers
 import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.LaunchedEffect
+import kotlinx.coroutines.launch
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.lifecycle.ViewModelProvider
@@ -63,6 +65,7 @@ fun ItemsScreen(listId: Long, navController: NavController) {
     }
 
     val itemsVm: ItemsViewModel = viewModel(factory = ItemsViewModelFactory(context, listId))
+    val listVm: ListViewModel = viewModel()
 
     val items by itemsVm.items.collectAsState()
     val query by itemsVm.query.collectAsState()
@@ -83,6 +86,24 @@ fun ItemsScreen(listId: Long, navController: NavController) {
     var editingItemText by remember { mutableStateOf("") }
     val coroutineScope = rememberCoroutineScope()
     val scaffoldState = rememberScaffoldState()
+
+    // Collect events from ItemsViewModel and ListViewModel
+    LaunchedEffect(itemsVm, listVm) {
+        launch {
+            itemsVm.events.collect { ev ->
+                when (ev) {
+                    is UiEvent.ShowSnackbar -> scaffoldState.snackbarHostState.showSnackbar(ev.message, ev.actionLabel ?: "")
+                }
+            }
+        }
+        launch {
+            listVm.events.collect { ev ->
+                when (ev) {
+                    is UiEvent.ShowSnackbar -> scaffoldState.snackbarHostState.showSnackbar(ev.message, ev.actionLabel ?: "")
+                }
+            }
+        }
+    }
 
     Scaffold(scaffoldState = scaffoldState, topBar = {
         TopAppBar(title = { Text(displayedName) }, actions = {
@@ -151,25 +172,8 @@ fun ItemsScreen(listId: Long, navController: NavController) {
             }, confirmButton = {
                 TextButton(onClick = {
                     val newName = renameText.trim()
-                    if (newName.isEmpty()) {
-                        coroutineScope.launch {
-                            scaffoldState.snackbarHostState.showSnackbar("Name cannot be empty")
-                        }
-                        return@TextButton
-                    }
-
-                    // perform update and show confirmation snackbar
-                    coroutineScope.launch {
-                        try {
-                            withContext(Dispatchers.IO) {
-                                AppDatabase.getInstance(context).listNameDao().updateName(listId, newName)
-                            }
-                            showRenameDialog = false
-                            scaffoldState.snackbarHostState.showSnackbar("List renamed")
-                        } catch (t: Throwable) {
-                            scaffoldState.snackbarHostState.showSnackbar("Rename failed: ${t.message}")
-                        }
-                    }
+                    listVm.renameList(listId, newName)
+                    showRenameDialog = false
                 }) { Text("Save") }
             }, dismissButton = {
                 TextButton(onClick = { showRenameDialog = false }) { Text("Cancel") }

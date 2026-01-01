@@ -26,6 +26,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.material.rememberScaffoldState
 import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.runtime.LaunchedEffect
 import kotlinx.coroutines.launch
 import androidx.compose.ui.window.Dialog
 import androidx.compose.ui.window.DialogProperties
@@ -91,15 +92,21 @@ fun MainScreen(navController: NavController) {
                 }
             }
 
-            if (showDialog.value) {
-                AddNameDialog(onAdd = {
-                    viewModel.add(it)
-                    showDialog.value = false
-                    coroutineScope.launch {
-                        scaffoldState.snackbarHostState.showSnackbar("List added")
+                // collect UI events from ViewModel and show snackbars
+                LaunchedEffect(viewModel) {
+                    viewModel.events.collect { ev ->
+                        when (ev) {
+                            is UiEvent.ShowSnackbar -> scaffoldState.snackbarHostState.showSnackbar(ev.message, ev.actionLabel ?: "")
+                        }
                     }
-                }, onCancel = { showDialog.value = false })
-            }
+                }
+
+                if (showDialog.value) {
+                    AddNameDialog(onAdd = {
+                        viewModel.add(it)
+                        showDialog.value = false
+                    }, onCancel = { showDialog.value = false })
+                }
         }
     }
 }
