@@ -39,6 +39,8 @@ class ItemsViewModel(application: Application, private val listId: Long) : Andro
     // backups for undo operations
     private val renameBackup = mutableMapOf<Long, String>()
     private val deleteBackup = mutableMapOf<Long, String>()
+    // backup previous struck state for undo of strike toggles
+    private val strikeBackup = mutableMapOf<Long, Boolean>()
 
     fun deleteItem(id: Long) {
         viewModelScope.launch {
@@ -123,6 +125,13 @@ class ItemsViewModel(application: Application, private val listId: Long) : Andro
                             _events.tryEmit(UiEvent.ScrollToTop)
                         }
                 }
+                "item_strike" -> {
+                    val old = strikeBackup.remove(undoInfo.id)
+                    if (old != null) {
+                        dao.setIsStruck(undoInfo.id, old)
+                        _events.tryEmit(UiEvent.ShowSnackbar("Strike undone"))
+                    }
+                }
             }
         }
     }
@@ -139,10 +148,13 @@ class ItemsViewModel(application: Application, private val listId: Long) : Andro
                 }
 
                 val item = dao.getById(itemId) ?: return@launch
-                val newState = !item.isStruck
+                val oldState = item.isStruck
+                val newState = !oldState
+                // store previous state so undo can restore it
+                strikeBackup[itemId] = oldState
                 dao.setIsStruck(itemId, newState)
-                // optionally show a small snackbar indicating change
-                _events.tryEmit(UiEvent.ShowSnackbar(if (newState) "Item marked" else "Item unmarked"))
+                // show snackbar with Undo action
+                _events.tryEmit(UiEvent.ShowSnackbar(if (newState) "Item marked" else "Item unmarked", actionLabel = "Undo", undoInfo = UiEvent.UndoInfo("item_strike", itemId)))
             } catch (t: Throwable) {
                 _events.tryEmit(UiEvent.ShowSnackbar("Failed to toggle strike: ${t.message}"))
             }

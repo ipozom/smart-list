@@ -2,6 +2,8 @@ package com.example.smartlist.ui
 
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.gestures.detectTapGestures
+import androidx.compose.foundation.ExperimentalFoundationApi
+// animateItemPlacement is an experimental API provided by the foundation lazy package; resolved by the compiler if available
 import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -23,6 +25,7 @@ import androidx.compose.material.TextField
 import androidx.compose.material.Scaffold
 import androidx.compose.material.Surface
 import androidx.compose.material.Text
+import androidx.compose.material.Checkbox
 import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.material.TopAppBar
 import androidx.compose.material.FloatingActionButton
@@ -53,6 +56,7 @@ import androidx.compose.material.icons.filled.MoreVert
 import androidx.compose.runtime.setValue
 import com.example.smartlist.data.AppDatabase
 
+@OptIn(ExperimentalFoundationApi::class)
 @Composable
 fun ItemsScreen(listId: Long, navController: NavController) {
     val context = LocalContext.current.applicationContext as android.app.Application
@@ -189,25 +193,34 @@ fun ItemsScreen(listId: Long, navController: NavController) {
 
             LazyColumn(state = listState, modifier = Modifier.fillMaxWidth()) {
                 items(items, key = { it.id }) { item ->
-                    Row(modifier = Modifier
-                        .fillMaxWidth()
-                        .pointerInput(currentList) {
-                            detectTapGestures(onDoubleTap = {
-                                // only allow toggling for lists that are not templates and not cloned (masterId == null)
-                                if (currentList?.isTemplate == true) {
-                                        coroutineScope.launch {
-                                            scaffoldState.snackbarHostState.showSnackbar("Cannot strike items in template lists")
-                                        }
-                                    } else {
-                                        itemsVm.toggleStrike(item.id)
-                                    }
-                            })
-                        }
-                        .padding(16.dp)) {
-                        Text(text = item.content, modifier = Modifier.weight(1f), style = if (item.isStruck) MaterialTheme.typography.body1.copy(textDecoration = TextDecoration.LineThrough) else MaterialTheme.typography.body1)
+                    Row(
+                        verticalAlignment = androidx.compose.ui.Alignment.CenterVertically,
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .animateItemPlacement()
+                            .pointerInput(currentList) {
+                                detectTapGestures(onDoubleTap = {
+                                    // delegate to ViewModel which will block template lists and emit snackbar/undo
+                                    itemsVm.toggleStrike(item.id)
+                                })
+                            }
+                            .padding(12.dp)
+                    ) {
+                        Checkbox(
+                            checked = item.isStruck,
+                            onCheckedChange = { _ -> itemsVm.toggleStrike(item.id) },
+                            modifier = Modifier.padding(end = 12.dp),
+                            enabled = !(currentList?.isTemplate == true)
+                        )
+
+                        Text(
+                            text = item.content,
+                            modifier = Modifier.weight(1f),
+                            style = if (item.isStruck) MaterialTheme.typography.body1.copy(textDecoration = TextDecoration.LineThrough) else MaterialTheme.typography.body1
+                        )
 
                         IconButton(onClick = { expandedItemId = item.id }) {
-                            Icon(imageVector = androidx.compose.material.icons.Icons.Default.MoreVert, contentDescription = "Item menu", modifier = Modifier.padding(start = 8.dp))
+                            Icon(imageVector = androidx.compose.material.icons.Icons.Default.MoreVert, contentDescription = "Item menu")
                         }
 
                         DropdownMenu(expanded = expandedItemId == item.id, onDismissRequest = { expandedItemId = null }) {
