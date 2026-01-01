@@ -198,8 +198,6 @@ fun ItemsScreen(listId: Long, navController: NavController) {
 
             LazyColumn(state = listState, modifier = Modifier.fillMaxWidth()) {
                 items(items, key = { it.id }) { item ->
-                    val isCloned = currentList?.isCloned == true
-
                     val interactionSource = remember { MutableInteractionSource() }
 
                     Row(
@@ -231,11 +229,9 @@ fun ItemsScreen(listId: Long, navController: NavController) {
                             style = if (item.isStruck) MaterialTheme.typography.body1.copy(textDecoration = TextDecoration.LineThrough) else MaterialTheme.typography.body1
                         )
 
-                        // inline trash button for cloned lists (accessibility + discoverability)
-                        if (isCloned) {
-                            IconButton(onClick = { itemsVm.deleteItem(item.id) }) {
-                                Icon(imageVector = Icons.Default.Delete, contentDescription = "Delete item")
-                            }
+                        // inline trash button (allowed for templates and normal lists; deleting the list itself remains protected)
+                        IconButton(onClick = { itemsVm.deleteItem(item.id) }) {
+                            Icon(imageVector = Icons.Default.Delete, contentDescription = "Delete item")
                         }
 
                         // rename icon placed next to trash
