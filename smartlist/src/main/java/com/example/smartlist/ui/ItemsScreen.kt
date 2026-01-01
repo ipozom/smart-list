@@ -39,8 +39,6 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.foundation.lazy.rememberLazyListState
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
-import kotlinx.coroutines.Dispatchers
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.LaunchedEffect
 import kotlinx.coroutines.launch
@@ -92,7 +90,6 @@ fun ItemsScreen(listId: Long, navController: NavController) {
     var showItemRenameDialog by remember { mutableStateOf(false) }
     var editingItemId by remember { mutableStateOf<Long?>(null) }
     var editingItemText by remember { mutableStateOf("") }
-    val coroutineScope = rememberCoroutineScope()
     val scaffoldState = rememberScaffoldState()
 
     // Lazy list state so we can programmatically scroll to the top when new items arrive
