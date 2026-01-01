@@ -166,11 +166,11 @@ fun ItemsScreen(listId: Long, navController: NavController) {
                 }, enabled = !(currentList?.isTemplate == true)) {
                     Text("Delete")
                 }
-                // Clone (available for templates or normal lists) — creates a copy with timestamp and items
+                // Clone (only available for template lists)
                 DropdownMenuItem(onClick = {
                     menuExpanded = false
                     listVm.cloneList(listId)
-                }) { Text("Clone list") }
+                }, enabled = (currentList?.isTemplate == true)) { Text("Clone list") }
             }
         })
     }, floatingActionButton = {

@@ -152,6 +152,10 @@ class ListViewModel(application: Application) : AndroidViewModel(application) {
     fun cloneList(sourceListId: Long) {
         viewModelScope.launch {
             val source = dao.getById(sourceListId).first() ?: return@launch
+            if (!source.isTemplate) {
+                _events.tryEmit(UiEvent.ShowSnackbar("Only template/master lists can be cloned"))
+                return@launch
+            }
             val originalName = source.name
             val ts = SimpleDateFormat("yyyyMMdd_HHmmss", Locale.US).format(Date())
             val newName = "$originalName $ts"
