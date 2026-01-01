@@ -1,10 +1,10 @@
 package com.example.smartlist.ui
 
 import androidx.compose.foundation.clickable
-import androidx.compose.foundation.gestures.detectTapGestures
 import androidx.compose.foundation.ExperimentalFoundationApi
+import androidx.compose.foundation.combinedClickable
+import androidx.compose.foundation.interaction.MutableInteractionSource
 // animateItemPlacement is an experimental API provided by the foundation lazy package; resolved by the compiler if available
-import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Box
@@ -211,6 +211,8 @@ fun ItemsScreen(listId: Long, navController: NavController) {
                         } else true
                     })
 
+                    val interactionSource = remember { MutableInteractionSource() }
+
                     SwipeToDismiss(
                         state = dismissState,
                         background = {
@@ -228,12 +230,15 @@ fun ItemsScreen(listId: Long, navController: NavController) {
                                 modifier = Modifier
                                     .fillMaxWidth()
                                     .animateItemPlacement()
-                                    .pointerInput(currentList) {
-                                        detectTapGestures(onDoubleTap = {
-                                            // delegate to ViewModel which will block template lists and emit snackbar/undo
+                                    .combinedClickable(
+                                        onClick = { /* single tap: no-op here */ },
+                                        onDoubleClick = {
+                                            // delegate to ViewModel which will allow toggling on clones and non-templates
                                             itemsVm.toggleStrike(item.id)
-                                        })
-                                    }
+                                        },
+                                        interactionSource = interactionSource,
+                                        indication = null
+                                    )
                                     .padding(12.dp)
                             ) {
                                 Checkbox(
