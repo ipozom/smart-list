@@ -28,6 +28,7 @@ import androidx.compose.material.icons.filled.Add
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.material.rememberScaffoldState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.rememberCoroutineScope
 import kotlinx.coroutines.launch
@@ -76,8 +77,9 @@ fun ItemsScreen(listId: Long, listName: String, navController: NavController) {
     var showRenameDialog by remember { mutableStateOf(false) }
     var renameText by remember { mutableStateOf(listName) }
     val coroutineScope = rememberCoroutineScope()
+    val scaffoldState = rememberScaffoldState()
 
-    Scaffold(topBar = {
+    Scaffold(scaffoldState = scaffoldState, topBar = {
         TopAppBar(title = { Text(displayedName) }, actions = {
             IconButton(onClick = { menuExpanded = true }) {
                 Icon(imageVector = Icons.Default.MoreVert, contentDescription = "More")
@@ -127,13 +129,26 @@ fun ItemsScreen(listId: Long, listName: String, navController: NavController) {
                 TextField(value = renameText, onValueChange = { renameText = it }, modifier = Modifier.fillMaxWidth())
             }, confirmButton = {
                 TextButton(onClick = {
-                    // perform update
+                    val newName = renameText.trim()
+                    if (newName.isEmpty()) {
+                        coroutineScope.launch {
+                            scaffoldState.snackbarHostState.showSnackbar("Name cannot be empty")
+                        }
+                        return@TextButton
+                    }
+
+                    // perform update and show confirmation snackbar
                     coroutineScope.launch {
-                        withContext(Dispatchers.IO) {
-                            AppDatabase.getInstance(context).listNameDao().updateName(listId, renameText.trim())
+                        try {
+                            withContext(Dispatchers.IO) {
+                                AppDatabase.getInstance(context).listNameDao().updateName(listId, newName)
+                            }
+                            showRenameDialog = false
+                            scaffoldState.snackbarHostState.showSnackbar("List renamed")
+                        } catch (t: Throwable) {
+                            scaffoldState.snackbarHostState.showSnackbar("Rename failed: ${t.message}")
                         }
                     }
-                    showRenameDialog = false
                 }) { Text("Save") }
             }, dismissButton = {
                 TextButton(onClick = { showRenameDialog = false }) { Text("Cancel") }
