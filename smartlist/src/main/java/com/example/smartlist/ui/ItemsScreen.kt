@@ -89,6 +89,17 @@ fun ItemsScreen(listId: Long, navController: NavController) {
     val currentList by listDao.getById(listId).collectAsState(initial = ListNameEntity(id = listId, name = ""))
     val displayedName = currentList?.name ?: ""
 
+    // Debug: show an ephemeral snackbar once when this list screen is opened so we can
+    // verify whether the list is a template or a clone on-device. This is temporary.
+    val debugInfoShown = remember { mutableStateOf(false) }
+    LaunchedEffect(currentList) {
+        if (!debugInfoShown.value && currentList != null) {
+            val info = "isTemplate=${currentList.isTemplate} isCloned=${currentList.isCloned}"
+            scaffoldState.snackbarHostState.showSnackbar(info)
+            debugInfoShown.value = true
+        }
+    }
+
     val showDialog = remember { mutableStateOf(false) }
     var menuExpanded by remember { mutableStateOf(false) }
     var showRenameDialog by remember { mutableStateOf(false) }
