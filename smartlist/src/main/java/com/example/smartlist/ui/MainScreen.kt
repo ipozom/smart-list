@@ -33,6 +33,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
+import android.net.Uri
 import androidx.core.net.UriCompat
 import androidx.core.net.toUri
 
@@ -74,7 +75,8 @@ fun MainScreen(navController: NavController) {
                             .fillMaxWidth()
                             .clickable {
                                 // Navigate to items screen for this list
-                                val encoded = java.net.URLEncoder.encode(item.name, "utf-8")
+                                // Use Uri.encode to percent-encode spaces as %20 (not '+' from form encoding)
+                                val encoded = Uri.encode(item.name)
                                 navController.navigate("items/${item.id}/$encoded")
                             }
                             .padding(16.dp), horizontalArrangement = Arrangement.SpaceBetween) {
