@@ -109,6 +109,20 @@ Design intent: keep side effects (DB writes) in ViewModels and treat composables
 
 - Misc: minor imports and compile warnings cleaned up during the changes; verified Kotlin compilation after edits.
 
+## Features added (2026-01-02)
+
+- Item counts per list (UI + DB projection): Added a reactive list projection that returns the number of items per list so the lists screen displays the item count next to each list. Implementation details:
+  - New projection `ListWithCount` and DAO query `ListNameDao.getAllWithCount()` which performs a LEFT JOIN + GROUP BY to return one row per list with `COUNT(i.id) AS itemCount`.
+  - `ListViewModel` now exposes the projection (with the existing in-memory name filter) so the UI receives reactive updates when items change.
+  - `MainScreen.kt` shows a right-side pill with the `itemCount` value for each list row. This excludes deleted items if/when a soft-delete flag is applied in the future (see notes).
+
+- Clear-search control: added a trailing clear icon to the search fields:
+  - `MainScreen` search field (`SearchBar`) now shows a trailing `Close` icon when the query is non-empty; tapping it clears the query and hides the keyboard.
+  - `ItemsScreen` item search also shows the same trailing clear icon and clears `itemsVm`'s query.
+  - The clear icon uses an accessible contentDescription ("Clear search") and hides the soft keyboard when tapped; behavior can be adjusted to keep focus open if preferred.
+
+These changes were compiled and verified locally.
+
 ## Latest implemented features (2026-01-01)
 
 These items summarize the most recent behavior and data-model changes merged on 2026-01-01.
