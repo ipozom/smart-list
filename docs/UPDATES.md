@@ -99,6 +99,16 @@ Design intent: keep side effects (DB writes) in ViewModels and treat composables
 
 - Added double-tap strikethrough for items (toggle isStruck). Cloned lists allow strikethrough; template lists block it. Added Room migration 3→4 to add the `isStruck` column and updated `ItemDao.getForList` ordering so struck items appear at the end.
 
+## Fixes & tweaks (2026-01-02)
+
+- Fixed cloning/navigation bug: when a list was cloned the ViewModel emitted a snackbar with an "Open" action, but the Items screen did not handle the `open_list` snackbar action. The app now navigates to the cloned list when the user taps "Open" on the snackbar (handled in `ItemsScreen.kt`).
+
+- UI polish: replaced the inline star glyph prefix with a small, left-positioned "MASTER" pill for template/master lists in the main lists screen (`MainScreen.kt`). This improves discoverability and layout consistency.
+
+- Build & project fixes: resolved a compilation error caused by a stray minimal `MainActivity` that incorrectly invoked `MainScreen(viewModel)`. The minimal activity packages were adjusted to avoid package/name collisions and the app now uses the intended `AppNavHost` entrypoint in those minimal activities.
+
+- Misc: minor imports and compile warnings cleaned up during the changes; verified Kotlin compilation after edits.
+
 ## Latest implemented features (2026-01-01)
 
 These items summarize the most recent behavior and data-model changes merged on 2026-01-01.
