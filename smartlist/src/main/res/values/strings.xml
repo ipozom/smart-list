@@ -13,6 +13,11 @@
     <string name="cancel">Cancel</string>
     <string name="legend_title">Legend</string>
     <string name="legend_master_desc">Master/template list — source for clones; protected from renames/deletes.</string>
+    <string name="legend_template_badge">Template</string>
+    <string name="legend_cloned_badge">Cloned</string>
+    <string name="legend_cloned_desc">Cloned — copy of a template; per-clone states apply.</string>
+    <string name="show_legend">Show legend</string>
+    <string name="hide_legend">Hide legend</string>
     <string name="legend_precheck_desc">Precheck — list is being prepared; items can be added/edited/removed but not marked.</string>
     <string name="legend_working_desc">Working — active list; items can be added, edited and marked, but not removed.</string>
     <string name="legend_closed_desc">Closed — list is closed; no item changes allowed.</string>

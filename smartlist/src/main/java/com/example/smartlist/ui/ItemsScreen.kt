@@ -11,6 +11,9 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.ui.graphics.Color
 import androidx.compose.material.icons.filled.Delete
 import androidx.compose.material.icons.filled.Edit
+import androidx.compose.material.icons.filled.Info
+import androidx.compose.material.icons.filled.Star
+import androidx.compose.material.icons.filled.ContentCopy
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -48,6 +51,9 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleEventObserver
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.setValue
+import androidx.compose.animation.AnimatedVisibility
+import androidx.compose.animation.fadeIn
+import androidx.compose.animation.fadeOut
 import androidx.compose.ui.platform.LocalLifecycleOwner
 import androidx.compose.material.rememberScaffoldState
 import androidx.compose.runtime.getValue
@@ -59,6 +65,8 @@ import androidx.compose.runtime.LaunchedEffect
 import kotlinx.coroutines.launch
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.semantics.semantics
+import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.foundation.layout.size
 import androidx.lifecycle.ViewModelProvider
 import com.example.smartlist.data.ListNameEntity
@@ -109,6 +117,9 @@ fun ItemsScreen(listId: Long, navController: NavController) {
     var renameText by remember { mutableStateOf("") }
     var showStateDialog by remember { mutableStateOf(false) }
     var selectedState by remember { mutableStateOf("PRECHECK") }
+    // Legend is shown below the app bar; remove the info icon and keep legend visible
+    val showLegend = true
+    val masterDesc = stringResource(id = com.example.smartlist.R.string.legend_master_desc)
     // ...existing code...
     // Track whether this composable is currently in the RESUMED lifecycle state. If it's
     // not resumed (e.g. it's in the nav back stack but not visible), avoid showing
@@ -191,42 +202,53 @@ fun ItemsScreen(listId: Long, navController: NavController) {
 
     Scaffold(scaffoldState = scaffoldState, topBar = {
         TopAppBar(title = {
-            // show list name and template toggle
-            Row(verticalAlignment = androidx.compose.ui.Alignment.CenterVertically) {
+            // show list name and an info toggle to expand/collapse legend
+            Row(verticalAlignment = androidx.compose.ui.Alignment.CenterVertically, modifier = Modifier.fillMaxWidth()) {
                 Text(displayedName)
-                // If this is a cloned list, show a persistent state chip next to the title
-                if (currentList?.isCloned == true) {
-                    val stateValue = currentList?.state ?: ListStateManager.PRECHECK
-                    val info = ListStateManager.getStateInfo(stateValue)
-
-                    Surface(color = info.color, shape = RoundedCornerShape(12.dp), modifier = Modifier
-                        .padding(start = 8.dp)
-                        .clickable {
-                            // open the state selection dialog
-                            selectedState = stateValue
-                            showStateDialog = true
-                        }
-                    ) {
-                        Row(verticalAlignment = androidx.compose.ui.Alignment.CenterVertically, modifier = Modifier.padding(horizontal = 8.dp, vertical = 2.dp)) {
-                            Surface(color = Color.White, shape = RoundedCornerShape(10.dp), modifier = Modifier.padding(end = 6.dp)) {
-                                Icon(imageVector = info.icon, contentDescription = null, tint = info.color, modifier = Modifier.padding(6.dp).size(16.dp))
-                            }
-                            Text(text = stringResource(id = info.labelRes), color = Color.White, fontSize = 12.sp)
-                        }
+            }
+        }, actions = {
+            // Show master/template and cloned-state pills in the TopAppBar actions so they align with the AppBar row
+            if (currentList?.isTemplate == true) {
+                val masterColor = Color(0xFF006A66)
+                Surface(color = masterColor, shape = RoundedCornerShape(12.dp), modifier = Modifier.padding(end = 8.dp).semantics { contentDescription = masterDesc }) {
+                    Row(verticalAlignment = androidx.compose.ui.Alignment.CenterVertically, modifier = Modifier.padding(horizontal = 8.dp, vertical = 6.dp)) {
+                        Icon(imageVector = Icons.Default.Star, contentDescription = null, tint = Color.White, modifier = Modifier.size(14.dp))
+                        androidx.compose.foundation.layout.Spacer(modifier = Modifier.size(6.dp))
+                        Text(text = "M", color = Color.White, fontSize = 12.sp)
                     }
                 }
             }
-        }, actions = {
-            // template toggle shown in actions area
-            val isTemplate = currentList?.isTemplate == true
-            androidx.compose.material.Switch(checked = isTemplate, onCheckedChange = { checked ->
-                // toggle template flag via ViewModel
-                listVm.setTemplate(listId, checked)
-            })
+
+            if (currentList?.isCloned == true && currentList?.isTemplate != true) {
+                val stateValue = currentList?.state ?: ListStateManager.PRECHECK
+                val info = ListStateManager.getStateInfo(stateValue)
+                val label = stringResource(id = info.labelRes)
+                val firstLetter = label.firstOrNull()?.uppercaseChar()?.toString() ?: ""
+                Surface(color = info.color, shape = RoundedCornerShape(12.dp), modifier = Modifier.padding(end = 8.dp).clickable {
+                    selectedState = stateValue
+                    showStateDialog = true
+                }.semantics { contentDescription = label }) {
+                    Row(verticalAlignment = androidx.compose.ui.Alignment.CenterVertically, modifier = Modifier.padding(horizontal = 8.dp, vertical = 6.dp)) {
+                        Icon(imageVector = info.icon, contentDescription = null, tint = Color.White, modifier = Modifier.size(14.dp))
+                        androidx.compose.foundation.layout.Spacer(modifier = Modifier.size(6.dp))
+                        Text(text = firstLetter, color = Color.White, fontSize = 12.sp)
+                    }
+                }
+            }
+
+            // Template toggle moved into the overflow menu (see menu items below)
             IconButton(onClick = { menuExpanded = true }) {
                 Icon(imageVector = Icons.Default.MoreVert, contentDescription = "More")
             }
             DropdownMenu(expanded = menuExpanded, onDismissRequest = { menuExpanded = false }) {
+                // Toggle template flag moved here so the setting is available in the 3-dots menu
+                DropdownMenuItem(onClick = {
+                    menuExpanded = false
+                    val currentlyTemplate = currentList?.isTemplate == true
+                    listVm.setTemplate(listId, !currentlyTemplate)
+                }) {
+                    Text(if (currentList?.isTemplate == true) "Unmark as template" else "Mark as template")
+                }
                 // Rename is disabled for template lists
                 DropdownMenuItem(onClick = {
                     menuExpanded = false
@@ -241,13 +263,13 @@ fun ItemsScreen(listId: Long, navController: NavController) {
                     // initialise dialog state to current value
                     selectedState = currentList?.state ?: "PRECHECK"
                     showStateDialog = true
-                }, enabled = (currentList?.isCloned == true)) {
+                }, enabled = (currentList?.isCloned == true && currentList?.isTemplate != true)) {
                     Text(stringResource(id = com.example.smartlist.R.string.set_state))
                 }
                 DropdownMenuItem(onClick = {
                     menuExpanded = false
-                    // delete the list (ViewModel will emit snackbar with undo)
-                    listVm.deleteList(listId)
+                    // request a confirmation before deleting the list
+                    listVm.requestDeleteConfirmation(listId)
                 }, enabled = !(currentList?.isTemplate == true)) {
                     Text("Delete")
                 }
@@ -269,6 +291,12 @@ fun ItemsScreen(listId: Long, navController: NavController) {
         Column(modifier = Modifier
             .fillMaxSize()
             .padding(inner)) {
+
+                // Render the legend between the top bar and the content so it does not overlap
+                // legend area left intentionally empty; pills are shown in the TopAppBar title row for cloned/master lists
+                AnimatedVisibility(visible = showLegend, enter = fadeIn(), exit = fadeOut()) {
+                    androidx.compose.foundation.layout.Spacer(modifier = Modifier.size(6.dp))
+                }
 
             val keyboardController = androidx.compose.ui.platform.LocalSoftwareKeyboardController.current
             OutlinedTextField(

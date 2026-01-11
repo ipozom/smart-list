@@ -123,6 +123,12 @@ This section documents the most recent changes merged on 2026-01-11 that affect 
 - Undo / delete restore fix
   - When deleting a list we now preserve the full `ListNameEntity` in the in-memory undo buffer so Undo re-inserts the original entity (preserving `isCloned`, `state`, `masterId`, and other fields). This fixes a bug where undo returned a list but lost its clone/state metadata.
 
+- UI placement & pill compactness
+  - Moved the cloned/template badges (pills) from the content legend into the `TopAppBar` actions so they render on the same horizontal row as the list title (avoids multi-line alignment issues).
+  - Pills are now compact: they show an icon plus a single-letter abbreviation derived from the localized state label (for example an icon + "W" for WORKING). This keeps the UI compact while remaining informative.
+  - For accessibility we preserve full, localized descriptions via `semantics { contentDescription = ... }` on each pill so screen readers announce the complete label.
+  - The template/master pill now uses a star icon + "M" to match the MainScreen styling and improve consistency.
+
 - Developer notes & verification
   - The main archive flow is: `ItemsScreen` requests archive confirmation via `ListViewModel.requestArchiveConfirmation(id)` → `ListViewModel` emits `UiEvent.ShowConfirm` → `AppNavHost` shows the dialog and calls `listVm.setState(id, ARCHIVED)` on confirm.
   - Because archived cloned lists are excluded from the default listing query, `setState(..., ARCHIVED)` automatically enables `showArchived` in `ListViewModel` so users can immediately see archived rows (UI opt-in behavior).

@@ -102,6 +102,7 @@ Recent notable updates (2026-01-11):
 - Activity-scoped `ListViewModel`: the lists ViewModel is now scoped to the activity so Main and Items screens share the same instance and state updates propagate reliably across screens.
 - Undo/restore fix for deletes: when deleting a list we now keep the full `ListNameEntity` in-memory so Undo re-inserts the original entity (preserving `isCloned`, `state`, and `masterId`).
 - Database & DAO: added projections (`ListWithCount`), DAO variants to include/exclude archived clones, and a schema migration where required to add `state`/`isCloned` fields during development.
+ - UI polish: cloned/template badges ("pills") were moved into the TopAppBar actions so they sit on the same row/height as the list title. Pills are compact (icon + single-letter abbreviation) for clarity, and keep full label information via accessibility semantics (contentDescription). The template/master pill now uses a star icon + "M" to match the Main screen.
 
 See `docs/UPDATES.md` for design notes, verification steps, and developer guidance for these changes.
 

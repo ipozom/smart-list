@@ -249,6 +249,25 @@ class ListViewModel(application: Application) : AndroidViewModel(application) {
         }
     }
 
+    /**
+     * Request a delete confirmation modal for the given list id.
+     * Emits a one-shot UiEvent.ShowConfirm that the UI can present centrally.
+     */
+    fun requestDeleteConfirmation(id: Long) {
+        viewModelScope.launch {
+            _events.emit(
+                UiEvent.ShowConfirm(
+                    title = "Delete list?",
+                    message = "Deleting will remove the list and its items. This cannot be undone except via the Undo action. Continue?",
+                    confirmLabel = "Delete",
+                    cancelLabel = "Cancel",
+                    kind = "delete",
+                    id = id
+                )
+            )
+        }
+    }
+
     // Clone a template (or any) list: create a new list with timestamp appended and copy all items.
     fun cloneList(sourceListId: Long) {
         viewModelScope.launch {

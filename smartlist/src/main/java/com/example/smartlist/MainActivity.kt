@@ -65,7 +65,10 @@ fun AppNavHost() {
             androidx.compose.material.TextButton(onClick = {
                 when (confirm.kind) {
                     "archive" -> listVm.setState(confirm.id, com.example.smartlist.ui.ListStateManager.ARCHIVED)
-                    else -> {}
+                    "delete" -> listVm.deleteList(confirm.id)
+                    else -> {
+                        // extend with other kinds as needed
+                    }
                 }
                 pendingConfirm = null
             }) { androidx.compose.material.Text(confirm.confirmLabel) }
