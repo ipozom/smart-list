@@ -59,7 +59,9 @@ class ListViewModel(application: Application) : AndroidViewModel(application) {
     // ...existing code...
 
     fun setQuery(q: String) {
-        _query.value = q
+        // Normalize search queries: trim leading/trailing whitespace so accidental
+        // trailing spaces (for example from keyboard suggestions) don't prevent matches.
+        _query.value = q.trim()
     }
 
     fun add(name: String) {

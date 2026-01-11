@@ -37,6 +37,8 @@ import androidx.compose.material.TopAppBar
 import androidx.compose.material.FloatingActionButton
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
+import androidx.compose.material.icons.filled.ArrowDropDown
+import androidx.compose.material.icons.filled.ArrowDropUp
 import androidx.compose.material.icons.filled.Close
 import androidx.compose.material.DropdownMenu
 import androidx.compose.material.DropdownMenuItem
@@ -54,6 +56,8 @@ import androidx.compose.runtime.setValue
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
+import androidx.compose.animation.slideInVertically
+import androidx.compose.animation.slideOutVertically
 import androidx.compose.ui.platform.LocalLifecycleOwner
 import androidx.compose.material.rememberScaffoldState
 import androidx.compose.runtime.getValue
@@ -318,15 +322,19 @@ fun ItemsScreen(listId: Long, navController: NavController) {
                 }
             )
 
-                LazyColumn(state = listState, modifier = Modifier.fillMaxWidth()) {
-                items(items, key = { it.id }) { item ->
+                // Group items: unmarked items shown individually; marked items collapsed into
+                // a single summary row that can be expanded to reveal the struck items.
+                var showMarkedExpanded by remember { mutableStateOf(false) }
+
+                // Local reusable row renderer to avoid duplicating the item UI for both lists
+                @Composable
+                fun ItemRow(item: com.example.smartlist.data.ItemEntity) {
                     val interactionSource = remember { MutableInteractionSource() }
 
                     Row(
                         verticalAlignment = androidx.compose.ui.Alignment.CenterVertically,
                         modifier = Modifier
                             .fillMaxWidth()
-                            .animateItemPlacement()
                             .combinedClickable(
                                 onClick = { /* single tap: no-op here */ },
                                 onDoubleClick = {
@@ -379,7 +387,52 @@ fun ItemsScreen(listId: Long, navController: NavController) {
                         }
                     }
                 }
-            }
+
+                LazyColumn(state = listState, modifier = Modifier.fillMaxWidth()) {
+                    val unmarked = items.filter { !it.isStruck }
+                    val marked = items.filter { it.isStruck }
+
+                    items(unmarked, key = { it.id }) { item ->
+                        ItemRow(item)
+                    }
+
+                    if (marked.isNotEmpty()) {
+                        // summary displayed as a chip with chevron
+                        item(key = "marked_summary") {
+                            Surface(
+                                color = Color(0xFFE0E0E0),
+                                shape = RoundedCornerShape(16.dp),
+                                modifier = Modifier
+                                    .fillMaxWidth()
+                                    .padding(horizontal = 12.dp, vertical = 6.dp)
+                            ) {
+                                Row(modifier = Modifier
+                                    .fillMaxWidth()
+                                    .clickable { showMarkedExpanded = !showMarkedExpanded }
+                                    .padding(horizontal = 12.dp, vertical = 8.dp), verticalAlignment = androidx.compose.ui.Alignment.CenterVertically) {
+                                    Text(text = "${marked.size} marked item${if (marked.size == 1) "" else "s"}", modifier = Modifier.weight(1f))
+                                    androidx.compose.foundation.layout.Spacer(modifier = Modifier.size(8.dp))
+                                    Icon(imageVector = if (showMarkedExpanded) Icons.Default.ArrowDropUp else Icons.Default.ArrowDropDown, contentDescription = if (showMarkedExpanded) "Collapse" else "Expand")
+                                }
+                            }
+                        }
+
+                        // Expand/collapse the marked items with slide+fade animations
+                        item(key = "marked_expanded") {
+                            AnimatedVisibility(
+                                visible = showMarkedExpanded,
+                                enter = slideInVertically(initialOffsetY = { fullHeight -> -fullHeight / 2 }) + fadeIn(),
+                                exit = slideOutVertically(targetOffsetY = { fullHeight -> -fullHeight / 2 }) + fadeOut()
+                            ) {
+                                Column {
+                                    marked.forEach { itItem ->
+                                        ItemRow(itItem)
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
         }
 
         if (showDialog.value) {

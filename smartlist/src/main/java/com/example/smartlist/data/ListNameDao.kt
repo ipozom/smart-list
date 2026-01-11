@@ -23,7 +23,8 @@ interface ListNameDao {
     @Query(
         """
         SELECT l.id, l.name, l.isTemplate, l.masterId, l.isCloned, l.state,
-               COUNT(i.id) AS itemCount
+         COUNT(i.id) AS itemCount,
+         SUM(CASE WHEN i.isStruck = 1 THEN 1 ELSE 0 END) AS markedCount
         FROM list_names l
         LEFT JOIN items i ON i.listId = l.id
         WHERE NOT (l.isCloned = 1 AND l.state = 'ARCHIVED')
@@ -37,7 +38,8 @@ interface ListNameDao {
     @Query(
         """
         SELECT l.id, l.name, l.isTemplate, l.masterId, l.isCloned, l.state,
-               COUNT(i.id) AS itemCount
+         COUNT(i.id) AS itemCount,
+         SUM(CASE WHEN i.isStruck = 1 THEN 1 ELSE 0 END) AS markedCount
         FROM list_names l
         LEFT JOIN items i ON i.listId = l.id
         GROUP BY l.id
@@ -85,5 +87,7 @@ data class ListWithCount(
     val masterId: Long? = null,
     val isCloned: Boolean = false,
     val state: String = "PRECHECK",
-    val itemCount: Int = 0
+    val itemCount: Int = 0,
+    // number of items marked/struck as completed in this list
+    val markedCount: Int = 0
 )

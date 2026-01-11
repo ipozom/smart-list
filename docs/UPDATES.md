@@ -135,6 +135,15 @@ This section documents the most recent changes merged on 2026-01-11 that affect 
 
 See the code references for details: `ListNameEntity.kt`, `ListNameDao.kt`, `ListStateManager.kt`, `ListViewModel.kt`, `UiEvent.kt`, and `MainActivity.kt` (`AppNavHost` confirm host).
 
+### Marked counts, collapsed marked items, and search trimming (2026-01-11)
+
+- Item counts: the lists screen now displays both total items and the number of marked/struck items in the right-side pill (format: `total/marked`). This is provided by an extended Room projection (`ListWithCount`) that now includes a `markedCount` column computed with SUM(CASE WHEN i.isStruck = 1 THEN 1 ELSE 0 END).
+- Master/template lists: to reduce visual noise, template/master lists show only the total item count (no `marked` suffix) — templates are not expected to track per-item completion in the same way as cloned lists.
+- Marked-items grouping: in `ItemsScreen` struck/marked items are collapsed behind a single summary chip ("N marked items") which can be tapped to expand. The expanded list is shown/hidden using a slide+fade AnimatedVisibility so the transition is smooth and accessible.
+- Accessibility: the pill and chip use `semantics { contentDescription = ... }` to advertise full, localized descriptions for screen readers (for example "12 total, 3 marked" or the collapsed chip's expand/collapse hint).
+- Search robustness: keyboard suggestion behavior that inserts a trailing space into the search field caused missed matches (e.g. "word " doesn't match "word"). To handle this we normalize search queries in the ViewModels by trimming leading/trailing whitespace before applying the filter (`setQuery(q: String)` now stores `q.trim()`). This prevents accidental trailing spaces from breaking search while preserving internal spacing and case-insensitive matching.
+
+
 ## Fixes & tweaks (2026-01-02)
 
 - Fixed cloning/navigation bug: when a list was cloned the ViewModel emitted a snackbar with an "Open" action, but the Items screen did not handle the `open_list` snackbar action. The app now navigates to the cloned list when the user taps "Open" on the snackbar (handled in `ItemsScreen.kt`).

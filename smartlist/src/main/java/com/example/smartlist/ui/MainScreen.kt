@@ -179,17 +179,41 @@ fun MainScreen(navController: NavController) {
                             Text(text = item.name, modifier = Modifier.weight(1f))
 
                             // Right-side pill showing number of items in the list
-                            Surface(
-                                color = Color(0xFFE0E0E0),
-                                shape = RoundedCornerShape(12.dp),
-                                modifier = Modifier.padding(start = 8.dp)
-                            ) {
-                                Text(
-                                    text = "${item.itemCount}",
-                                    color = Color.Black,
-                                    fontSize = 12.sp,
-                                    modifier = Modifier.padding(horizontal = 8.dp, vertical = 2.dp)
-                                )
+                            // Right-side pill: show only total for master/template lists; show total/marked for others
+                            if (item.isTemplate) {
+                                Surface(
+                                    color = Color(0xFFE0E0E0),
+                                    shape = RoundedCornerShape(12.dp),
+                                    modifier = Modifier
+                                        .padding(start = 8.dp)
+                                        .semantics {
+                                            contentDescription = "${item.itemCount} items"
+                                        }
+                                ) {
+                                    Text(
+                                        text = "${item.itemCount}",
+                                        color = Color.Black,
+                                        fontSize = 12.sp,
+                                        modifier = Modifier.padding(horizontal = 8.dp, vertical = 2.dp)
+                                    )
+                                }
+                            } else {
+                                Surface(
+                                    color = Color(0xFFE0E0E0),
+                                    shape = RoundedCornerShape(12.dp),
+                                    modifier = Modifier
+                                        .padding(start = 8.dp)
+                                        .semantics {
+                                            contentDescription = "${item.itemCount} total, ${item.markedCount} marked"
+                                        }
+                                ) {
+                                    Text(
+                                        text = "${item.itemCount}/${item.markedCount}",
+                                        color = Color.Black,
+                                        fontSize = 12.sp,
+                                        modifier = Modifier.padding(horizontal = 8.dp, vertical = 2.dp)
+                                    )
+                                }
                             }
 
                             // If this is an archived cloned list and the user opted to show archived,

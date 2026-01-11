@@ -48,7 +48,10 @@ class ItemsViewModel(application: Application, private val listId: Long) : Andro
         }
         .stateIn(viewModelScope, SharingStarted.Eagerly, emptyList())
 
-    fun setQuery(q: String) { _query.value = q }
+    fun setQuery(q: String) { _query.value = q.trim() }
+    
+    // Keep an explicit setter for adds (suggestions) separate from the main search
+    // to ensure trimming behavior is consistent.
 
     // backups for undo operations
     private val renameBackup = mutableMapOf<Long, String>()
