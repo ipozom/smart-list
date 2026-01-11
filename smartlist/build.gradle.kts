@@ -49,6 +49,8 @@ dependencies {
     implementation("androidx.navigation:navigation-compose:2.7.0")
     implementation("androidx.lifecycle:lifecycle-viewmodel-compose:2.6.2")
     implementation("androidx.compose.ui:ui-tooling-preview:1.6.0")
+    // Icons (extended) for Compose
+    implementation("androidx.compose.material:material-icons-extended:1.6.0")
     implementation(kotlin("stdlib"))
     // Room
     implementation("androidx.room:room-runtime:2.6.1")

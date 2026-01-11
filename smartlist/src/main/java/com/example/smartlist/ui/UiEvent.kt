@@ -9,5 +9,14 @@ sealed class UiEvent {
         val undoInfo: UndoInfo? = null
     ) : UiEvent()
 
+    data class ShowConfirm(
+        val title: String,
+        val message: String,
+        val confirmLabel: String,
+        val cancelLabel: String,
+        val kind: String,
+        val id: Long
+    ) : UiEvent()
+
     object ScrollToTop : UiEvent()
 }

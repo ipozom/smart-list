@@ -13,4 +13,8 @@ data class ListNameEntity(
     val masterId: Long? = null,
     // Mark this list as a clone created from a template/master list
     val isCloned: Boolean = false
+    ,
+    // State of a cloned list. Only cloned lists use this state; templates/masters ignore it.
+    // Possible values: "PRECHECK", "WORKING", "CLOSED", "ARCHIVED"
+    val state: String = "PRECHECK"
 )

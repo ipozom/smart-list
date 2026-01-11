@@ -99,6 +99,36 @@ Design intent: keep side effects (DB writes) in ViewModels and treat composables
 
 - Added double-tap strikethrough for items (toggle isStruck). Cloned lists allow strikethrough; template lists block it. Added Room migration 3→4 to add the `isStruck` column and updated `ItemDao.getForList` ordering so struck items appear at the end.
 
+## Latest implemented features (2026-01-11)
+
+This section documents the most recent changes merged on 2026-01-11 that affect list cloning, states, confirmations, and undo behavior.
+
+- Cloned-list states
+  - Added a `state: String` field to `ListNameEntity` with possible values: `PRECHECK`, `WORKING`, `CLOSED`, `ARCHIVED`.
+  - Only cloned lists (`isCloned = 1`) have editable states. Templates/master lists ignore the `state` field.
+  - `ListStateManager` centralizes the allowed state transitions and UI metadata (labels, icons, colors).
+
+- Database / DAO changes
+  - `ListNameDao` gained two projection queries: `getAllWithCount()` (excludes archived cloned lists) and `getAllWithCountIncludeArchived()` (includes archived clones). Use `ListViewModel.setShowArchived(true)` to opt-in to archived rows.
+  - Room migration code was added in development to add the `state` and `isCloned` columns where needed (development migrations; replace with production migrations before release).
+
+- Centralized confirmations & UiEvent.ShowConfirm
+  - Confirmation dialogs (archive, etc.) are now emitted as a one-shot `UiEvent.ShowConfirm` from `ListViewModel` (suspend-emitted) and collected by a single confirmation host at the app root (`AppNavHost` / `MainActivity`).
+  - This avoids lifecycle/backstack races where a dialog could appear over the wrong screen.
+
+- ViewModel scoping and event reliability
+  - `ListViewModel` is now activity-scoped so `MainScreen` and `ItemsScreen` share the same instance (fixes visibility/propagation issues where an archive would update the DB but not appear on the main screen).
+  - Confirmation emission uses `emit()` to avoid dropped events when collectors are momentarily busy.
+
+- Undo / delete restore fix
+  - When deleting a list we now preserve the full `ListNameEntity` in the in-memory undo buffer so Undo re-inserts the original entity (preserving `isCloned`, `state`, `masterId`, and other fields). This fixes a bug where undo returned a list but lost its clone/state metadata.
+
+- Developer notes & verification
+  - The main archive flow is: `ItemsScreen` requests archive confirmation via `ListViewModel.requestArchiveConfirmation(id)` → `ListViewModel` emits `UiEvent.ShowConfirm` → `AppNavHost` shows the dialog and calls `listVm.setState(id, ARCHIVED)` on confirm.
+  - Because archived cloned lists are excluded from the default listing query, `setState(..., ARCHIVED)` automatically enables `showArchived` in `ListViewModel` so users can immediately see archived rows (UI opt-in behavior).
+
+See the code references for details: `ListNameEntity.kt`, `ListNameDao.kt`, `ListStateManager.kt`, `ListViewModel.kt`, `UiEvent.kt`, and `MainActivity.kt` (`AppNavHost` confirm host).
+
 ## Fixes & tweaks (2026-01-02)
 
 - Fixed cloning/navigation bug: when a list was cloned the ViewModel emitted a snackbar with an "Open" action, but the Items screen did not handle the `open_list` snackbar action. The app now navigates to the cloned list when the user taps "Open" on the snackbar (handled in `ItemsScreen.kt`).

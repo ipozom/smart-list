@@ -58,6 +58,14 @@ class ItemsViewModel(application: Application, private val listId: Long) : Andro
 
     fun deleteItem(id: Long) {
         viewModelScope.launch {
+            val list = listDao.getById(listId).first()
+            val state = list?.state ?: "PRECHECK"
+            // If this is a cloned list, enforce state rules: in WORKING and CLOSED/ARCHIVED removal is not allowed
+            if (list?.isCloned == true && (state == "WORKING" || state == "CLOSED" || state == "ARCHIVED")) {
+                _events.tryEmit(UiEvent.ShowSnackbar("Cannot remove items in current list state: $state"))
+                return@launch
+            }
+
             val content = dao.getContentById(id) ?: return@launch
             deleteBackup[id] = content
             dao.deleteById(id)
@@ -73,6 +81,14 @@ class ItemsViewModel(application: Application, private val listId: Long) : Andro
         }
 
         viewModelScope.launch {
+            val list = listDao.getById(listId).first()
+            val state = list?.state ?: "PRECHECK"
+            // In CLOSED or ARCHIVED, adding is not allowed for cloned lists
+            if (list?.isCloned == true && (state == "CLOSED" || state == "ARCHIVED")) {
+                _events.tryEmit(UiEvent.ShowSnackbar("Cannot add items in current list state: $state"))
+                return@launch
+            }
+
             // check duplicate in the same list
             val existing = dao.countByContent(listId, trimmed)
             if (existing > 0) {
@@ -97,6 +113,13 @@ class ItemsViewModel(application: Application, private val listId: Long) : Andro
         }
 
         viewModelScope.launch {
+            val list = listDao.getById(listId).first()
+            val state = list?.state ?: "PRECHECK"
+            // In CLOSED or ARCHIVED, updating is not allowed for cloned lists
+            if (list?.isCloned == true && (state == "CLOSED" || state == "ARCHIVED")) {
+                _events.tryEmit(UiEvent.ShowSnackbar("Cannot update items in current list state: $state"))
+                return@launch
+            }
             try {
                 // prevent renaming to a duplicate value in the same list
                 val existing = dao.countByContentExceptId(listId, trimmed, id)
@@ -157,10 +180,27 @@ class ItemsViewModel(application: Application, private val listId: Long) : Andro
         viewModelScope.launch {
             try {
                 val list = listDao.getById(listId).first()
-                // disallow only for template lists. Allow toggling on cloned lists.
+                val state = list?.state ?: "PRECHECK"
+                // disallow for template lists
                 if (list?.isTemplate == true) {
-                    _events.tryEmit(UiEvent.ShowSnackbar("Cannot toggle strike on template or cloned lists"))
+                    _events.tryEmit(UiEvent.ShowSnackbar("Cannot toggle strike on template lists"))
                     return@launch
+                }
+
+                // If this is a cloned list, enforce state rules:
+                // PRECHECK: marking not allowed
+                // WORKING: allowed
+                // CLOSED / ARCHIVED: not allowed
+                if (list?.isCloned == true) {
+                    if (state == "PRECHECK") {
+                        _events.tryEmit(UiEvent.ShowSnackbar("Cannot mark items while list is in PRECHECK state"))
+                        return@launch
+                    }
+                    if (state == "CLOSED" || state == "ARCHIVED") {
+                        _events.tryEmit(UiEvent.ShowSnackbar("Cannot mark items in current list state: $state"))
+                        return@launch
+                    }
+                    // WORKING -> allowed
                 }
 
                 val item = dao.getById(itemId) ?: return@launch

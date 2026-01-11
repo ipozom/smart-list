@@ -1,4 +1,4 @@
-package com.example.smartlist
+package com.example.minimalapp
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity

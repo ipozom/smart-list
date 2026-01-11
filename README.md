@@ -3,7 +3,7 @@
 This repository contains a minimal starter Android project for a local-first list management app.
 See recent changes and development notes in `docs/UPDATES.md` (linked changelog and test notes).
 
-Note: for a short summary of the newest work, see `docs/UPDATES.md` → "Latest implemented features (2026-01-01)".
+Note: for a short summary of the newest work, see `docs/UPDATES.md` → "Latest implemented features (2026-01-11)".
 
 Key features implemented in this scaffold:
 - Kotlin + Jetpack Compose UI skeleton
@@ -94,6 +94,16 @@ Quick summary
 - Persistence: Room entities `ListNameEntity` and `ItemEntity` with DAOs under `smartlist/src/main/java/.../data/`.
 - ViewModels: `ListViewModel` and `ItemsViewModel` contain business logic and emit UI events (`UiEvent`) for snackbars and scrolls.
 - Undo: Add/rename/delete operations support short-lived, in-memory undo handled by ViewModels.
+
+Recent notable updates (2026-01-11):
+
+- Cloned-list states: added support for per-clone states (PRECHECK, WORKING, CLOSED, ARCHIVED). These are stored on `ListNameEntity.state` and are editable only for cloned lists.
+- Centralized confirmation modals: confirmations (archive, etc.) are now emitted as one-shot UiEvents from `ListViewModel` and presented by a single host at the app root so dialogs cannot appear over the wrong screen.
+- Activity-scoped `ListViewModel`: the lists ViewModel is now scoped to the activity so Main and Items screens share the same instance and state updates propagate reliably across screens.
+- Undo/restore fix for deletes: when deleting a list we now keep the full `ListNameEntity` in-memory so Undo re-inserts the original entity (preserving `isCloned`, `state`, and `masterId`).
+- Database & DAO: added projections (`ListWithCount`), DAO variants to include/exclude archived clones, and a schema migration where required to add `state`/`isCloned` fields during development.
+
+See `docs/UPDATES.md` for design notes, verification steps, and developer guidance for these changes.
 
 Getting started (developer)
 

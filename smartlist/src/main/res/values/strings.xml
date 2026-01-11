@@ -1,4 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">SmartList</string>
+    <string name="state_precheck">Precheck</string>
+    <string name="state_working">Working</string>
+    <string name="state_closed">Closed</string>
+    <string name="state_archived">Archived</string>
+    <string name="set_state">Set state</string>
+    <string name="set_state_title">Set list state</string>
+    <string name="confirm_archive_title">Archive list?</string>
+    <string name="confirm_archive_message">Archiving will hide this list from the main screen. Continue?</string>
+    <string name="save">Save</string>
+    <string name="cancel">Cancel</string>
+    <string name="legend_title">Legend</string>
+    <string name="legend_master_desc">Master/template list — source for clones; protected from renames/deletes.</string>
+    <string name="legend_precheck_desc">Precheck — list is being prepared; items can be added/edited/removed but not marked.</string>
+    <string name="legend_working_desc">Working — active list; items can be added, edited and marked, but not removed.</string>
+    <string name="legend_closed_desc">Closed — list is closed; no item changes allowed.</string>
+    <string name="legend_archived_desc">Archived — list is hidden from main view; no changes allowed.</string>
+    <string name="show_archived">Show archived</string>
+    <string name="search_lists">Search lists</string>
+    <string name="more">More</string>
+    <string name="unarchive">Unarchive</string>
 </resources>

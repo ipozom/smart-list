@@ -9,7 +9,7 @@ import androidx.sqlite.db.SupportSQLiteDatabase
 import kotlinx.coroutines.runBlocking
 import java.util.concurrent.Executors
 
-@Database(entities = [ListNameEntity::class, ItemEntity::class, MasterItemEntity::class], version = 6, exportSchema = false)
+@Database(entities = [ListNameEntity::class, ItemEntity::class, MasterItemEntity::class], version = 7, exportSchema = false)
 abstract class AppDatabase : RoomDatabase() {
     abstract fun listNameDao(): ListNameDao
     abstract fun itemDao(): ItemDao
@@ -40,6 +40,14 @@ abstract class AppDatabase : RoomDatabase() {
             }
         }
 
+        // Migration from 6 -> 7: add state column to list_names
+        val MIGRATION_6_7 = object : Migration(6, 7) {
+            override fun migrate(database: SupportSQLiteDatabase) {
+                // Use TEXT column with default 'PRECHECK' so existing rows get a sensible value
+                database.execSQL("ALTER TABLE list_names ADD COLUMN state TEXT NOT NULL DEFAULT 'PRECHECK'")
+            }
+        }
+
         fun getInstance(context: Context): AppDatabase {
             return INSTANCE ?: synchronized(this) {
                 val inst = Room.databaseBuilder(
@@ -48,7 +56,7 @@ abstract class AppDatabase : RoomDatabase() {
                     "smartlist.db"
                 )
                     // Add explicit migrations for 3->4 (adds isStruck) and 4->5 (master_items).
-                    .addMigrations(MIGRATION_3_4, MIGRATION_4_5, MIGRATION_5_6)
+                    .addMigrations(MIGRATION_3_4, MIGRATION_4_5, MIGRATION_5_6, MIGRATION_6_7)
                     .fallbackToDestructiveMigration()
                     .build()
                 INSTANCE = inst

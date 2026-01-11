@@ -34,12 +34,21 @@ import androidx.compose.material.TopAppBar
 import androidx.compose.material.FloatingActionButton
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
+import androidx.compose.material.icons.filled.Close
 import androidx.compose.material.DropdownMenu
 import androidx.compose.material.DropdownMenuItem
 import androidx.compose.material.icons.filled.MoreVert
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
+import androidx.compose.ui.res.stringResource
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.DisposableEffect
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.LifecycleEventObserver
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.setValue
+import androidx.compose.ui.platform.LocalLifecycleOwner
 import androidx.compose.material.rememberScaffoldState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.rememberCoroutineScope
@@ -50,9 +59,12 @@ import androidx.compose.runtime.LaunchedEffect
 import kotlinx.coroutines.launch
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.foundation.layout.size
 import androidx.lifecycle.ViewModelProvider
 import com.example.smartlist.data.ListNameEntity
 import androidx.compose.ui.unit.dp
+import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import androidx.lifecycle.viewmodel.compose.viewModel
 
@@ -77,7 +89,10 @@ fun ItemsScreen(listId: Long, navController: NavController) {
     }
 
     val itemsVm: ItemsViewModel = viewModel(factory = ItemsViewModelFactory(context, listId))
-    val listVm: ListViewModel = viewModel()
+    // Use the activity as the ViewModelStoreOwner so ItemsScreen and MainScreen share
+    // the same ListViewModel instance.
+    val activity = LocalContext.current as androidx.activity.ComponentActivity
+    val listVm: ListViewModel = viewModel(activity)
 
     val items by itemsVm.items.collectAsState()
     val query by itemsVm.query.collectAsState()
@@ -92,13 +107,29 @@ fun ItemsScreen(listId: Long, navController: NavController) {
     var menuExpanded by remember { mutableStateOf(false) }
     var showRenameDialog by remember { mutableStateOf(false) }
     var renameText by remember { mutableStateOf("") }
+    var showStateDialog by remember { mutableStateOf(false) }
+    var selectedState by remember { mutableStateOf("PRECHECK") }
+    // ...existing code...
+    // Track whether this composable is currently in the RESUMED lifecycle state. If it's
+    // not resumed (e.g. it's in the nav back stack but not visible), avoid showing
+    // modal dialogs — this prevents dialogs from appearing over other screens.
+    val lifecycleOwner = LocalLifecycleOwner.current
+    var isActive by remember { mutableStateOf(lifecycleOwner.lifecycle.currentState.isAtLeast(Lifecycle.State.RESUMED)) }
+    DisposableEffect(lifecycleOwner) {
+        val observer = LifecycleEventObserver { _, _ ->
+            val nowActive = lifecycleOwner.lifecycle.currentState.isAtLeast(Lifecycle.State.RESUMED)
+            isActive = nowActive
+        }
+        lifecycleOwner.lifecycle.addObserver(observer)
+        onDispose { lifecycleOwner.lifecycle.removeObserver(observer) }
+    }
     // per-item rename state
     var showItemRenameDialog by remember { mutableStateOf(false) }
     var editingItemId by remember { mutableStateOf<Long?>(null) }
     var editingItemText by remember { mutableStateOf("") }
     val scaffoldState = rememberScaffoldState()
 
-    // (debug snackbar removed)
+    // confirmation snackbar removed; we rely on AlertDialog confirm button only
 
     // Lazy list state so we can programmatically scroll to the top when new items arrive
     val listState = rememberLazyListState()
@@ -108,6 +139,7 @@ fun ItemsScreen(listId: Long, navController: NavController) {
         launch {
             itemsVm.events.collect { ev ->
                 when (ev) {
+                    is UiEvent.ShowConfirm -> { /* not used from itemsVm */ }
                     is UiEvent.ShowSnackbar -> {
                         val result = scaffoldState.snackbarHostState.showSnackbar(ev.message, ev.actionLabel ?: "")
                         if (result == androidx.compose.material.SnackbarResult.ActionPerformed && ev.undoInfo != null) {
@@ -121,6 +153,8 @@ fun ItemsScreen(listId: Long, navController: NavController) {
         launch {
             listVm.events.collect { ev ->
                 when (ev) {
+                    // ignore ShowConfirm here; confirmations are handled centrally by MainScreen
+                    is UiEvent.ShowConfirm -> { /* intentionally ignored here */ }
                     is UiEvent.ShowSnackbar -> {
                         // If the list was deleted, show the snackbar here first so the user sees it
                         if (ev.undoInfo?.kind == "list_delete") {
@@ -137,7 +171,16 @@ fun ItemsScreen(listId: Long, navController: NavController) {
 
                         val result = scaffoldState.snackbarHostState.showSnackbar(ev.message, ev.actionLabel ?: "")
                         if (result == androidx.compose.material.SnackbarResult.ActionPerformed && ev.undoInfo != null) {
-                            listVm.handleUndo(ev.undoInfo)
+                            // If the snackbar's undoInfo signals an "open_list" action, navigate to it.
+                            if (ev.undoInfo.kind == "open_list") {
+                                try {
+                                    navController.navigate("items/${ev.undoInfo.id}")
+                                } catch (_: Exception) {
+                                    // swallow navigation errors
+                                }
+                            } else {
+                                listVm.handleUndo(ev.undoInfo)
+                            }
                         }
                     }
                     is UiEvent.ScrollToTop -> { /* ignore: handled by itemsVm events */ }
@@ -151,6 +194,27 @@ fun ItemsScreen(listId: Long, navController: NavController) {
             // show list name and template toggle
             Row(verticalAlignment = androidx.compose.ui.Alignment.CenterVertically) {
                 Text(displayedName)
+                // If this is a cloned list, show a persistent state chip next to the title
+                if (currentList?.isCloned == true) {
+                    val stateValue = currentList?.state ?: ListStateManager.PRECHECK
+                    val info = ListStateManager.getStateInfo(stateValue)
+
+                    Surface(color = info.color, shape = RoundedCornerShape(12.dp), modifier = Modifier
+                        .padding(start = 8.dp)
+                        .clickable {
+                            // open the state selection dialog
+                            selectedState = stateValue
+                            showStateDialog = true
+                        }
+                    ) {
+                        Row(verticalAlignment = androidx.compose.ui.Alignment.CenterVertically, modifier = Modifier.padding(horizontal = 8.dp, vertical = 2.dp)) {
+                            Surface(color = Color.White, shape = RoundedCornerShape(10.dp), modifier = Modifier.padding(end = 6.dp)) {
+                                Icon(imageVector = info.icon, contentDescription = null, tint = info.color, modifier = Modifier.padding(6.dp).size(16.dp))
+                            }
+                            Text(text = stringResource(id = info.labelRes), color = Color.White, fontSize = 12.sp)
+                        }
+                    }
+                }
             }
         }, actions = {
             // template toggle shown in actions area
@@ -171,6 +235,15 @@ fun ItemsScreen(listId: Long, navController: NavController) {
                 }, enabled = !(currentList?.isTemplate == true)) {
                     Text("Rename")
                 }
+                // State menu only for cloned lists
+                DropdownMenuItem(onClick = {
+                    menuExpanded = false
+                    // initialise dialog state to current value
+                    selectedState = currentList?.state ?: "PRECHECK"
+                    showStateDialog = true
+                }, enabled = (currentList?.isCloned == true)) {
+                    Text(stringResource(id = com.example.smartlist.R.string.set_state))
+                }
                 DropdownMenuItem(onClick = {
                     menuExpanded = false
                     // delete the list (ViewModel will emit snackbar with undo)
@@ -186,17 +259,38 @@ fun ItemsScreen(listId: Long, navController: NavController) {
             }
         })
     }, floatingActionButton = {
-        FloatingActionButton(onClick = { showDialog.value = true }) { Icon(imageVector = Icons.Default.Add, contentDescription = "Add item") }
+        // Only show add FAB when adding is allowed by list state (cloned lists: not allowed in CLOSED/ARCHIVED)
+        val state = currentList?.state ?: "PRECHECK"
+        val canAdd = !(currentList?.isCloned == true && (state == "CLOSED" || state == "ARCHIVED"))
+        if (canAdd) {
+            FloatingActionButton(onClick = { showDialog.value = true }) { Icon(imageVector = Icons.Default.Add, contentDescription = "Add item") }
+        }
     }) { inner ->
         Column(modifier = Modifier
             .fillMaxSize()
             .padding(inner)) {
 
-            OutlinedTextField(value = query, onValueChange = { itemsVm.setQuery(it) }, modifier = Modifier
-                .fillMaxWidth()
-                .padding(8.dp), label = { Text("Search items") })
+            val keyboardController = androidx.compose.ui.platform.LocalSoftwareKeyboardController.current
+            OutlinedTextField(
+                value = query,
+                onValueChange = { itemsVm.setQuery(it) },
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(8.dp),
+                label = { Text("Search items") },
+                trailingIcon = {
+                    if (query.isNotEmpty()) {
+                        IconButton(onClick = {
+                            itemsVm.setQuery("")
+                            keyboardController?.hide()
+                        }) {
+                            Icon(imageVector = androidx.compose.material.icons.Icons.Default.Close, contentDescription = "Clear search")
+                        }
+                    }
+                }
+            )
 
-            LazyColumn(state = listState, modifier = Modifier.fillMaxWidth()) {
+                LazyColumn(state = listState, modifier = Modifier.fillMaxWidth()) {
                 items(items, key = { it.id }) { item ->
                     val interactionSource = remember { MutableInteractionSource() }
 
@@ -208,19 +302,28 @@ fun ItemsScreen(listId: Long, navController: NavController) {
                             .combinedClickable(
                                 onClick = { /* single tap: no-op here */ },
                                 onDoubleClick = {
-                                    // delegate to ViewModel which will allow toggling on clones and non-templates
-                                    itemsVm.toggleStrike(item.id)
+                                    // only trigger toggle if marking is allowed by list state
+                                    val state = currentList?.state ?: "PRECHECK"
+                                    val markingAllowed = if (currentList?.isTemplate == true) false
+                                    else if (currentList?.isCloned == true) state == "WORKING"
+                                    else true
+
+                                    if (markingAllowed) itemsVm.toggleStrike(item.id)
                                 },
                                 interactionSource = interactionSource,
                                 indication = null
                             )
                             .padding(12.dp)
                     ) {
+                        val markingAllowed = if (currentList?.isTemplate == true) false
+                        else if (currentList?.isCloned == true) (currentList?.state == "WORKING")
+                        else true
+
                         Checkbox(
                             checked = item.isStruck,
-                            onCheckedChange = { _ -> itemsVm.toggleStrike(item.id) },
+                            onCheckedChange = { _ -> if (markingAllowed) itemsVm.toggleStrike(item.id) },
                             modifier = Modifier.padding(end = 12.dp),
-                            enabled = !(currentList?.isTemplate == true)
+                            enabled = markingAllowed
                         )
 
                         Text(
@@ -229,17 +332,21 @@ fun ItemsScreen(listId: Long, navController: NavController) {
                             style = if (item.isStruck) MaterialTheme.typography.body1.copy(textDecoration = TextDecoration.LineThrough) else MaterialTheme.typography.body1
                         )
 
-                        // inline trash button (allowed for templates and normal lists; deleting the list itself remains protected)
-                        IconButton(onClick = { itemsVm.deleteItem(item.id) }) {
+                        // inline trash button: allowed for non-cloned lists, or cloned lists in PRECHECK only
+                        val canDelete = if (currentList?.isCloned == true) (currentList?.state == "PRECHECK") else true
+                        IconButton(onClick = { if (canDelete) itemsVm.deleteItem(item.id) }, enabled = canDelete) {
                             Icon(imageVector = Icons.Default.Delete, contentDescription = "Delete item")
                         }
 
                         // rename icon placed next to trash
+                        // rename is allowed when not archived/closed for cloned lists
+                        val canRename = if (currentList?.isCloned == true) (currentList?.state == "PRECHECK" || currentList?.state == "WORKING") else true
                         IconButton(onClick = {
+                            if (!canRename) return@IconButton
                             editingItemId = item.id
                             editingItemText = item.content
                             showItemRenameDialog = true
-                        }) {
+                        }, enabled = canRename) {
                             Icon(imageVector = androidx.compose.material.icons.Icons.Default.Edit, contentDescription = "Rename item")
                         }
                     }
@@ -271,6 +378,38 @@ fun ItemsScreen(listId: Long, navController: NavController) {
             }, dismissButton = {
                 TextButton(onClick = { showRenameDialog = false }) { Text("Cancel") }
             })
+        }
+
+        if (showStateDialog) {
+            AlertDialog(onDismissRequest = { showStateDialog = false }, title = { Text(stringResource(id = com.example.smartlist.R.string.set_state_title)) }, text = {
+                Column(modifier = Modifier.fillMaxWidth()) {
+                    val options = listOf(
+                        "PRECHECK" to com.example.smartlist.R.string.state_precheck,
+                        "WORKING" to com.example.smartlist.R.string.state_working,
+                        "CLOSED" to com.example.smartlist.R.string.state_closed,
+                        "ARCHIVED" to com.example.smartlist.R.string.state_archived
+                    )
+                    options.forEach { (value, resId) ->
+                        Row(modifier = Modifier.fillMaxWidth().padding(vertical = 4.dp), verticalAlignment = androidx.compose.ui.Alignment.CenterVertically) {
+                            androidx.compose.material.RadioButton(selected = (selectedState == value), onClick = { selectedState = value })
+                            Text(text = stringResource(id = resId), modifier = Modifier.padding(start = 8.dp))
+                        }
+                    }
+                }
+            }, confirmButton = {
+                    TextButton(onClick = {
+                    // If user chose ARCHIVED, request a confirmation via ViewModel (one-shot event)
+                    if (selectedState == "ARCHIVED") {
+                        listVm.requestArchiveConfirmation(listId)
+                    } else {
+                        listVm.setState(listId, selectedState)
+                    }
+                    showStateDialog = false
+                }) { Text(stringResource(id = com.example.smartlist.R.string.save)) }
+            }, dismissButton = {
+                TextButton(onClick = { showStateDialog = false }) { Text(stringResource(id = com.example.smartlist.R.string.cancel)) }
+            })
+            // confirmation UI moved to MainScreen (central host)
         }
 
         if (showItemRenameDialog && editingItemId != null) {

@@ -5,12 +5,14 @@ import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.smartlist.data.AppDatabase
 import com.example.smartlist.data.ListNameEntity
+import com.example.smartlist.data.ListWithCount
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.flatMapLatest
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.stateIn
+import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.asSharedFlow
@@ -31,14 +33,30 @@ class ListViewModel(application: Application) : AndroidViewModel(application) {
 
     // Filtered list flow based on query.
     // Use in-memory filtering on the full list to avoid any SQL LIKE/collation inconsistencies
-    val items = _query
-        .flatMapLatest { q ->
-            dao.getAll().map { list ->
+    // Expose lists along with an item count projection. Apply the in-memory query filter
+    // on the projection list to avoid SQL LIKE/collation inconsistencies.
+    private val _showArchived = MutableStateFlow(false)
+    val showArchived: StateFlow<Boolean> = _showArchived
+
+    // Filtered list flow based on query and the showArchived toggle.
+    // When showArchived is true, include archived cloned lists by using the
+    // DAO method getAllWithCountIncludeArchived(); otherwise use the default
+    // getAllWithCount() which excludes archived clones.
+    val items = combine(_query, _showArchived) { q, show -> Pair(q, show) }
+        .flatMapLatest { (q, show) ->
+            val flow = if (show) dao.getAllWithCountIncludeArchived() else dao.getAllWithCount()
+            flow.map { list ->
                 if (q.isBlank()) list
                 else list.filter { it.name.contains(q, ignoreCase = true) }
             }
         }
-        .stateIn(viewModelScope, SharingStarted.Eagerly, emptyList())
+        .stateIn(viewModelScope, SharingStarted.Eagerly, emptyList<ListWithCount>())
+
+    fun setShowArchived(show: Boolean) {
+        _showArchived.value = show
+    }
+
+    // ...existing code...
 
     fun setQuery(q: String) {
         _query.value = q
@@ -66,7 +84,9 @@ class ListViewModel(application: Application) : AndroidViewModel(application) {
 
     // Rename a list and emit UI events for success/failure
     private val renameBackup = mutableMapOf<Long, String>()
-    private val deleteBackup = mutableMapOf<Long, String>()
+    // Keep the full entity when deleting so undo can restore all fields (isCloned, state, masterId, etc.)
+    private val deleteBackup = mutableMapOf<Long, com.example.smartlist.data.ListNameEntity>()
+    private val stateBackup = mutableMapOf<Long, String>()
 
     fun deleteList(id: Long) {
         viewModelScope.launch {
@@ -75,8 +95,8 @@ class ListViewModel(application: Application) : AndroidViewModel(application) {
                 _events.tryEmit(UiEvent.ShowSnackbar("Cannot delete a template/master list"))
                 return@launch
             }
-            val name = entity.name
-            deleteBackup[id] = name
+            // stash full entity for potential undo so we can restore state/isCloned/masterId
+            deleteBackup[id] = entity
             dao.deleteById(id)
             _events.tryEmit(UiEvent.ShowSnackbar("List deleted", actionLabel = "Undo", undoInfo = UiEvent.UndoInfo("list_delete", id)))
         }
@@ -130,11 +150,18 @@ class ListViewModel(application: Application) : AndroidViewModel(application) {
                 "list_delete" -> {
                         val old = deleteBackup.remove(undoInfo.id)
                         if (old != null) {
-                            // Re-insert with the original id so screens observing that id pick it up
-                            dao.insert(ListNameEntity(id = undoInfo.id, name = old))
+                            // Re-insert the full entity (preserves isCloned, state, masterId)
+                            dao.insert(old)
                             _events.tryEmit(UiEvent.ShowSnackbar("Delete undone"))
                             _events.tryEmit(UiEvent.ScrollToTop)
                         }
+                }
+                "state_change" -> {
+                    val oldState = stateBackup.remove(undoInfo.id)
+                    if (oldState != null) {
+                        dao.updateState(undoInfo.id, oldState)
+                        _events.tryEmit(UiEvent.ShowSnackbar("State change undone"))
+                    }
                 }
             }
         }
@@ -145,6 +172,80 @@ class ListViewModel(application: Application) : AndroidViewModel(application) {
         viewModelScope.launch {
             dao.setTemplateFlag(id, isTemplate)
             _events.tryEmit(UiEvent.ShowSnackbar(if (isTemplate) "List marked as template" else "List unmarked as template"))
+        }
+    }
+
+    // Set state for a cloned list. Only cloned lists support state transitions.
+    fun setState(id: Long, newState: String) {
+        viewModelScope.launch {
+            val entity = dao.getById(id).first() ?: return@launch
+            if (entity.isTemplate) {
+                _events.tryEmit(UiEvent.ShowSnackbar("Cannot change state of a template/master list"))
+                return@launch
+            }
+            if (!entity.isCloned) {
+                _events.tryEmit(UiEvent.ShowSnackbar("Only cloned lists have editable states"))
+                return@launch
+            }
+
+            // Validate allowed transitions using ListStateManager
+            val old = entity.state
+            if (!ListStateManager.isTransitionAllowed(old, newState)) {
+                _events.tryEmit(UiEvent.ShowSnackbar("Cannot change state from $old to $newState"))
+                return@launch
+            }
+
+            try {
+                stateBackup[id] = old
+                dao.updateState(id, newState)
+                _events.tryEmit(UiEvent.ShowSnackbar("List state set to $newState", actionLabel = "Undo", undoInfo = UiEvent.UndoInfo("state_change", id)))
+
+                // If the list was archived, enable showing archived lists so the user can
+                // immediately see the archived row. Also emit a snackbar that offers the
+                // same action for discoverability.
+                if (newState == ListStateManager.ARCHIVED) {
+                    setShowArchived(true)
+                    _events.tryEmit(UiEvent.ShowSnackbar("List archived", actionLabel = "Show", undoInfo = UiEvent.UndoInfo("show_archived", id)))
+                }
+            } catch (t: Throwable) {
+                _events.tryEmit(UiEvent.ShowSnackbar("Failed to set state: ${t.message}"))
+            }
+        }
+    }
+
+    /**
+     * Unarchive a list by moving it to the default unarchive target.
+     * Uses setState for validation, undo and snackbar behaviour.
+     */
+    fun unarchiveList(id: Long) {
+        viewModelScope.launch {
+            val entity = dao.getById(id).first() ?: return@launch
+            if (!entity.isCloned || entity.state != ListStateManager.ARCHIVED) {
+                _events.tryEmit(UiEvent.ShowSnackbar("List is not archived"))
+                return@launch
+            }
+            // Choose the default target (PRECHECK) for unarchive
+            setState(id, ListStateManager.defaultUnarchiveTarget())
+        }
+    }
+
+    /**
+     * Request an archive confirmation modal for the given list id.
+     * This emits a one-shot UiEvent.ShowConfirm that the UI can observe and
+     * present in a lifecycle-safe way.
+     */
+    fun requestArchiveConfirmation(id: Long) {
+        viewModelScope.launch {
+            _events.emit(
+                UiEvent.ShowConfirm(
+                    title = "Archive list?",
+                    message = "Archiving will hide this list from the main screen. Continue?",
+                    confirmLabel = "Save",
+                    cancelLabel = "Cancel",
+                    kind = "archive",
+                    id = id
+                )
+            )
         }
     }
 
@@ -168,7 +269,12 @@ class ListViewModel(application: Application) : AndroidViewModel(application) {
                 itemDao.insert(ItemEntity(listId = newId, content = item.content))
             }
 
-            _events.tryEmit(UiEvent.ShowSnackbar("Cloned list \"$newName\""))
+            // Provide an action on the snackbar so the user can open the cloned list directly.
+            _events.tryEmit(UiEvent.ShowSnackbar(
+                "Cloned list \"$newName\"",
+                actionLabel = "Open",
+                undoInfo = UiEvent.UndoInfo("open_list", newId)
+            ))
             _events.tryEmit(UiEvent.ScrollToTop)
         }
     }
@@ -178,3 +284,4 @@ class ListViewModel(application: Application) : AndroidViewModel(application) {
     private val _events = MutableSharedFlow<UiEvent>(replay = 0, extraBufferCapacity = 4)
     val events: SharedFlow<UiEvent> = _events.asSharedFlow()
 }
+
